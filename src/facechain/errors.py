@@ -53,3 +53,35 @@ class AlreadyEnrolled(ConsentError):
 
 class EvidenceError(FaceChainError):
     """The evidence record is malformed, unserialisable, or unreadable."""
+
+
+class ChainError(FaceChainError):
+    """Base for compile/deploy/anchor/verify failures."""
+
+
+class AlreadyAnchoredError(ChainError):
+    """The record id is already anchored on chain (maps to the contract's custom error)."""
+
+    def __init__(self, record_id: str) -> None:
+        super().__init__(f"record {record_id} is already anchored")
+        self.record_id = record_id
+
+
+class RecordNotFoundError(ChainError):
+    """No record with this id exists on chain."""
+
+    def __init__(self, record_id: str) -> None:
+        super().__init__(f"no on-chain record for {record_id}")
+        self.record_id = record_id
+
+
+class TamperedError(ChainError):
+    """The evidence's recomputed hash does not match what is anchored on chain."""
+
+    def __init__(self, expected: str, on_chain: str) -> None:
+        super().__init__(
+            f"evidence hash does not match the anchored hash: "
+            f"recomputed={expected} on_chain={on_chain}"
+        )
+        self.expected = expected
+        self.on_chain = on_chain

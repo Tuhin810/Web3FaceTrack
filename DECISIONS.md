@@ -346,3 +346,84 @@ code, produces the same hash:
 That last check is the meaningful one: any third party can recompute the anchored hash
 from the published record without trusting this codebase. Full cross-*machine*
 confirmation still belongs to Phase 10's container run.
+
+---
+
+## D21 — No local chain binary installed; eth-tester substitutes for Anvil (Phase 4)
+
+**What:** `Task.md` §3 and §13 call for testing against Anvil or Ganache first. Neither
+is installed on this machine, and installing Foundry via Homebrew was declined. Phase 4
+was instead built and tested against `eth-tester`/`py-evm`, an in-memory EVM available as
+a pure Python dependency.
+
+**Why this is a fair substitute, not a shortcut:** `deploy()`, `anchor()`, and `verify()`
+all accept an injected `w3: Web3` and `private_key`. The test suite passes an
+`EthereumTesterProvider`-backed `Web3` through the *exact same code path* a real network
+uses — `build_transaction` → `sign_transaction` → `send_raw_transaction` →
+`wait_for_transaction_receipt`. Nothing about production usage is stubbed or mocked; only
+the RPC transport is swapped.
+
+**What this does NOT cover, and what changes with real Anvil:**
+- Anvil is a separate OS process reachable over HTTP, so it also exercises `get_web3()`'s
+  connection and error-handling path (`ChainError` on unreachable RPC) — verified
+  separately by pointing the CLI at `http://127.0.0.1:8545` with nothing listening.
+- Gas estimation, block timing, and EVM version quirks can differ subtly between py-evm
+  and Anvil's Rust EVM (revm). Nothing in the contract is version-sensitive, but this is
+  worth a real run before calling Phase 4 fully closed.
+- The **CLI-level** `deploy`/`anchor`/`verify` commands have not been run end-to-end,
+  since they only take a network name and always go through `get_web3()`'s HTTP path —
+  they cannot accept the injected test provider. Confirmed instead: the CLI's error
+  handling is correct when no chain is reachable (`ChainError`, clean message, exit 1).
+
+**To close properly:** install Anvil (`brew install foundry` or
+`curl -L https://foundry.paradigm.xyz | bash && foundryup`) and re-run
+`facechain deploy --network local` → `facechain anchor` → `facechain verify` against it,
+plus `scripts/tamper_test.sh` (Phase 5). This environment also has **no general internet
+access** (DNS resolution fails for external hosts), so this and Amoy deployment (Phase 9)
+must happen on the developer's own machine regardless.
+
+---
+
+## D22 — `is_anchored()` uses `get()`, not `verify()`, as the existence probe
+
+**What:** Existence of a record is checked via `get(id)` succeeding vs. reverting, not
+via `verify(id, someHash)` returning true.
+
+**Why:** An earlier version probed with `verify(id, 0x00...00)`, reasoning that a real
+hash is (almost) never all-zero, so a `True` result would mean the id is occupied. This
+is wrong: `verify()` returns true **only when the probe hash matches exactly**, so it
+returns `False` for both "unanchored" and "anchored under a different hash" — it can
+never confirm existence without already knowing the stored hash. This was caught by
+`test_anchor_twice_raises_already_anchored_not_a_raw_revert`: the pre-flight check
+silently passed a duplicate anchor through to the chain, which reverted for real, and the
+post-failure re-check made the same mistake and mis-reported it as a generic `ChainError`
+instead of `AlreadyAnchoredError`.
+
+**Effect:** `get()` is existence-by-exception rather than existence-by-value, which is
+correct for any Solidity revert regardless of provider. AC9 now passes.
+
+---
+
+## D23 — Block number for `verify` output comes from the anchoring event, not the chain tip
+
+**What:** `verify()` reads `MatchAnchored`'s indexed `recordId` via `get_logs` to find the
+block the record was anchored in.
+
+**Why:** The `Record` struct only stores a `uint64 timestamp`, not a block number. Using
+`w3.eth.block_number` (the current chain tip) would silently misreport an old anchor as
+having just happened — worse than showing nothing, since it looks correct at a glance.
+Falls back to `-1` ("unknown") if the log cannot be found, e.g. against a provider that
+prunes old logs, rather than repeating the same wrong assumption.
+
+---
+
+## D24 — `tx_hash.hex()` in web3 8.x omits the `0x` prefix
+
+**What:** `deploy()` and `anchor()` build the hash string as
+`"0x" + tx_hash.hex().removeprefix("0x")`.
+
+**Why:** web3 8.0.0's `HexBytes.hex()` returns bytes without a leading `0x` (unlike
+earlier web3 versions, where this varied). An initial conditional assuming `.hex()`
+sometimes already included the prefix was dead code — `.hex()` always returns `str`, so
+the condition was always false and the prefix was silently dropped. Caught immediately
+by `result.tx_hash.startswith("0x")` in the roundtrip test.

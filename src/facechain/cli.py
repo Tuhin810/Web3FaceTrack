@@ -173,21 +173,54 @@ def scan() -> None:
 
 
 @app.command()
-def deploy() -> None:
-    """Deploy MatchRegistry to a network."""
-    _todo("deploy", "Phase 4")
+def deploy(
+    network: str = typer.Option(..., "--network", help="amoy or local."),
+) -> None:
+    """Compile and deploy MatchRegistry to a network."""
+    from .chain.deploy import deploy as do_deploy, write_deployment
+
+    d = do_deploy(network)
+    path = write_deployment(d)
+    typer.secho(f"deployed to {network} (chain id {d.chain_id})", fg="green", bold=True)
+    typer.echo(f"  address : {d.address}")
+    typer.echo(f"  tx      : {d.tx_hash}")
+    typer.echo(f"  block   : {d.block_number}")
+    if d.explorer_url():
+        typer.echo(f"  explorer: {d.explorer_url()}")
+    typer.echo(f"  written : {path}")
 
 
 @app.command()
-def anchor() -> None:
+def anchor(
+    evidence: Path = typer.Option(..., "--evidence", exists=True, help="evidence.json"),
+    network: str = typer.Option("local", "--network", help="amoy or local."),
+    uri: str = typer.Option("", "--uri", help="optional off-chain pointer (e.g. an IPFS CID)."),
+) -> None:
     """Anchor an evidence record on chain."""
-    _todo("anchor", "Phase 4")
+    from .chain.anchor import anchor as do_anchor
+    from .evidence import load_evidence
+
+    result = do_anchor(network, load_evidence(evidence), uri=uri)
+    typer.secho("ANCHORED", fg="green", bold=True)
+    typer.echo(f"  record id : {result.record_id}")
+    typer.echo(f"  tx hash   : {result.tx_hash}")
+    typer.echo(f"  block     : {result.block_number}")
+    typer.echo(f"  submitter : {result.submitter}")
 
 
 @app.command()
-def verify() -> None:
+def verify(
+    evidence: Path = typer.Option(..., "--evidence", exists=True, help="evidence.json"),
+    network: str = typer.Option("local", "--network", help="amoy or local."),
+) -> None:
     """Verify an evidence record against its on-chain anchor."""
-    _todo("verify", "Phase 4")
+    from .chain.verify import verify as do_verify
+    from .evidence import load_evidence
+
+    result = do_verify(network, load_evidence(evidence))
+    typer.secho(result.summary(), fg="green" if result.verified else "red", bold=True)
+    if not result.verified:
+        raise typer.Exit(code=1)
 
 
 @app.command()
