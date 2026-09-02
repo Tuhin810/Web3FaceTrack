@@ -74,7 +74,21 @@ CREDENTIAL_PATTERNS = [
 # hash / record id, and the latter are legitimately documented in DECISIONS.md and
 # asserted in tests. Distinguishing them by regex alone is not possible, so the check
 # looks at the surrounding line for words that only make sense for a public hash.
-HASH_CONTEXT_WORDS = ("hash", "record_id", "record id", "keccak", "sha", "evidence", "anchor")
+HASH_CONTEXT_WORDS = (
+    "hash",
+    "record_id",
+    "record id",
+    "keccak",
+    "sha",
+    "evidence",
+    "anchor",
+    # Transaction hashes and addresses appear in README transcripts. They are public
+    # blockchain data by definition -- a tx hash is not a secret.
+    "tx ",
+    "tx:",
+    "submitter",
+    "explorer",
+)
 
 
 @pytest.mark.parametrize("pattern,label", CREDENTIAL_PATTERNS)
