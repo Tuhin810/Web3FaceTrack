@@ -26,3 +26,30 @@ class LowConfidenceFace(FaceChainError):
         )
         self.best_score = best_score
         self.threshold = threshold
+
+
+class ConfigError(FaceChainError):
+    """A required setting is missing or invalid for the chosen path."""
+
+
+class ConsentError(FaceChainError):
+    """Base for enrolment and consent-gate failures."""
+
+
+class ConsentDenied(ConsentError):
+    """The consent gate refused the run. Maps to status CONSENT_DENIED.
+
+    ``reason`` is a short machine-ish tag; the message is what the user reads.
+    """
+
+    def __init__(self, message: str, reason: str) -> None:
+        super().__init__(message)
+        self.reason = reason
+
+
+class AlreadyEnrolled(ConsentError):
+    """A subject with this id is already enrolled."""
+
+
+class EvidenceError(FaceChainError):
+    """The evidence record is malformed, unserialisable, or unreadable."""

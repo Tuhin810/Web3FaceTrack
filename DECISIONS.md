@@ -115,3 +115,234 @@ a hard dependency on `opencv-python`, so both land in the environment.
 **Why:** Not resolvable without vendoring or patching insightface's metadata.
 **Effect:** Harmless locally; wasted image size and a GUI-linked build in a container.
 Revisit at Phase 10 when the Linux install is containerised.
+
+---
+
+## D8 — Consent authorises a face, not a subject id (Phase 2)
+
+**What:** `check_consent()` loads the enrolled encoding and requires the *query* face to
+match it above `MATCH_THRESHOLD`. Passing `--subject tuhin` is not sufficient.
+**Why:** `Task.md` §2.1 says the pipeline refuses to run unless the query image "maps to
+an enrolled subject". A name check alone would let anyone point the pipeline at a
+stranger's photograph by borrowing an enrolled id — which is the exact abuse the consent
+gate exists to prevent.
+**Effect:** Denial reason `face_mismatch`. Note this couples the gate to `MATCH_THRESHOLD`,
+so the D6 tuning result changes gate behaviour too: too high a threshold locks the subject
+out of their own pipeline. Worth re-checking once real tuning data exists.
+
+---
+
+## D9 — The gate runs before any network activity (Phase 2)
+
+**What:** The consent check is a standalone function called before hosting, search, or
+fetching, and a test monkeypatches `socket` to assert no connection is attempted.
+**Why:** §2.1 requires refusal, but ordering is what gives refusal meaning. A run denied
+*after* the query image had been uploaded to imgbb would already have published the
+subject's photograph to a third party — failing at the one moment that mattered.
+**Effect:** `test_gate_runs_before_any_network_activity` fails loudly if a future refactor
+moves the upload earlier.
+
+---
+
+## D10 — Enrolment stores no photograph (Phase 2)
+
+**What:** `enroll()` derives the encoding and writes only `consent.json` plus an `.npz`
+holding the vector, bbox, det score and model id. The enrolment image is never copied
+into `data/`.
+**Why:** §2.1 forbids committing face encodings, consent records or query images. Not
+storing the photograph at all is stronger than relying on `.gitignore`.
+**Effect:** `test_enroll_never_stores_the_photograph` asserts only `.json` and `.npz` files
+appear under `data/`.
+
+---
+
+## D11 — Consent can be revoked (Phase 2)
+
+**What:** Added `revoke()` and a `revoked_at` field. Revocation stamps the consent record
+and **deletes the enrolled encoding**; the gate then refuses with reason `revoked`.
+**Why:** Not requested by the spec. But consent that cannot be withdrawn is not consent,
+and the README has to make an honest ethics claim in Phase 11. Deleting the vector rather
+than just flagging it means withdrawn consent leaves no face data on disk.
+**Effect:** The consent record is retained as an audit trail of what was agreed and when;
+only the biometric data is destroyed.
+
+---
+
+## D12 — Credentials are validated per path, not at import (Phase 2)
+
+**What:** Every credential in `Settings` is optional. Code that needs one calls
+`settings.require("serpapi_key", "run a live search")`, which names the env var and the
+reason.
+**Why:** §9 says fail fast if a required key is missing *for the chosen path*. Validating
+globally would break `--provider offline` on a machine with no `.env` — and that path is
+what makes CI (Phase 10) and a clean-clone judge run possible.
+**Effect:** AC11 stays reachable without credentials.
+
+---
+
+## D13 — Real-subject validation of the engine (Phase 1/2, measured on `test.png`)
+
+Run against the project owner's own photograph (348×348, single face, det_score 0.835,
+face occupying only 3,339 px² — a small face in frame).
+
+**Consent gate, live:** enrolled subject passes at +1.0000; a different individual is
+refused at −0.061; a six-person group of strangers refused at −0.048. AC2/AC3 confirmed
+outside the test suite.
+
+**Degradation robustness** (same photo, damaged the way web images are):
+
+| Variant | similarity | | Variant | similarity |
+|---|---|---|---|---|
+| original | +1.0000 | | dark | +0.8696 |
+| jpeg q40 | +0.8615 | | bright | +0.9525 |
+| **jpeg q15** | **+0.5791** | | rotated 10° | +0.9737 |
+| half size | +0.8957 | | mirrored | +0.9434 |
+| 150px thumbnail | +0.8036 | | tight face crop | +0.9020 |
+| grayscale | +0.9482 | | crop +25px margin | +0.9918 |
+
+All twelve clear the 0.45 boundary.
+
+**Two findings that matter downstream:**
+
+1. **Heavy JPEG compression is the weak point.** At quality 15 the score falls to +0.579 —
+   still a match, but the margin over 0.45 has shrunk to 0.13 from a typical ~0.45. Stage 2
+   will meet aggressively recompressed images routinely, so this, combined with a genuinely
+   different photograph (already a harder case), is where false negatives will come from.
+   Worth preferring the highest-resolution image variant a page offers.
+
+2. **D4's padded retry is confirmed necessary on real data.** The exact face box from this
+   photo is a 53×63 crop. Detection on it **without** the retry returns **zero faces**;
+   with padding it detects at 0.718 and matches the source at +0.9020. Profile avatars and
+   search thumbnails are shaped exactly like this, so without D4 stage 2 would discard them
+   silently.
+
+**Still not closed:** every row above is a derivative of one photograph. Genuine
+same-person pairs — different day, camera, pose — remain unmeasured, so D6 stands.
+
+---
+
+## D14 — Phase 9 demo target confirmed: the GitHub profile (reconnaissance)
+
+`test.png` turned out to be **byte-identical** to the live avatar at
+`https://avatars.githubusercontent.com/u/111550237?v=4` (similarity +1.0000), i.e. the
+subject's actual GitHub profile picture, publicly hosted.
+
+Verified for the live demo:
+
+- `https://github.com/Tuhin810` returns HTTP 200 and carries
+  `og:image = https://avatars.githubusercontent.com/u/111550237?v=4?s=400` and
+  `og:title = "Tuhin810 - Overview"` — precisely the fields `scrape.py` extracts (§5.2).
+- `github.com/robots.txt` does **not** disallow `/Tuhin810` for `User-agent: *`. Profile
+  pages are crawlable; the Disallow list covers `/*/*/commits/`, `/*/tree/`, `/gist/` and
+  similar, none of which we need.
+
+So AC6 has a plausible live target. Remaining unknown: whether Google Lens actually
+returns the profile page for this image. That is only answerable in Phase 9 with a real
+SerpAPI call, and a no-match is still a valid outcome (§2.2).
+
+**Demo-strength caveat:** if the query image is the *same file* as the one on the page,
+stage 2's re-verification proves little — it compares an image with itself. A stronger and
+more honest demo uses a *different* photograph of the subject as the query, so the face
+re-verification does real work in upgrading a visual hit to an identity match. Worth
+capturing a second photo before Phase 9.
+
+---
+
+## D15 — `robots.txt` fetching must validate content type (Phase 7 hazard)
+
+**Found during D14 reconnaissance:** `https://avatars.githubusercontent.com/robots.txt`
+returns **HTTP 200 with `content-type: image/png`** — that host serves *any* path as an
+image. A naive `urllib.robotparser` would be fed PNG bytes and derive nonsense rules,
+either blocking every fetch or permitting everything, silently.
+
+**Decision:** `scrape.py` must check the response content type is `text/*` and the status
+is 200 before parsing, and treat anything else as "no robots file" (default allow, log the
+anomaly). Also cache per-host so the 1 req/sec budget is not spent re-fetching it.
+
+**Why it matters:** image CDNs are exactly the hosts stage 2 fetches from most, so this is
+a common case, not an exotic one.
+
+---
+
+## D16 — `record_id` validates that the left operand is a digest (Phase 3)
+
+**What:** `record_id()` rejects any `image_sha256` that is not exactly 64 lowercase hex
+characters.
+
+**Why:** `Task.md` §6 specifies `keccak256(query.image_sha256 + "|" + match.page_url)`.
+That concatenation is ambiguous in the general case — `("a", "b|c")` and `("a|b", "c")`
+both render as `a|b|c` and produce an identical record id. A test written to assert the
+separator was unambiguous **failed**, which is how this surfaced.
+
+It is not exploitable in practice, because the left operand is always a SHA-256 hex
+digest and cannot contain `|`. So the correct fix is to *enforce the invariant the format
+relies on*, not to redesign the format: changing the construction would alter every
+record id and invalidate anything already anchored.
+
+**Effect:** The spec's format is preserved byte-for-byte. URLs may still contain `|`,
+since only the left side is constrained.
+
+---
+
+## D17 — pHash is implemented in-repo, not taken from a library (Phase 3)
+
+**What:** A DCT perceptual hash written against numpy/OpenCV rather than the `imagehash`
+package. Definition: greyscale → 32×32 (INTER_AREA) → 2-D DCT → top-left 8×8 → compare
+each coefficient to the median of that block *excluding the DC term* → 64 bits, row-major,
+MSB first → 16 hex characters.
+
+**Why:** This value is inside a hashed, anchored record. A dependency free to change its
+algorithm across versions would silently change evidence hashes, breaking the §2.3
+reproducibility claim. Pinning the algorithm in-repo makes it auditable and stable.
+
+**Effect:** No extra dependency. Measured: stable across runs, and moves ≤6 of 64 bits
+under JPEG q40 recompression.
+
+---
+
+## D18 — Floats are rounded before hashing (Phase 3)
+
+**What:** `similarity` and `match_threshold` are rounded to 6 decimal places, `det_score`
+to 4, inside `build_evidence`.
+
+**Why:** Two machines can compute `0.6120000000000001` and `0.612` for the same cosine
+similarity. Those serialise to different JSON bytes and therefore to different hashes,
+which would break §2.3 in a way that is very hard to diagnose after the fact.
+
+**Effect:** `test_floats_are_rounded_for_reproducibility` asserts both spellings hash
+identically. Precision retained is far beyond what the threshold decision needs.
+
+---
+
+## D19 — Verification re-canonicalises rather than hashing the file bytes (Phase 3)
+
+**What:** `load_evidence()` parses the JSON, and hashing runs over the re-serialised
+canonical form — not over the raw bytes on disk.
+
+**Why:** It separates *formatting* from *content*. A pretty-printed or re-indented copy
+still verifies, while changing any value does not. Hashing raw file bytes would make
+trivial reformatting look identical to tampering, which would weaken the Phase 5 demo
+rather than strengthen it.
+
+**Effect:** Covered by `test_reformatting_the_file_does_not_break_verification` and by six
+parametrised field-mutation tests.
+
+---
+
+## D20 — Reproducibility verified across interpreters (Phase 3, closes part of §2.3)
+
+Canonical bytes for the committed fixture are **byte-identical (1017 bytes, sha256
+`444423e5…`) on CPython 3.9 and 3.12**, and the evidence hash is unchanged across
+randomised `PYTHONHASHSEED`, `LC_ALL=C` vs `en_US.UTF-8`, and `TZ=Asia/Tokyo` vs
+`America/New_York`.
+
+An **independent reimplementation** using only `json` + `Web3.keccak`, touching no project
+code, produces the same hash:
+
+```
+0xa075bde44c4015e476bb8a06ce3ff3bc9920f790288323afbb4a460db2f9732d
+```
+
+That last check is the meaningful one: any third party can recompute the anchored hash
+from the published record without trusting this codebase. Full cross-*machine*
+confirmation still belongs to Phase 10's container run.

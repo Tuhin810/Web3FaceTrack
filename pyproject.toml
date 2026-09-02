@@ -10,7 +10,7 @@ requires-python = ">=3.11"
 license = { text = "MIT" }
 
 [project.scripts]
-facechain = "facechain.cli:app"
+facechain = "facechain.cli:run"
 
 [tool.setuptools.packages.find]
 where = ["src"]

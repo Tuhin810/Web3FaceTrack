@@ -13,6 +13,11 @@ from pathlib import Path
 import typer
 
 from . import __version__
+from .errors import ConsentDenied, FaceChainError
+from .status import Status
+
+# Exit codes. 0 success, 1 generic failure, 2 usage/not-implemented, 3 consent refused.
+EXIT_CONSENT_DENIED = 3
 
 app = typer.Typer(
     add_completion=False,
@@ -75,9 +80,90 @@ def compare(
 
 
 @app.command()
-def enroll() -> None:
+def enroll(
+    subject: str = typer.Option(..., "--subject", help="Subject id (letters, digits, - and _)."),
+    image: Path = typer.Option(..., "--image", exists=True, help="Enrolment photograph."),
+    consent_statement: str = typer.Option(
+        ..., "--consent-statement", help="The subject's own words agreeing to this use."
+    ),
+    display_name: str = typer.Option(None, "--display-name", help="Human-readable name."),
+    scope: str = typer.Option(None, "--scope", help="What the subject consented to."),
+    overwrite: bool = typer.Option(False, "--overwrite", help="Replace an existing enrolment."),
+) -> None:
     """Record consent and enrol a subject."""
-    _todo("enroll", "Phase 2")
+    from .consent import DEFAULT_SCOPE, enroll as do_enroll
+
+    record = do_enroll(
+        subject_id=subject,
+        image=image,
+        consent_statement=consent_statement,
+        display_name=display_name,
+        scope=scope or DEFAULT_SCOPE,
+        overwrite=overwrite,
+    )
+    typer.secho(f"enrolled {record.subject_id} ({record.display_name})", fg="green", bold=True)
+    typer.echo(f"  consented : {record.date}")
+    typer.echo(f"  scope     : {record.scope}")
+    typer.echo(f"  model     : {record.model}")
+    typer.echo("  stored    : consent record + face encoding only (no photograph kept)")
+
+
+@app.command()
+def subjects() -> None:
+    """List enrolled subjects."""
+    from .consent import list_subjects
+
+    found = list_subjects()
+    if not found:
+        typer.echo("no subjects enrolled")
+        return
+    for r in found:
+        state = "active" if r.is_active else f"REVOKED {r.revoked_at}"
+        typer.echo(f"{r.subject_id:<16} {r.display_name:<24} {r.date}  [{state}]")
+
+
+@app.command()
+def revoke(
+    subject: str = typer.Option(..., "--subject", help="Subject id to revoke."),
+) -> None:
+    """Withdraw consent and delete the subject's enrolled face encoding."""
+    from .consent import revoke as do_revoke
+
+    record = do_revoke(subject)
+    typer.secho(f"consent revoked for {record.subject_id} at {record.revoked_at}", fg="yellow")
+    typer.echo("  enrolled face encoding deleted")
+
+
+@app.command("check-consent")
+def check_consent_cmd(
+    subject: str = typer.Option(..., "--subject", help="Subject id."),
+    image: Path = typer.Option(..., "--image", exists=True, help="Query image to authorise."),
+) -> None:
+    """Run the consent gate alone, without starting a pipeline run."""
+    from .consent import check_consent
+
+    result = check_consent(subject, image)
+    typer.secho("CONSENT OK", fg="green", bold=True)
+    typer.echo(f"  subject    : {result.record.subject_id} ({result.record.display_name})")
+    typer.echo(f"  similarity : {result.similarity:+.4f}")
+    typer.echo(f"  statement  : {result.record.statement}")
+
+
+@app.command("evidence-hash")
+def evidence_hash_cmd(
+    evidence: Path = typer.Option(..., "--evidence", exists=True, help="evidence.json"),
+) -> None:
+    """Recompute the canonical hash and record id of an evidence file (stage 3)."""
+    from .evidence import canonical_json, evidence_hash, has_match, load_evidence, record_id_for
+
+    record = load_evidence(evidence)
+    raw = canonical_json(record)
+    typer.echo(f"canonical bytes : {len(raw)}")
+    typer.echo(f"evidence_hash   : {evidence_hash(record)}")
+    if has_match(record):
+        typer.echo(f"record_id       : {record_id_for(record)}")
+    else:
+        typer.secho("record_id       : n/a (NO_MATCH record, nothing to anchor)", fg="yellow")
 
 
 @app.command()
@@ -110,5 +196,21 @@ def report() -> None:
     _todo("report", "Phase 8")
 
 
+def run() -> None:
+    """Console-script entry point.
+
+    Domain errors are expected outcomes, not crashes: TASK.md 8 requires every command
+    to exit non-zero with a readable message, so no traceback reaches the user.
+    """
+    try:
+        app()
+    except ConsentDenied as exc:
+        typer.secho(f"{Status.CONSENT_DENIED.value}: {exc}", fg="red", bold=True, err=True)
+        raise SystemExit(EXIT_CONSENT_DENIED) from None
+    except FaceChainError as exc:
+        typer.secho(f"{type(exc).__name__}: {exc}", fg="red", bold=True, err=True)
+        raise SystemExit(1) from None
+
+
 if __name__ == "__main__":
-    app()
+    run()

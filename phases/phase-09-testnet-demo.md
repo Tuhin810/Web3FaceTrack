@@ -15,6 +15,11 @@ Acceptance: AC5, AC6, AC7
 
 ## Notes
 
+**Target confirmed (DECISIONS D14):** the subject's GitHub avatar is public, and
+`github.com/Tuhin810` is crawlable with the right `og:` tags. Capture a *second, different*
+photo of the subject to use as the query — if the query is the same file as the page's
+image, stage 2 proves nothing.
+
 **Known tension:** AC6 requires ≥1 verified match from a live search, but §12 says private
 individuals will legitimately return nothing. Pick a query photo that is actually indexed —
 a GitHub or LinkedIn profile photo is the best bet; Instagram is largely unindexed. Decide

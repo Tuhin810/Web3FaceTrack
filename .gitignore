@@ -1,8 +1,16 @@
 # Never commit consent records, face encodings, query images, or run artifacts.
 data/consent/
 data/enrolled/
+data/tuning/
 out/
 .env
+
+# Query and test photographs of real people. Belt and braces: keep photos out of the
+# repo root too, not just out of data/.
+test.png
+*.query.png
+*.query.jpg
+/photos/
 
 # Python
 .venv/

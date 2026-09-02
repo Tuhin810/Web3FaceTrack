@@ -9,7 +9,8 @@ Spec: `Task.md` §5.2
 
 ## Tasks
 
-- [ ] `scrape.py` — honour `robots.txt` (skip + log on disallow), 1 req/sec **per domain**, 10s timeout, 2 retries with backoff, descriptive User-Agent containing the repo URL
+- [ ] `scrape.py` — honour `robots.txt` (skip + log on disallow); **validate the robots response is `text/*` before parsing** and cache per host — see DECISIONS D15, an image CDN was found serving `robots.txt` as a PNG with HTTP 200
+- [ ] Prefer the highest-resolution image variant a page offers — heavy JPEG recompression costs ~0.4 similarity (DECISIONS D13), 1 req/sec **per domain**, 10s timeout, 2 retries with backoff, descriptive User-Agent containing the repo URL
 - [ ] Extract `og:image`, `og:title`, `og:description`, `<title>`, first 2000 chars of visible text, all `<img>` srcs above 200×200; fetch max 5 images per page
 - [ ] `matcher.py` — social/profile domains prioritized (instagram, x, linkedin, facebook, github, medium, personal domains) but the remainder **not discarded**; cap at `MAX_CANDIDATES = 15`
 - [ ] Per fetched image: `primary_face()` + `similarity()` against the query encoding; candidate passes if any image scores ≥ `MATCH_THRESHOLD`
