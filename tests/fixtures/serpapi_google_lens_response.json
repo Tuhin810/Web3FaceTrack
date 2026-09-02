@@ -1,0 +1,1259 @@
+{
+  "search_metadata": {
+    "id": "6a98548fbdfe49cfb069d5d5",
+    "status": "Success",
+    "json_endpoint": "https://serpapi.com/searches/3eFmSBHhwUX3yIFQBUldyUumaxgx2F6888_f_bbzdig/6a98548fbdfe49cfb069d5d5.json",
+    "markdown_endpoint": "https://serpapi.com/searches/3eFmSBHhwUX3yIFQBUldyUumaxgx2F6888_f_bbzdig/6a98548fbdfe49cfb069d5d5.md",
+    "created_at": "2026-09-02 16:53:36 UTC",
+    "processed_at": "2026-09-02 16:53:36 UTC",
+    "google_lens_url": "https://lens.google.com/uploadbyurl?url=https%3A%2F%2Fi.ibb.co%2Fj9HgXHhZ%2Fquery.png",
+    "raw_html_file": "https://serpapi.com/searches/3eFmSBHhwUX3yIFQBUldyUumaxgx2F6888_f_bbzdig/6a98548fbdfe49cfb069d5d5.html",
+    "total_time_taken": 3.5
+  },
+  "search_parameters": {
+    "engine": "google_lens",
+    "url": "https://i.ibb.co/j9HgXHhZ/query.png"
+  },
+  "ai_overview": {
+    "page_token": "LPx4GniczVfbkqo4FP2B-Y3x6bQK2kp3lXUqCahBvMTrwRcKAuKFS2tUGt_mX-aP5m2-ZgLe-2B3nXmYml1Ckp3lzk6yVu_2jz-9RbD6-7e_5tvtG3stFKIoyrth6HpOnoZ-wWRxQAuz0GMbOv_uBczwQ9up7YJc0me7zcykTk2s5Fi42_Ae9-Yjx8rvVkFuZ_vJzJ4tgm0NAbJGbogQoAPguk0MlAqOwolMAACyNOZv0HsvAoCBoXKfK0sR6COA4GIHB6PUz0NtFnYN4ViJrVL7sC-JT0AhYO5CvCBiZ6kupjJ_UPEwHdbn2rDvt32y1Zd6ucN97Yby3lmO3vXhqjz1SewSZQECtdSCU0SjcGc1pp426QvWRHju-nrUWVKh08AHbQi96YRsO412pA-EeXsJfW2CD_pEjztD6HdlWmr3VYiW0l73nw9aSS1porqnPt3TgB594rtnBe3tNFD3VtD3rCSvH_BNK8HYEglfe7yjseBT_2Vn8_4UCXPaWO07B8-EIEQ8TpkZ3a5bqRLPbefifa2Uo6xWzDmL2sob6Oa6ZcPecCww0qtYGo-v5NLLqxmWyZwlv9v3JSsYBf5a_V6S-SDP8k6Q79hk2TJVOdxFebEolvLdgulzAPjvzFX47QICBkBJxzgTpX8diPMGAR4G3vrIcY2Lo5HiwHk1clr0J1PkYyIQJeFQ8uk9b_fcEZ4hspv9VY6524MLRokPROlITZLJ3mO2HXeAkxxSQ4-hF3SmN7yOb-8XgmwjH458AMBSAopyPU1y3Yh6F4erEh_HK9BzJQIoXjw8rDSHEYAHDFb4UxQ3rIzL6AyqM74PXLBdTthiwdrwRigs6JymnQ1LeIyGL8Ww3h31R24kj5yKzmbb0EUieHrGfeXNIgVqcZwXmrZjG3Oj-D0dC6LwXHwpVaVvqYAouyiI3SqoC7R3eYG7z7GU1_JQOMsHXU7mw-kmbIKZlJufoFnX4V-9yZkfLwa2kjinZc70QEBpLPj7NoqC5jDlXnRyyFECvGHKlY4EZcnnvPK1NY9f4WxI4O5p7Zs1Ab7h-M0MjMBPhu5zSFCAnufQPaUxuKcIwjBJ-ZL0HWldngdB_A8M5z5SmrB-dNN7DeHr5uClcdHNFgg-7-o4eyOfBENcHqOvJgB3BHlKacBTyP4JOCAfrl3JkirUgY4zZ7429JV4EiNnnXyg_a1clEF_3BeGTBtNhLq1HYoH4kwjFwpoE2XLI_StX6gw9H8loGP90U8VAYF2poDKSedzAaX1hzyuP2m3cRFQuomRojwQkIwf1J_yGXKtPx8FBPGtgFzyWf35ZQGhTwV0bDMFFGYLSH0goHP9uRHQff1RsurPWUD_pv6gf1l_Uj05x-a-GO2W7sOi1AwUQ3xpjlpRVeH_AS7hxGoBGAcz0I6-LEozf_vqm7b3zVjYr1BUt7H9zeCO8NWxc-uc723CWtGs_njyDO3QHEjMweGY6eWgqBu9SJTivlI1ZlBuV7VqJMBpNJ86TStqOk_2ah_itxlUK6un0ZR65huTh-W1XXTqrC7NFL2xa44qawWPN26vF9WdzZIemq1q25yzLpusna3albx9H2zW8KWMS90u7MJJT62XDUlPE2M1rAmw-APWtTL3mDZzakLO31D-MwGUY9AnYOImHNMT7vEn5E_EnwogCswxahoO29dsSaKObQuS4FiiVOYR3G38VquIORZsasI_yPKyQg",
+    "serpapi_link": "https://serpapi.com/search.json?engine=google_ai_overview&page_token=LPx4GniczVfbkqo4FP2B-Y3x6bQK2kp3lXUqCahBvMTrwRcKAuKFS2tUGt_mX-aP5m2-ZgLe-2B3nXmYml1Ckp3lzk6yVu_2jz-9RbD6-7e_5tvtG3stFKIoyrth6HpOnoZ-wWRxQAuz0GMbOv_uBczwQ9up7YJc0me7zcykTk2s5Fi42_Ae9-Yjx8rvVkFuZ_vJzJ4tgm0NAbJGbogQoAPguk0MlAqOwolMAACyNOZv0HsvAoCBoXKfK0sR6COA4GIHB6PUz0NtFnYN4ViJrVL7sC-JT0AhYO5CvCBiZ6kupjJ_UPEwHdbn2rDvt32y1Zd6ucN97Yby3lmO3vXhqjz1SewSZQECtdSCU0SjcGc1pp426QvWRHju-nrUWVKh08AHbQi96YRsO412pA-EeXsJfW2CD_pEjztD6HdlWmr3VYiW0l73nw9aSS1porqnPt3TgB594rtnBe3tNFD3VtD3rCSvH_BNK8HYEglfe7yjseBT_2Vn8_4UCXPaWO07B8-EIEQ8TpkZ3a5bqRLPbefifa2Uo6xWzDmL2sob6Oa6ZcPecCww0qtYGo-v5NLLqxmWyZwlv9v3JSsYBf5a_V6S-SDP8k6Q79hk2TJVOdxFebEolvLdgulzAPjvzFX47QICBkBJxzgTpX8diPMGAR4G3vrIcY2Lo5HiwHk1clr0J1PkYyIQJeFQ8uk9b_fcEZ4hspv9VY6524MLRokPROlITZLJ3mO2HXeAkxxSQ4-hF3SmN7yOb-8XgmwjH458AMBSAopyPU1y3Yh6F4erEh_HK9BzJQIoXjw8rDSHEYAHDFb4UxQ3rIzL6AyqM74PXLBdTthiwdrwRigs6JymnQ1LeIyGL8Ww3h31R24kj5yKzmbb0EUieHrGfeXNIgVqcZwXmrZjG3Oj-D0dC6LwXHwpVaVvqYAouyiI3SqoC7R3eYG7z7GU1_JQOMsHXU7mw-kmbIKZlJufoFnX4V-9yZkfLwa2kjinZc70QEBpLPj7NoqC5jDlXnRyyFECvGHKlY4EZcnnvPK1NY9f4WxI4O5p7Zs1Ab7h-M0MjMBPhu5zSFCAnufQPaUxuKcIwjBJ-ZL0HWldngdB_A8M5z5SmrB-dNN7DeHr5uClcdHNFgg-7-o4eyOfBENcHqOvJgB3BHlKacBTyP4JOCAfrl3JkirUgY4zZ7429JV4EiNnnXyg_a1clEF_3BeGTBtNhLq1HYoH4kwjFwpoE2XLI_StX6gw9H8loGP90U8VAYF2poDKSedzAaX1hzyuP2m3cRFQuomRojwQkIwf1J_yGXKtPx8FBPGtgFzyWf35ZQGhTwV0bDMFFGYLSH0goHP9uRHQff1RsurPWUD_pv6gf1l_Uj05x-a-GO2W7sOi1AwUQ3xpjlpRVeH_AS7hxGoBGAcz0I6-LEozf_vqm7b3zVjYr1BUt7H9zeCO8NWxc-uc723CWtGs_njyDO3QHEjMweGY6eWgqBu9SJTivlI1ZlBuV7VqJMBpNJ86TStqOk_2ah_itxlUK6un0ZR65huTh-W1XXTqrC7NFL2xa44qawWPN26vF9WdzZIemq1q25yzLpusna3albx9H2zW8KWMS90u7MJJT62XDUlPE2M1rAmw-APWtTL3mDZzakLO31D-MwGUY9AnYOImHNMT7vEn5E_EnwogCswxahoO29dsSaKObQuS4FiiVOYR3G38VquIORZsasI_yPKyQg"
+  },
+  "visual_matches": [
+    {
+      "position": 1,
+      "title": "\ud83d\udccd\u539f\u5bbf Harry Potter store Aug 18th 2025 It was so fun ...",
+      "link": "https://www.instagram.com/p/DNg9ukwyFRM/",
+      "source": "Instagram",
+      "source_icon": "https://serpapi.com/searches/6a98548fbdfe49cfb069d5d5/images/gtfKacJ7cdme7GZtTbUxW84h0EdsfmfdyKqRZ9nvuIM.png",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRWiw0mhta2hIolo-XZAVacEhlMmsC4roo_CjToAFY_7uz8_-nq",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3702230356431829905",
+      "image_width": 1920,
+      "image_height": 1440
+    },
+    {
+      "position": 2,
+      "title": "For years I have been envious of friends who have been to ...",
+      "link": "https://www.instagram.com/p/DRCrZnKE7uO/",
+      "source": "Instagram",
+      "source_icon": "https://serpapi.com/searches/6a98548fbdfe49cfb069d5d5/images/EpQvo6duN3LrzWO5JQbL897_WiFtsMKEjxrRr6olW1E.png",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTnO4A-AfkembYgmPV0HWsSssDzTa__kHO1E3CAvhkH5g6RpZRc",
+      "thumbnail_width": 259,
+      "thumbnail_height": 195,
+      "image": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3765763100709726689",
+      "image_width": 1916,
+      "image_height": 1440
+    },
+    {
+      "position": 3,
+      "title": "Universal Studios - The Wizarding World of Harry Potter ...",
+      "link": "https://usshoppingsos.com/collections/universal-studio/products/universal-studios-the-wizarding-world-of-harry-potter-gryffindor-robe-adult",
+      "source": "USShoppingSOS",
+      "source_icon": "https://serpapi.com/images/i/iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAJ1BMVEVHcExfY2dfY2heYmhfY2hfY2hfY2hfYmhfY2hfY2hfY2heYmhfY2hLdvrHAAAADHRSTlMAK6UPy06GQ-ly81yP6INFAAAA4ElEQVQ4ja1TWw7DIAyD8AiP3P-8I7QBQttNmuqPChGXOMYY8yqcxRDQuqdy9Ikako_2pmyBFsCFYgsppI2RVRV9-2T1v_7bOO63nGGTquNxZJmMqc-3Oa3swU2DsWdc0yGGxDuCqURxcgWr9ELeicQi_VeXQcxAopr18eIN9kUgCqxjJ_T9ubgqHQQ8tC2MrUUTCXraTWQbs2g_tjG5UPtCEaZRxtHJHSoBu33jtuRiFkujmpvjlDfTdaj4PsEdIw-o0LHVviqCitwZqgIjOuUa6x-xZ8p8OI9v6_vT-xMffsYRIhWPnuoAAAAASUVORK5CYII.png",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQhftlzDxu47jfcHTE0wip3ZthwBwxwRflu7UBhKuRqL64lO3SC",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://usshoppingsos.com/cdn/shop/products/image_910c92a7-af30-4ccc-b9bc-931413983d05_525x700.heic?v=1678912656",
+      "image_width": 700,
+      "image_height": 525
+    },
+    {
+      "position": 4,
+      "title": "\ud835\udd72\ud835\udd97\ud835\udd9e\ud835\udd8b\ud835\udd8b\ud835\udd8e\ud835\udd93\ud835\udd89\ud835\udd94\ud835\udd97 #harryporter #universal #dreams",
+      "link": "https://www.instagram.com/p/DVCm-XngUSa/",
+      "source": "Instagram",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSpoKX-MM8KwYvjLm-JRx4G0Kwl8RLkE48NjkNQo2Gq3SC32GSp-nb0Bv1Gwdg0bIZuT7qIQcsQnlAbeKhfDsUARVp1OzzHay_AKGuFGTR9Of3S2pacaw",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQMagjJ1CxEWyDP1X6OAakYS1Eti1JELztY-MveOK9a_ehBke7I",
+      "thumbnail_width": 205,
+      "thumbnail_height": 245,
+      "image": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3837775323576889852",
+      "image_width": 1205,
+      "image_height": 1440
+    },
+    {
+      "position": 5,
+      "title": "Universal Studios Hollywood Discontinuing Youth Harry Potter ...",
+      "link": "https://wdwnt.com/2025/08/universal-discontinuing-youth-harry-potter-hogwarts-robes/",
+      "source": "WDW News Today",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRQoTs8ye3jO2IvwdKmU_IQ-HCT3ClW2q2r_3qW7lEjxy3KLMAYYeqqPvVFqIK0vPyMd7zHjo4EoGibnoUYBeUY0TYL_0O1q2DFCM1hmbU",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTBLUq_E969jg0cLwCsHzS3fca46bLLCszuyi9qLDGvhSZpzVPQ",
+      "thumbnail_width": 194,
+      "thumbnail_height": 259,
+      "image": "https://media.wdwnt.com/2025/08/ush-youth-wizard-robes-5743.jpg",
+      "image_width": 1920,
+      "image_height": 2560
+    },
+    {
+      "position": 6,
+      "title": "Harry Potter Gryffindor Hogwarts Official Cosplay Robe for ...",
+      "link": "https://www.walmart.com/ip/Harry-Potter-Iconic-Dress-Up-Pretend-and-Play-Gryffindor-Robe-Child-Ages-10-Years-and-Up-Unisex-fit/6917155854",
+      "source": "Walmart",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTty0_uq5QGsSpEA1agUnwTMPZTu_YvS9mg_tzOR2qy22fR-FGLLoSmA4z4XotJkADD4W1gHczZdZT5PEPvM9Sv6mBjhn-lRnHs4p0G3COAlV8EwJE",
+      "rating": 4.5,
+      "reviews": 296,
+      "price": {
+        "value": "$30*",
+        "extracted_value": 30.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRrWvpMfWFFFyroPUzBruSXeD5jlWGIyGfHw4NBvx6QKBXF3Woq",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://i5.walmartimages.com/asr/20949527-08ea-4c29-9be9-88f3b393d87f.2f954edb3c40689d1d043ecd6d40483f.jpeg",
+      "image_width": 2000,
+      "image_height": 2000
+    },
+    {
+      "position": 7,
+      "title": "Harry Potter Gryffindor Student Robes Deluxe Men's Costume X ...",
+      "link": "https://www.ebay.com/itm/266942875490",
+      "source": "eBay",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcT5NXsW5qpQoNKtvnEC0sNL88H54opWmBBYIh2gQ3U_SGUU-yc8xV_BfeECVq4HYfwroQsx3k4lpMvjDByZM4KvONyK63j7aI6RPQrDFwRa9lo",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTYkxTSXtPo25nQIjlzlDEOW7d3hpDUsbEZfejk_fUFgJPsliUY",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://i.ebayimg.com/images/g/5BMAAOSwjQ5mtqjf/s-l1200.jpg",
+      "image_width": 1200,
+      "image_height": 900
+    },
+    {
+      "position": 8,
+      "title": "It's Gryffindor round here, Voldemort don't want smoke ...",
+      "link": "https://www.instagram.com/p/Ce_2xytv6Co/?img_index=2&hl=zh-cn",
+      "source": "Instagram",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSpoKX-MM8KwYvjLm-JRx4G0Kwl8RLkE48NjkNQo2Gq3SC32GSp-nb0Bv1Gwdg0bIZuT7qIQcsQnlAbeKhfDsUARVp1OzzHay_AKGuFGTR9Of3S2pacaw",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZ6mky0yh3oMDNMgQXehn-MSKJOptyFGZmm_eOEr67bq16eBhO",
+      "thumbnail_width": 251,
+      "thumbnail_height": 201,
+      "image": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=2864248800258299114",
+      "image_width": 1800,
+      "image_height": 1440
+    },
+    {
+      "position": 9,
+      "title": "4 MUST HAVES : Hogwarts Robes \ud83c\udff0\ud83d\udecd\ufe0f \ud83d\uded2 | @wbtourlondon shop ...",
+      "link": "https://www.tiktok.com/@elymagicalcorner/video/7365071530344172833",
+      "source": "TikTok",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTiWsZg_7Q-8bAQYHlD9VtdBO8GLzYtDmFFmMRclrXQhRI17hRJ77T_Rc7VFiml61ZZKCAxlqLWhaBMeobWN_zExBK3t3LPjYWjTlpJS_fXur2RjQ",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRm7yRZ6iwpd775-wU0LMH49yTnoq0XJNiqh6B5UwH-8OvtDIbw",
+      "thumbnail_width": 300,
+      "thumbnail_height": 168,
+      "image": "https://www.tiktok.com/api/img/?itemId=7365071530344172833&location=0&aid=1988",
+      "image_width": 3840,
+      "image_height": 2160
+    },
+    {
+      "position": 10,
+      "title": "Gryffindor\u2122 Adult Robe \u2013 Shop Universal",
+      "link": "https://shopuniversal.com/products/gryffindor-adult-robe-1",
+      "source": "Shop Universal",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcQsCj_efyYnMhnYpG4cC9fONbwKFzpcuq1kd0GqwhEcuy1TaGyPiL9zxCsBp1aq_11Bdng_v95DPAVJhuGlKRjG8O9Zf1DOADlB4ziQniV9lvAbyzS_cg",
+      "price": {
+        "value": "$139*",
+        "extracted_value": 139.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTHeMb7125z2npj0iX-nuOc0h1WZ0zXtNyYykVQM50wQOHiQTZ",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://shopuniversal.com/cdn/shop/files/HPGRYFFROBE1296478-10frontmodel1x1DSC_8107_7047d228-ab06-40a3-91c4-2fdc83392a26.jpg?v=1773175200&width=1445",
+      "image_width": 1000,
+      "image_height": 1000
+    },
+    {
+      "position": 11,
+      "title": "Universal Studios - The Wizarding World of Harry Potter ...",
+      "link": "https://usshoppingsos.com/collections/universal-studio/products/universal-studios-the-wizarding-world-of-harry-potter-gryffindor-robe-kid",
+      "source": "USShoppingSOS",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcS_tdnqHUs6Ko5th_p27SKRhsOEFn-ruIIg7wSZz4nJQKvrw8CER4GLY9J0qGlkF7r2IgbqKMmgkt7GTH9StHwc13cF0urxZomze-zOkBxmxIo0UqsLIw",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT_aGQ9onp7aTOpCzGSzk6H3cZGZb0SfS7wnnaptW10FUtIgIOy",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://usshoppingsos.com/cdn/shop/files/83D07770-DD39-46DF-A0C2-4A941E7D8C01_1200x1600.jpg?v=1726608831",
+      "image_width": 1600,
+      "image_height": 1200
+    },
+    {
+      "position": 12,
+      "title": "Official Harry Potter Gryffindor Robe \u2013 Wizarding World",
+      "link": "https://johnfetterman.com/?productSearch/pictureSearch?id=12255393391100",
+      "source": "johnfetterman.com",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcSKuCRsNq6ouefkU1KWjCb4r-x7XSLFmdhK6DtKKKuBHaSc4fErRg6rJY7sCOdS6iXd8g6XeSdaRMXcIo0qc2pqjIswlc16hB_uUwBYoeCNArKPJa0HLw",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxj7zj1k-oouj3oROcSH3uH2pwg0iAZ4GRyhFugTEPjsDXaXgT",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://i5.walmartimages.com/dfw/84bce68-75ee/k2-_09dab93e-14c2-4a57-8fe8-c9cf0e850b1d.v1.webp",
+      "image_width": 2000,
+      "image_height": 2000
+    },
+    {
+      "position": 13,
+      "title": "Best Tips for The Wizarding World of Harry Potter Robes ...",
+      "link": "https://www.youtube.com/watch?v=EsbocQdN-XY",
+      "source": "YouTube",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRL2QuIWc6WXevk_7fpNLtlC2so1_B6L7UW4M6xdtcDSyX6sE8W",
+      "thumbnail_width": 194,
+      "thumbnail_height": 259,
+      "image": "https://i.ytimg.com/vi/EsbocQdN-XY/sddefault.jpg",
+      "image_width": 480,
+      "image_height": 640
+    },
+    {
+      "position": 14,
+      "title": "Harry Potter Gryffindor Robe S usj",
+      "link": "https://geaugamamadogs.org/?product/category/view_more/6748964901100",
+      "source": "Geauga Mama Dogs & Pups",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTPADsLJapw0ZKwwMc7PQMM-08eQjYSEEFw-v5vffqi9Der_piXoU5MgEE_hw8RmDMRbqt6qiO9n1fUF5OOkKpV6yiSK9xFB6O5AvWW-CSi1Yz9x-3AfIY",
+      "rating": 4.9,
+      "reviews": 14,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTqd6DoXA3qtHaBa024YwpeDgP79gagzVV9YeVG9ek4GjmS948O",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://u-mercari-images.mercdn.net/photos/m42654567152_1.jpg?1762920752",
+      "image_width": 1080,
+      "image_height": 810
+    },
+    {
+      "position": 15,
+      "title": "Guide to Souvenirs in The Wizarding World of Harry Potter at ...",
+      "link": "https://blog.discoveruniversal.com/guides-and-tips/shopping-wizarding-world-harry-potter-hollywood/",
+      "source": "Discover Universal Blog",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcTO8c28ssg38_ULO3MMO8O8yuMVZy2_zzzQ0v-ZGD4LCpB75wzQ2EkL_pncZtzcKWM65lwXEMOBuhjeB1rSWqODErGWuHU_yfD7F2LC1a_inaX0LFSyIG0BOh4bXoHjIw",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZcAuMAeiqyKvOtdX8S1FqxSa57f1qXPVuEquCV4oZJnysWlCm",
+      "thumbnail_width": 194,
+      "thumbnail_height": 259,
+      "image": "https://blog.discoveruniversal.com/wp-content/uploads/2024/02/wwohp-merch-robes.jpg",
+      "image_width": 705,
+      "image_height": 940
+    },
+    {
+      "position": 16,
+      "title": "Gryffindor Robe - Harry Potter - Adult Costumes | Party City",
+      "link": "https://www.partycity.com/products/gryffindor-robe-harry-potter",
+      "source": "Party City",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcR6v4PF1CzupKFzK4jjvZtbY4-RtripY-ElggRTx4w13a0Rmx_WSTzDJnUaO8FBgjTspqT47PkrBW3QuO3eYnOk_pMplfhiYBLLAiDuW2-HJY450kJaWw",
+      "price": {
+        "value": "$40*",
+        "extracted_value": 40.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTM33rWvgZAFX6bKY1e01HyxePA8aOIqMwhSd72RzPLwSk4R2kb",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://www.partycity.com/cdn/shop/files/687855_04.jpg?v=1773207886&width=1946",
+      "image_width": 1946,
+      "image_height": 1946
+    },
+    {
+      "position": 17,
+      "title": "Official Hogwarts Gryffindor Robe from Universal Studios",
+      "link": "https://www.facebook.com/groups/309399756202202/posts/1073580349784135/",
+      "source": "Facebook",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRv794zBOQO02ChHD5K_TnlJwwf8PThFmn58OZAhQnomqvb1XKnHGAk8BQDBcyXho53FvXtsB2eVFSimUAzH3zcBAPC_yfttm2gkn07x3UumIdkepR5",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe2PjBihCN0LN3V_RMm7lK_2IksL4xPc7npFXr7wkHbCIQH66i",
+      "thumbnail_width": 300,
+      "thumbnail_height": 168,
+      "image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=10121787118636489",
+      "image_width": 2048,
+      "image_height": 1152
+    },
+    {
+      "position": 18,
+      "title": "Amazon.com: Harry Potter Robe, Deluxe Wizarding World ...",
+      "link": "https://www.amazon.com/clp/B08DLT687S",
+      "source": "Amazon.com",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRm4oMDPHDSWBDQhB5-csYIdmVde_ZfnfUYnfzlJJ9w7zjXG34H4SL9TXI2H8XWInsqPagyhBQjtImrHgLv9Bwvw_d2JvfjMfz3ox9yR82MKQ7yrQ",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShjFfJ_2ijOzbqAEdNzWC30ym2IN33QToJLy74-k-2y0YYXX_N",
+      "thumbnail_width": 286,
+      "thumbnail_height": 176,
+      "image": "https://m.media-amazon.com/images/I/61XgnPjyK6L._AC_UL450_SY450_QL70_.jpg",
+      "image_width": 450,
+      "image_height": 278
+    },
+    {
+      "position": 19,
+      "title": "Adults Deluxe Harry Potter Gryffindor Robe | Halloween Express",
+      "link": "https://www.halloweenexpress.com/adults-deluxe-harry-potter-gryffindor-robe-a2-14277539.fltr",
+      "source": "Halloween Express",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRQj2w29TpG-2X4fQa37TcMiN9tWqqGKU3ibZmgQT5XXYuHII88QnmbLIMK2om0GaUpcJw6oDNPF5m7qqth8HjWn_pVljrD2-qftFMNMsZWPchr2ra-3l_7mnLac6o",
+      "price": {
+        "value": "$114*",
+        "extracted_value": 114.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcREwHFn49pf40njkyt1CtYjDFpLpPY29lkGP3dvyyfAsseEyZs4",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://i.halloweenexpress.com/transform/PDPMAIN_D_HEX/e1fbc7e3-7317-4e10-abbe-1c7e932dedc6/Adults_Deluxe_Harry_Potter_Gryffindor_Robe",
+      "image_width": 812,
+      "image_height": 812
+    },
+    {
+      "position": 20,
+      "title": "If You Wish You Went To Hogwarts, You Know These 10 Things ...",
+      "link": "https://www.elitedaily.com/p/if-you-wish-you-went-to-hogwarts-you-know-these-10-things-to-be-true-8937765",
+      "source": "Elite Daily",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcR6gJwSnJLxDA3Jr1RnLUcKZ3Iz_QZxEygky2WT8kOFXaoIVGiYo0KUdgeRQZqt7ze06jnhBKja47O9IjY6JNkhE2RtJBRftlN-czUNWMXoApqSC3R3Zg0",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMWJMEK3PLgQf-kz6lXtX0zAwVRTyi1TiNS5e-wqm7TJcIMYV5",
+      "thumbnail_width": 260,
+      "thumbnail_height": 194,
+      "image": "https://imgix.bustle.com/uploads/image/2018/4/30/5b69049d-665e-4a89-9306-c7f31f08a484-ajajlmpcmaemrsh.jpg:large?w=374&h=501&fit=crop&crop=faces&dpr=2",
+      "image_width": 1002,
+      "image_height": 748
+    },
+    {
+      "position": 21,
+      "title": "Harry Potter Kid's Deluxe Gryffindor Robe Costume | Harry ...",
+      "link": "https://www.halloweencostumes.com/harry-potter-child-deluxe-gryffindor-robe.html",
+      "source": "Halloween Costumes",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTw0hN9_vI3gnOmUGANdNFOAgGDdG4c0zI8EF-pG5y88nJkMh7e2FUYDjnwJkxYbPGNlqsCfMDk-L6DkDh-rX8pzbc-pAqzL33nr1bgWKtuftZ8QRq34liqRGGv9-Zl",
+      "rating": 3.3,
+      "reviews": 11,
+      "price": {
+        "value": "$40*",
+        "extracted_value": 40.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcShQaQq4TfUQTP6sOxJjXr-xKETl02Y5BqbYozvt8ctpcSbWFQI",
+      "thumbnail_width": 268,
+      "thumbnail_height": 188,
+      "image": "https://images.halloweencostumes.com/products/62953/1-1/kids-harry-potter-deluxe-gryffindor-robe-costume.jpg",
+      "image_width": 2500,
+      "image_height": 1750
+    },
+    {
+      "position": 22,
+      "title": "Pottery Barn Kids 4-6 Harry Potter Halloween Costume ...",
+      "link": "https://www.ebay.com/itm/156447859012",
+      "source": "eBay",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcT5NXsW5qpQoNKtvnEC0sNL88H54opWmBBYIh2gQ3U_SGUU-yc8xV_BfeECVq4HYfwroQsx3k4lpMvjDByZM4KvONyK63j7aI6RPQrDFwRa9lo",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTTgWcIQ6wO1v2o1zxpKZDhOBfK5-X8fWzWMMHPo290Z4oicIyR",
+      "thumbnail_width": 260,
+      "thumbnail_height": 194,
+      "image": "https://i.ebayimg.com/00/s/MTYwMFgxMTk1/z/OdAAAOSwGrtnBNQ~/$_57.JPG?set_id=880000500F",
+      "image_width": 1600,
+      "image_height": 1195
+    },
+    {
+      "position": 23,
+      "title": "Harry Potter Studio Tour London gift shop Gryffindor Robes ...",
+      "link": "https://theadventureisafoot.wordpress.com/2012/07/12/magical-me-a-girl-can-dream-cant-she/img_1205/",
+      "source": "The adventure is afoot... - WordPress.com",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQNljMpCExru0fE0TwZ082IF5308nAQIbFDDGWsPZg6RtJtucu8lueS9mTLswzlug4EipIF-nwKaB5WjOhbOZ4TBDoeYzX4k46uhbjsRb0DeDO1AeKFDIfe6IfWzlbLUVq-kLBEozk",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfrBKXKCAm8Po_9IhX3obfSK1QTlM8Z7imQkI1C04GhNuEnxC0",
+      "thumbnail_width": 260,
+      "thumbnail_height": 194,
+      "image": "https://theadventureisafoot.wordpress.com/wp-content/uploads/2012/07/img_1205.jpg",
+      "image_width": 2592,
+      "image_height": 1936
+    },
+    {
+      "position": 24,
+      "title": "Official Universal Studios Harry Potter Gryffindor House ...",
+      "link": "https://abacusparenteral.com/?j=1020842061100",
+      "source": "abacusparenteral.com",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRUja3nnerxz_gLYNLKp0y_r9D1xUCiOHepmPzo1Ndot_LFC-CZco98fP1NKlxbhP2bap4l7W-3_vS90tz7PrfaTc8Ex1Hzkjf29a-6harubfjpPvaQb2ojLg",
+      "rating": 4.9,
+      "reviews": 49,
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRF5nhC_5rjFnckrr6Wo_xHxU_PVK80z6XgHBYdJo6CMBR_XiWi",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://u-mercari-images.mercdn.net/photos/m14593349916_2.jpg?1753059488",
+      "image_width": 1228,
+      "image_height": 1228
+    },
+    {
+      "position": 25,
+      "title": "Behind The Thrills | Wizarding World of Harry Potter ...",
+      "link": "https://behindthethrills.com/2015/05/wizarding-world-of-harry-potter-merchandise-debuts-at-universal-studios-hollywood/",
+      "source": "Behind The Thrills",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcTXETAA4nlsT5jJXhnRvQQmcqxCJFqxcDkaxgRTF5Z4jIRtp2AyuZKNWrjw3KjfQHRu7gXO3kic8cPyBdT89v79pq7JYukXBprIeP0VzFNZxa3_Xwl0Bmtt1Q",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRVWiV2sPPcJu3l0LOVXlyhOjPeJbOG-SeUTS2HWodhaE_kfXd7",
+      "thumbnail_width": 168,
+      "thumbnail_height": 300,
+      "image": "https://behindthethrills.com/wp-content/uploads/2015/05/P1050071-1024x576.jpg",
+      "image_width": 576,
+      "image_height": 1024
+    },
+    {
+      "position": 26,
+      "title": "Harry Potter Gryffindor Deluxe Robe Deluxe - Adult ...",
+      "link": "https://www.fantasycostumes.com/harry-potter-gryffindor-deluxe-robe-deluxe-adult/",
+      "source": "Fantasy Costumes",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTRwVV6qxGLIx63LSQ08yAorqZ8u45I7G1eN-7Qb1DO6lt3j7YVZNbxc-S8vuHo-DVIAuVNOgMIPIhOvNZHFOmiGEwqOCX_zvOg--9fmKOLVqSv5fqUMxreVgC98A",
+      "price": {
+        "value": "$80*",
+        "extracted_value": 80.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQPd6qtSJQqLnLrUodBMsgU43Cb_TYtaOoqLjqL_PgMj3wT0aaO",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://cdn11.bigcommerce.com/s-obcuok9/images/stencil/750x750/products/6915/18886/adult-deluxe-harry-potter-gryffindor-robe-smalldg107969t__98959.1703633114.jpg?c=2",
+      "image_width": 750,
+      "image_height": 750
+    },
+    {
+      "position": 27,
+      "title": "Harry Potter Official Gryffindor Robe",
+      "link": "https://proagcountrystore.com/?product/review/12219879711100",
+      "source": "The Pro-Ag Country Store",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcQvzL5amRvDK74Yh-sSntRw0xG7keSaa7zKiRBhZ8HwkzZd59JfmiSrZqKFSdxdqcibTyOxz8ckyjmz2zMWAMK678xj_sZSSof491ndHY1Z1nkaJnemEU4NI-s",
+      "rating": 4.6,
+      "reviews": 39,
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQrCZtrSXoJZIXgNwmk0KV8IC27d1SZ8dFL71RrgKzQJZxPLbHt",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://u-mercari-images.mercdn.net/photos/m36289272478_1.jpg?1749127262",
+      "image_width": 1600,
+      "image_height": 1600
+    },
+    {
+      "position": 28,
+      "title": "Gryffindor Robe - Harry Potter | Elbenwald",
+      "link": "https://www.elbenwald.com/harry-potter/gryffindor-robe-harry-potter",
+      "source": "\u2013 Elbenwald",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSNsrxOc2sFvqu9ss1nndUVNTC6V1ym8HPMaz5hfNC4Xp_GP4cRkKcat9-tqFcXuR5dkLHngo_dZP_pMs34XxaCKiR5GxFZA6_F1mSAl9RhCgQaRP0HmA",
+      "rating": 4.7,
+      "reviews": 24,
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4hd8QpOWj-jUcR6-Lqcf24EOdc3s7mRx9XKqYaVCxI7NRkAhR",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://sw6.elbenwald.de/media/35/ed/15/1705474598/E1078425_5.jpg",
+      "image_width": 1600,
+      "image_height": 1600
+    },
+    {
+      "position": 29,
+      "title": "Harry Potter Deluxe Harry Potter Robe Adult Costume | Wilko",
+      "link": "https://www.wilko.com/en-uk/harry-potter-deluxe-harry-potter-robe-adult-costume/p/0761809",
+      "source": "Wilko",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRiJPoyV8mOjPVzaLyVPmQ_JpK96ln6JRSMseFVW8nXVECIUlJJW-nis9XG9uE4G6P5ZgbG7uPbK7QoPpZJXmvjoarK6Y6ZBhxIj9qOIubaQ68T",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSUoUFH7j6uQIkSrEhlmTza5uFv27vki9yFQ26S60V298EGUBr6",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://www.wilko.com/assets/bWFzdGVyfGltYWdlc3wzNTIwOTd8aW1hZ2UvanBlZ3xoNTAvaDZkLzEwMTY3NjAyODcyMzUwLzA3NjE4MDlfNS5qcGd8MGJlYmQ2NTk2OTlkM2E1ODljZTAzZmI4M2QwNzc4OTU3OGQwNGM1OTE5MGM0N2E2M2NlNTgyN2JhZjFmMmFlMQ==/0761809-5.jpg",
+      "image_width": 1000,
+      "image_height": 1000
+    },
+    {
+      "position": 30,
+      "title": "Warner Brother Tokyo Studio Tour Japan | Trip.com Tokyo",
+      "link": "https://sa.trip.com/moments/detail/tokyo-294-121380071?locale=en-SA",
+      "source": "Trip.com",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcR0Poe1HcK8JzbuNFxz9ItS2nIYeDbOCAUHzOzm99IzrEgoCMSb2ogPHueXut9ZIoEo2HCQmkiXHtFuuw489bO7IWV9TLvwc_cEzSH2AMfOVQ",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTIIS_7gfdLrvtWvfS1sIMq0T21TDoyPKHXiG9sjctyMedeiKSC",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://ak-d.tripcdn.com/images/1mi2d224x8und7ag266C7.jpg?proc=resize/m_z,w_375,h_0;format/f_webp,9C2E",
+      "image_width": 375,
+      "image_height": 375
+    },
+    {
+      "position": 31,
+      "title": "Draco Malfoy gives tour of Harry Potter Shop Chicago ...",
+      "link": "https://www.youtube.com/shorts/VvQZIX0gEiU",
+      "source": "YouTube",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSdnSpJncSnzpiNggl8YmI5Qfig2Rmwvnq3FgIdbuQiqfRZk7_P",
+      "thumbnail_width": 300,
+      "thumbnail_height": 168,
+      "image": "https://i.ytimg.com/vi/VvQZIX0gEiU/oardefault.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLCB6_HIettm5ix1SNzmL2el_NPY3A&usqp=CCk",
+      "image_width": 720,
+      "image_height": 405
+    },
+    {
+      "position": 32,
+      "title": "Hogwarts House Robes | Harry Potter Shop UK",
+      "link": "https://harrypottershop.co.uk/collections/hogwarts-house-robes",
+      "source": "Harry Potter Shop",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcTXNUoIScaopScMEphV_U5Zq5T6hY-pJDYIgEVQro-Em-f4ffFmpI1cl8udSA_60KldSAQbS2YyVX7gkI5FC8tnoYMCIak58PoBmexHy0LDH4knZOukhIje5yg",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSNW44LjEksDZVN2Hw5XwPLpzp_Rd1ycYGPRvb34BvxqjUvKMPS",
+      "thumbnail_width": 190,
+      "thumbnail_height": 180,
+      "image": "https://harrypottershop.co.uk/cdn/shop/files/BestSellers_MenuIcon.png?v=1730262113&width=180",
+      "image_width": 190,
+      "image_height": 180
+    },
+    {
+      "position": 33,
+      "title": "WHERE IS THIS!? I WAAAAAAAAANT!",
+      "link": "https://fr.pinterest.com/pin/219198706841618524/",
+      "source": "Pinterest",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTWyeYwaDBgfZ1gkr1W4FoLbWKJqXNykEyxddqC1a9suHrXecSp3itx6z2fKWZZ-WX1_AiDz7HUbhICnVujbXRkXilhNkSm3BonRlshqukyrkP3MXp0",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRGUGA8w90xhclvRNZSWzbsmk_DBj2QqfvHBwz4Hm0tIyXoNenZ",
+      "thumbnail_width": 199,
+      "thumbnail_height": 253,
+      "image": "https://i.pinimg.com/564x/ff/9f/52/ff9f526b192fbcf2206bae305f1de48e.jpg",
+      "image_width": 442,
+      "image_height": 560
+    },
+    {
+      "position": 34,
+      "title": "Buy Adult Halloween Costume Harry Potter Robe - Cappel's",
+      "link": "https://www.cappelsinc.com/product/harry-potter-robe/",
+      "source": "Cappel's",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcR15xBBLoZDPuIGC1UG2reoIGJUpVkiL8kjfbzrv15u9Kj835pegw5Rk1SDmasa693AEwOjqRY7YriLI8WMapPUR7FuBSZm0AMtQJMWc2Qx16oEMthPB7k",
+      "price": {
+        "value": "$60*",
+        "extracted_value": 60.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT7SZ6u4Wl60ibB_ITqoT7BUQuMglRXArc774BLRsMoUVmbCLeo",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://www.cappelsinc.com/wp-content/uploads/2022/09/RC190-harry-potter-gryffindor-robe-emblem.jpg",
+      "image_width": 800,
+      "image_height": 800
+    },
+    {
+      "position": 35,
+      "title": "Actualizaci\u00f3n de mi cover del rap de Harry Potter | TikTok",
+      "link": "https://www.tiktok.com/@joesanabria/video/7443827453572828447",
+      "source": "TikTok",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTiWsZg_7Q-8bAQYHlD9VtdBO8GLzYtDmFFmMRclrXQhRI17hRJ77T_Rc7VFiml61ZZKCAxlqLWhaBMeobWN_zExBK3t3LPjYWjTlpJS_fXur2RjQ",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSpFWKt3Up3vbg1vlAPScu4p694GBbKBEbeJA-HcxIKag5a5cAC",
+      "thumbnail_width": 300,
+      "thumbnail_height": 168,
+      "image": "https://www.tiktok.com/api/img/?itemId=7443827453572828447&location=0&aid=1988",
+      "image_width": 1920,
+      "image_height": 1080
+    },
+    {
+      "position": 36,
+      "title": "Adults Gryffindor Robe | Harry Potter | Cinereplicas ...",
+      "link": "https://cinereplicas.com/products/harry-potter-gryffindor-robe",
+      "source": "Cinereplicas",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcTL-ctRQ1UprfGFmq9Iep8jIyahhE689BMCNts1ytVY8Kc8s9lU72Q9rGQbbViHJ78R39lPHa6NXgYzsdzyXlyfgq_1X3SUMynz3fK4zhO2nQLPEM0t",
+      "price": {
+        "value": "$110*",
+        "extracted_value": 110.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQfRKmeGQGy0CNOkkRhFwFi1tNCeJZzB-HbKsnb2Iih22vE1Ett",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://cinereplicas.com/cdn/shop/products/Robe-Adults-Gryffindor-HarryPotter-Product-_6.jpg?v=1607672454",
+      "image_width": 2000,
+      "image_height": 2000
+    },
+    {
+      "position": 37,
+      "title": "Wizarding World Of Harry Potter | Costumes | The Wizarding ...",
+      "link": "https://poshmark.com/listing/The-Wizarding-World-of-Harry-Potter-Universal-Studios-Gryffindor-Robe-66eddd99d90d211917f69e26",
+      "source": "Poshmark",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcRglTQayecXuxgCFUZcgfbfA0OslKHNi_zul24ja6dNR7fFy_QNTwAYGBTDRYwPhEq6SEu7vqbjxSSTFT8JfQQODue5hNhO-4uQ26dgqP4HA44",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQPGU9r3k39YtKE1tCJEGyw7qWCmAkxozgDytUtAPZdjrIca0oo",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://di2ponv0v5otw.cloudfront.net/posts/2024/09/20/66eddd99d90d211917f69e26/m_66edddc15af6e6cf773b807c.jpg",
+      "image_width": 580,
+      "image_height": 580
+    },
+    {
+      "position": 38,
+      "title": "Adult Gryffindor Robe Deluxe - Harry Potter ...",
+      "link": "https://www.spirithalloween.com/product/adult-gryffindor-robe-deluxe-harry-potter/245327.uts",
+      "source": "Spirit Halloween",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRvjkX1WxxGvEvBeJkRC0ZdD4b0f4vITcN0WOHZlDA3Qhx_xrkCOmNx4L0kn-ulBqjTPVF_aTkPMsgQPp1Q2PnoZegxy2unZOQ-Ru7IuYc8a1JyP0xp7-83IPrveQ",
+      "rating": 4.4,
+      "reviews": 6,
+      "price": {
+        "value": "$50*",
+        "extracted_value": 50.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQanveYQ-KigsQf_eoEJVngR2OgnupZw_lA-75vG_iraU_vFErv",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://spirit.scene7.com/is/image/Spirit/01620459-c?wid=640&hei=640&fmt=webp",
+      "image_width": 640,
+      "image_height": 640
+    },
+    {
+      "position": 39,
+      "title": "Sourav Nayak - Full Stack Developer | LinkedIn",
+      "link": "https://www.linkedin.com/in/sourav-nayak-2bba0127",
+      "source": "LinkedIn",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTFMvFisG5Yfyq07VS0hk1otTr6uQvufSrlgYLzmBkZlxd7MQh66ZmKRUOdwfXrertN7RslYSLWGQCDyxLn3JsHLob5z5LPzTRUUQlVmSHaBnVJlJa8",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTu6NrXC6PSqyd14EqA0gHJHYl2T2QtDkvRDf8d-OxBE4e-GueU",
+      "thumbnail_width": 200,
+      "thumbnail_height": 200,
+      "image": "https://media.licdn.com/dms/image/v2/C5103AQEtDgURxqZJSA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1577374187681?e=2147483647&v=beta&t=yugocv4woJZ9ypKe-G0m50tbcv3Ru_DgJmBSWHE21og",
+      "image_width": 200,
+      "image_height": 200
+    },
+    {
+      "position": 40,
+      "title": "Harry Potter Gryffindor Hogwarts Robe - Halloween Costume",
+      "link": "https://wyrperu.com/?i=48807027071100",
+      "source": "wyrperu.com",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRXXloclUcOYYU2lUgL7sFDmiGCktjz0FJ5oZjZcd3v0Z7ZFw-imf-18FV8q3LX02vhjxJW-DCGBuC9Q1JzD3hyTwthk-0pngDG9yKUr3vzaQ",
+      "rating": 4.9,
+      "reviews": 32,
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTIZLaCIBKe1CbRjXa6LNNOkJq16VVDCwriOLeJaQGM13Ax_RHT",
+      "thumbnail_width": 260,
+      "thumbnail_height": 194,
+      "image": "https://images.craigslist.org/00909_5gzDHG0lPa3_0t20CI_600x450.jpg",
+      "image_width": 450,
+      "image_height": 337
+    },
+    {
+      "position": 41,
+      "title": "Plus Size Deluxe Harry Potter Gryffindor Robe Costume for Adults",
+      "link": "https://www.halloweencostumes.com/harry-potter-plus-size-adult-deluxe-gryffindor-robe.html",
+      "source": "Halloween Costumes",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTw0hN9_vI3gnOmUGANdNFOAgGDdG4c0zI8EF-pG5y88nJkMh7e2FUYDjnwJkxYbPGNlqsCfMDk-L6DkDh-rX8pzbc-pAqzL33nr1bgWKtuftZ8QRq34liqRGGv9-Zl",
+      "rating": 5.0,
+      "reviews": 6,
+      "price": {
+        "value": "$45*",
+        "extracted_value": 45.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSGYYqoOTfokfDm-MQJnm68PXKNPZGK1v4aL4GG9zA8rb8Z-NeU",
+      "thumbnail_width": 268,
+      "thumbnail_height": 188,
+      "image": "https://images.halloweencostumes.com/products/62965/1-1/harry-potter-plus-size-adult-deluxe-gryffindor-robe-new.jpg",
+      "image_width": 2500,
+      "image_height": 1750
+    },
+    {
+      "position": 42,
+      "title": "Harry Potter Gryffindor Youth Robe \u2013 Shop Universal",
+      "link": "https://shopuniversal.com/products/gryffindor-youth-robe",
+      "source": "Shop Universal",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcQsCj_efyYnMhnYpG4cC9fONbwKFzpcuq1kd0GqwhEcuy1TaGyPiL9zxCsBp1aq_11Bdng_v95DPAVJhuGlKRjG8O9Zf1DOADlB4ziQniV9lvAbyzS_cg",
+      "price": {
+        "value": "$139*",
+        "extracted_value": 139.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSju5sNys5YVPnHqW7P3ScBIilweRO5tk65GNW6l0KaT-TYcnZb",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "http://shopuniversal.com/cdn/shop/files/1296478.png?v=1761170202",
+      "image_width": 1500,
+      "image_height": 1500
+    },
+    {
+      "position": 43,
+      "title": "Harry Potter Gryffindor Robe Costume | Hot Topic",
+      "link": "https://www.hottopic.com/product/harry-potter-gryffindor-robe-costume/13668966.html",
+      "source": "Hot Topic",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSdiSFZpPNWPrCPXGIqXzm9Uz8xfFGcHYXOhym87iKMGbNnMpWajoFHow9qvGatL35pOJq8bpamY8tjgYBjfaX95DNIJ7UTStXmk41Zc1jwH-nbNCVm",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSSSMb9ox0abx6qxh6SXL98Ty77rSMlJq1kSR_6eG88K0ZzqoHV",
+      "thumbnail_width": 257,
+      "thumbnail_height": 196,
+      "image": "https://cdn.media.amplience.net/s/hottopic/13668966_hi?$productMainDesktop$&fmt=auto",
+      "image_width": 1430,
+      "image_height": 1091
+    },
+    {
+      "position": 44,
+      "title": "Gryffindor Robe - JAKKS Pacific",
+      "link": "https://www.jakks.com/product/gryffindor-robe/",
+      "source": "JAKKS Pacific",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcSSsN8uOVnr9QFOT86p6Ac6LkJ8qootulQrVwgZvsM56ayZK2mrF9U8cw37P4sbW7mMElPB0AgL9uKqbbz6SG0R-d9dDOan48VfB_ptMb17rHuD",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREVUVmllI0zs-3sWKP0fJnARNYn2oJf-ESLhWdyAY7e1b5xM6c",
+      "thumbnail_width": 150,
+      "thumbnail_height": 150,
+      "image": "https://www.jakks.com/wp-content/uploads/2025/02/6.24.24_Harry-Potter-clothing0008-4-150x150.webp",
+      "image_width": 150,
+      "image_height": 150
+    },
+    {
+      "position": 45,
+      "title": "Hogwarts House Hoodies Drop at Universal Orlando Resort ...",
+      "link": "https://wdwnt.com/2026/03/hogwarts-house-hoodies-drop-at-universal-orlando-resort/",
+      "source": "WDW News Today",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRQoTs8ye3jO2IvwdKmU_IQ-HCT3ClW2q2r_3qW7lEjxy3KLMAYYeqqPvVFqIK0vPyMd7zHjo4EoGibnoUYBeUY0TYL_0O1q2DFCM1hmbU",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTCU6uhHGZ5DS_zEhh1STEBE9mTOFM2gC3onma-MieEpMrsYMdx",
+      "thumbnail_width": 194,
+      "thumbnail_height": 259,
+      "image": "https://r2-media.wdwnt.com/2026/03/UOR-USF-Harry-Potter-Hogwarts-House-Hoodies-2.jpg",
+      "image_width": 1920,
+      "image_height": 2560
+    },
+    {
+      "position": 46,
+      "title": "Should I bought a robe? : r/UniversalOrlando",
+      "link": "https://www.reddit.com/r/UniversalOrlando/comments/1kq60r2/should_i_bought_a_robe/",
+      "source": "Reddit",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRFeJS-IhfJCysoVmCqJ1d-1lzbIHTsbcy4DrBsZJpxQ31zznhym7THnNEKCEnngpvdl4aupEFtEblIPBEMJY7_biy055d40m6TYfVg7CpFOrWOXw",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTA9AS3z4qR3xmZZjNneDugrqJLs6CTbuUtACk7-Dn7uPqNmFZ7",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://i.redd.it/e13kf3je1p1f1.jpeg",
+      "image_width": 960,
+      "image_height": 720
+    },
+    {
+      "position": 47,
+      "title": "Nina - I'd make a damn good witch #gryffindor | Facebook",
+      "link": "https://www.facebook.com/nina.lin.313/photos/id-make-a-damn-good-witch-gryffindor/10156868154945183/",
+      "source": "Facebook",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRv794zBOQO02ChHD5K_TnlJwwf8PThFmn58OZAhQnomqvb1XKnHGAk8BQDBcyXho53FvXtsB2eVFSimUAzH3zcBAPC_yfttm2gkn07x3UumIdkepR5",
+      "thumbnail": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRLyK4pCGRMj3F4-bsbLWbRtbQM5-BvxlXNg-YcggbivGKfAV4L",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=10156868154945183",
+      "image_width": 960,
+      "image_height": 720
+    },
+    {
+      "position": 48,
+      "title": "COSTUME RENTAL - D66 Harry Potter Jacket (Gryffindor) 4 pc ...",
+      "link": "https://woodbridgecostumes.com/products/copy-of-costume-rental-e105-iron-man",
+      "source": "Woodbridge Costume Rentals",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSDsxrhR7nBoV0UkhKCY0-pkfXJMNXZVVnDGBGbjDMf2rroS8ca8PjsGRErOynwS6catZ4SW38geDlhY0s7_SFkZNb5Q6VmJ11pMQtaMBCYne3keQkkLxcjDxPv",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5-KYCFNBjcp-ijFk_5-yr_M1tuba0-xAGQVSEYgGIvzspm5H",
+      "thumbnail_width": 290,
+      "thumbnail_height": 174,
+      "image": "https://woodbridgecostumes.com/cdn/shop/files/B63C29E0-7959-462E-B070-3CEE54B078DA_1_201_a_1400x.jpg?v=1702694581",
+      "image_width": 1401,
+      "image_height": 838
+    },
+    {
+      "position": 49,
+      "title": "In my Hogwarts Uniform \u26af \u035b\u277e\u00be \u2595\u20dd\u20e4 . Part IV The Making ...",
+      "link": "https://www.instagram.com/p/DYOeszfgYnl/",
+      "source": "Instagram",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcSpoKX-MM8KwYvjLm-JRx4G0Kwl8RLkE48NjkNQo2Gq3SC32GSp-nb0Bv1Gwdg0bIZuT7qIQcsQnlAbeKhfDsUARVp1OzzHay_AKGuFGTR9Of3S2pacaw",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR21HGRlNV5Ili63BQYFDahO3CFxYlSxHFp8v6z0vn3iBgBNTmq",
+      "thumbnail_width": 251,
+      "thumbnail_height": 201,
+      "image": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3895169032604685456",
+      "image_width": 1799,
+      "image_height": 1440
+    },
+    {
+      "position": 50,
+      "title": "Harry Potter Gryffindor Robe Wizarding World Universal Studios",
+      "link": "https://acquybenbi.com/?shop/sold?id=top28598816341100",
+      "source": "acquybenbi.com",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcQLlUgei969l_ZZn3PKN6C8vSP6sWKiqhB7C8Qj03GymXaFHPalmbWR4Qn8oKBgFVF_5nEuu_jsFIu08imx3K8Vc_YPp8ILO8AhuxHCP38AeFyRGQ",
+      "rating": 4.5,
+      "reviews": 5,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSiMyjV4V_vMjo1vY46sZq7LVM2sSa5vqLvp7ZJy4kiSyZn8jK4",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://images.offerup.com/8S8zCPqc4YZ6jSWind45S8TWZzQ=/1440x1920/0b2c/0b2c5a48635d4bf28ba95ffc1c2020c4.jpg",
+      "image_width": 1920,
+      "image_height": 1440
+    },
+    {
+      "position": 51,
+      "title": "\ud83d\udcf8 | Jaden Smith as Harry Potter for Halloween!",
+      "link": "https://x.com/HubJaden/status/1587157686331887616",
+      "source": "x.com",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcSofvqtbDtdUTZsANJSe_PTSgsuDSmzMNykD5ePbsMk3EyTY0EoF56jNp_rHuufm9BtNpZYsFhp9M6u-DLxqcg2x-FRa41-OCrNmA",
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRVv3yt1sHRq5Dh7QvJvFUl_vU04gTjF6AxoP773DFR0FFlK-o9",
+      "thumbnail_width": 249,
+      "thumbnail_height": 202,
+      "image": "https://pbs.twimg.com/media/Fga3fTjWAAAo-Lh.jpg",
+      "image_width": 1021,
+      "image_height": 828
+    },
+    {
+      "position": 52,
+      "title": "Harry Potter Hogwarts Gryffindor robe from Orlando Universal",
+      "link": "https://johnfetterman.com/?h=7580215231100",
+      "source": "John Fetterman",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcSKuCRsNq6ouefkU1KWjCb4r-x7XSLFmdhK6DtKKKuBHaSc4fErRg6rJY7sCOdS6iXd8g6XeSdaRMXcIo0qc2pqjIswlc16hB_uUwBYoeCNArKPJa0HLw",
+      "rating": 4.4,
+      "reviews": 36,
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-NzsePu6Exghl_J5zj_CHCtAcrQvSrrj8xedEo7h-R15zCGEw",
+      "thumbnail_width": 259,
+      "thumbnail_height": 194,
+      "image": "https://u-mercari-images.mercdn.net/photos/m25633410484_8.jpg?1747882085",
+      "image_width": 1600,
+      "image_height": 1200
+    },
+    {
+      "position": 53,
+      "title": "Amazon.com: Northwest Harry Potter Comfy Throw Blanket with ...",
+      "link": "https://www.amazon.com/Harry-Potter-Blanket-Sleeves-Gryffindor/dp/B0069EJVYC",
+      "source": "Amazon.com",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRm4oMDPHDSWBDQhB5-csYIdmVde_ZfnfUYnfzlJJ9w7zjXG34H4SL9TXI2H8XWInsqPagyhBQjtImrHgLv9Bwvw_d2JvfjMfz3ox9yR82MKQ7yrQ",
+      "rating": 4.5,
+      "reviews": 4078,
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5aAcrLDTGViL9ligCfEziKIdCNUc_o2PzFsii5hd1YOhgebSf",
+      "thumbnail_width": 224,
+      "thumbnail_height": 224,
+      "image": "https://m.media-amazon.com/images/I/716upFjRXuL._AC_UF894,1000_QL80_.jpg",
+      "image_width": 894,
+      "image_height": 894
+    },
+    {
+      "position": 54,
+      "title": "Harry Potter Robes Adult | eBay",
+      "link": "https://www.ebay.com/shop/harry-potter-robes-adult?_nkw=harry+potter+robes+adult",
+      "source": "eBay",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcT5NXsW5qpQoNKtvnEC0sNL88H54opWmBBYIh2gQ3U_SGUU-yc8xV_BfeECVq4HYfwroQsx3k4lpMvjDByZM4KvONyK63j7aI6RPQrDFwRa9lo",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSricwtd_7c1HDQX2twTn4zT8cDyZlWWEUe3omhTPt1mgqrI2qu",
+      "thumbnail_width": 300,
+      "thumbnail_height": 151,
+      "image": "https://i.ebayimg.com/images/g/hlsAAeSwl6FpVF~p/s-l300.jpg",
+      "image_width": 300,
+      "image_height": 151
+    },
+    {
+      "position": 55,
+      "title": "Harry Potter Universal Studios Halloween Robe Costume",
+      "link": "https://whistlewoods.com/?x=1098060961100",
+      "source": "whistlewoods.com",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcRyHTEVyEWLAfMCfe0Lx8lL2gYm8_841a0Cx6YDUyqTz3lODNrx2647S5vsma-VbXrsWzk-K_iK-42AQLcolvAnPIwF6zHBwCwpTIGGbZ_vXdXTAT8X",
+      "rating": 4.5,
+      "reviews": 34,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQamYP9D_xN3ydPVYZucQY3lv2TEa_0vbxSbJM1cIYFlO2xYrtA",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://images.offerup.com/FxTtNVHPH4ue4zSsWyrb2AZV7vs=/1926x1926/ffe5/ffe5ced4e71a416ba1d1a7187b77d75e.jpg",
+      "image_width": 1926,
+      "image_height": 1926
+    },
+    {
+      "position": 56,
+      "title": "Uniforme completo Hogwarts Gryffindor, Harry Potter ...",
+      "link": "https://gloset.mx/l/6a08eff6-3d53-4384-be5f-462c1025d01e",
+      "source": "Gloset",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcQ6RRnNPTM4xE6TLn3TKqdxS0pYAOnl0-bVPFHHGSfRVTGekW8YtfSH5uSU4B4vVMnzzSQ2gYQdBhxwhte8xh9rCKnijUI8ZxqKD-akPrQ",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRm2sGi-DPxRlxWjPJ5ScgTqzuhghUAV0NTi3OuX6E6nE7glQkY",
+      "thumbnail_width": 163,
+      "thumbnail_height": 310,
+      "image": "https://sharetribe.imgix.net/5fc75098-d907-4a37-95a5-770989517a9c/6a08ee9a-4293-48b8-96fa-bf1a8cd9a476?auto=format&crop=edges&fit=crop&h=630&w=1200&s=cb4fba3d8ee42560e05eab7fde2c3923",
+      "image_width": 630,
+      "image_height": 1200
+    },
+    {
+      "position": 57,
+      "title": "Authentic USJ Harry Potter Gryffindor Robe, Excellent ...",
+      "link": "https://warrenbaptisttemple.com/?product/category/view_more/20205397801100",
+      "source": "warrenbaptisttemple.com",
+      "source_icon": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcS2J0SMcbm1xFxYBPzb5EVvvD6v-nrVer1tP29JU1dywzIb_iHT-e3YtQHIot0wCsxeIpSIT6tA461kqp-uO1U9GQnq7K3zO0Zqfc6ebM3-xJjuLqyIyNP_xqPEeg",
+      "rating": 4.8,
+      "reviews": 11,
+      "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT4Ik8xwUfAmAn1ZNvxYUJtnRf-Xwq9jI7HvttCR_-2w2YFGsQl",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://u-mercari-images.mercdn.net/photos/m78789948973_2.jpg?1741965704",
+      "image_width": 1080,
+      "image_height": 1080
+    },
+    {
+      "position": 58,
+      "title": "Hottie still going up #bjacks #harrypotter | TikTok",
+      "link": "https://www.tiktok.com/@bjacks.1/video/7641318630541577486",
+      "source": "TikTok",
+      "source_icon": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcTiWsZg_7Q-8bAQYHlD9VtdBO8GLzYtDmFFmMRclrXQhRI17hRJ77T_Rc7VFiml61ZZKCAxlqLWhaBMeobWN_zExBK3t3LPjYWjTlpJS_fXur2RjQ",
+      "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTpICekCbFUaehXckWjHF7K7qHoJPrFRxkeuzoUHKuZgJeMUEp-",
+      "thumbnail_width": 300,
+      "thumbnail_height": 168,
+      "image": "https://www.tiktok.com/api/img/?itemId=7641318630541577486&location=0&aid=1988",
+      "image_width": 1920,
+      "image_height": 1080
+    },
+    {
+      "position": 59,
+      "title": "Harry Potter\u2122 Gryffindor\u2122 Robe Pullover \u2013 Shop Universal",
+      "link": "https://shopuniversal.com/products/harry-potter-gryffindor-robe-pullover",
+      "source": "Shop Universal",
+      "source_icon": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcQsCj_efyYnMhnYpG4cC9fONbwKFzpcuq1kd0GqwhEcuy1TaGyPiL9zxCsBp1aq_11Bdng_v95DPAVJhuGlKRjG8O9Zf1DOADlB4ziQniV9lvAbyzS_cg",
+      "price": {
+        "value": "$80*",
+        "extracted_value": 80.0,
+        "currency": "$"
+      },
+      "in_stock": true,
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEs6IZv2tEXkqMCEJ3BFjH7_3FsT8rO0HWwUmGh4g3nLlaT3qd",
+      "thumbnail_width": 225,
+      "thumbnail_height": 225,
+      "image": "https://shopuniversal.com/cdn/shop/files/1395207HPRBEGRYFC_PmodelDSC_3581.jpg?v=1780065032&width=1445",
+      "image_width": 1000,
+      "image_height": 1000
+    },
+    {
+      "position": 60,
+      "title": "Harry Squatter: The Secrets of Dumbbelldore #shorts - YouTube",
+      "link": "https://www.youtube.com/shorts/h_D91SI2kZA",
+      "source": "YouTube",
+      "source_icon": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcQHQslzHLLyLc_qne5jxn7JocidlmUPyegZ8ojX3WVlorFk8BxW9a3vJWjDzN99UHVTqSaNBj_-6XykhxuVQfF3Ye7xScSWSuc2QHXi0a12CkVwBmo",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeBRrOj5SuM_6NHE_qHl0ZIbfuheKw1UxPauRHJbDElRRMFsDK",
+      "thumbnail_width": 168,
+      "thumbnail_height": 300,
+      "image": "https://i.ytimg.com/vi/h_D91SI2kZA/maxresdefault.jpg",
+      "image_width": 720,
+      "image_height": 1280
+    }
+  ],
+  "organic_results": [
+    {
+      "position": 1,
+      "title": "Harry Potter Adult House Robe \u2013 Official Hogwarts ...",
+      "link": "https://www.amazon.com/Harry-Potter-Adult-House-Robe/dp/B0GTRQS8JM",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESegHrOzAVk56QLebweMSX6gbrGbTeJcSRUv8ZQyUUg6gLY3-OFCn56lNHEMR8SstDrnu15pAwMngbMMTitmJmgJcFBezCOTTNRKLt6Jw7EfgRYAeUu0Nb80GHHAVczp-6U7Msw50bonDr336kA8ovA48yzYNJzr6ZDEhN&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCNYDEAE&uoh=1",
+      "displayed_link": "https://www.amazon.com \u203a Harry-Potter-Adult-House-R...",
+      "favicon": "https://serpapi.com/images/i/UklGRgABAABXRUJQVlA4IPQAAACQBgCdASogACAAPrkurlcnIacnG_DgFwlsAJ05QVS9IBfbUgOf_skkiKt1WV__usEhX-9coTL7-50nxt2AAP7rwfv_wVU6YaR6HeZ8T0iiG1fjH-GInxDGplesPRL-O0x4-jLXLJVrMvO3_cJvMj_cRa0JBzOTvJo39P3-X3Vbv2mx--9K7GQfTSHM8rIPEivpW__F5Xr97_T-1Jjmwo86nAPgea8JWswphczyD4Oqa1VSV0cEvnU9Rq9yu8GxSRqQWixFre199AVlKmMOuBLCVngQ9Ht61Y3zlYz_jWnBUkEzf052rF1dTRWK5wiGpvFFxYAA.webp",
+      "snippet": "Officially licensed Harry Potter house robe, meticulously designed to replicate the student uniforms seen in the films. Essential for any authentic Gryffindor ...",
+      "snippet_highlighted_words": [
+        "Officially licensed Harry Potter house robe"
+      ],
+      "about_this_result": {
+        "source": {
+          "description": "Officially licensed Harry Potter house robe, meticulously designed to replicate the student uniforms seen in the films. Essential for any authentic Gryffindor ...",
+          "source_info_link": "https://www.amazon.com/Harry-Potter-Adult-House-Robe/dp/B0GTRQS8JM",
+          "icon": "https://serpapi.com/images/i/UklGRgABAABXRUJQVlA4IPQAAACQBgCdASogACAAPrkurlcnIacnG_DgFwlsAJ05QVS9IBfbUgOf_skkiKt1WV__usEhX-9coTL7-50nxt2AAP7rwfv_wVU6YaR6HeZ8T0iiG1fjH-GInxDGplesPRL-O0x4-jLXLJVrMvO3_cJvMj_cRa0JBzOTvJo39P3-X3Vbv2mx--9K7GQfTSHM8rIPEivpW__F5Xr97_T-1Jjmwo86nAPgea8JWswphczyD4Oqa1VSV0cEvnU9Rq9yu8GxSRqQWixFre199AVlKmMOuBLCVngQ9Ht61Y3zlYz_jWnBUkEzf052rF1dTRWK5wiGpvFFxYAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESegHrOzAVk56QLebweMSX6gbrGbTeJcSRUv8ZQyUUg6gLY3-OFCn56lNHEMR8SstDrnu15pAwMngbMMTitmJmgJcFBezCOTTNRKLt6Jw7EfgRYAeUu0Nb80GHHAVczp-6U7Msw50bonDr336kA8ovA48yzYNJzr6ZDEhN&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESegHrOzAVk56QLebweMSX6gbrGbTeJcSRUv8ZQyUUg6gLY3-OFCn56lNHEMR8SstDrnu15pAwMngbMMTitmJmgJcFBezCOTTNRKLt6Jw7EfgRYAeUu0Nb80GHHAVczp-6U7Msw50bonDr336kA8ovA48yzYNJzr6ZDEhN",
+      "source": "Amazon.com"
+    },
+    {
+      "position": 2,
+      "title": "For years I have been envious of friends who have been to ...",
+      "link": "https://www.instagram.com/p/DRCrZnKE7uO/",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESYAHrOzAVgP2ouzQSdtn--uHfsv-63r1331LdYy_foWwcTPCXukJSvp5VkpTsFVSYJrIMYGCgE8NF-Jg4lZLClBHszNHBq-9LHxZPg11xIElKJ_b1yW2epO19tj5CcPL_TQ&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCNoDEAE&uoh=1",
+      "displayed_link": "100+ likes \u00b7 9 months ago",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjMxVtH_g1fiMWedNGkrv4gUvDeMi7QeWW_poLpSxbN5YfJvTVegW&usqp=CAE&s",
+      "favicon": "https://serpapi.com/images/i/UklGRrQBAABXRUJQVlA4IKgBAABwCACdASocABwAPrUurVanIacnG_DgFolsAJ0yhHp_qvDn8INhnGwwG2i5ADWgPQA6TAiNSWpNpaKsXIF39bGj3Qd8pbRqOqkClBeAAP5tEoJlJoIDKX9SM7Zcd-n9JzxjUyFwXhzwPaTeFm2SeuMf1qLVq3t4wI3Sjh-TwPMqC3IvNj-0iGrCQSLYH_-G79_n_WM3XsPcVuoDF5Qv72r9Pf808tOK5Udv-Td9HMGptvnvxKOoa_2nDyZ2ppkSa2bNDL-K8pl3NhKk0sDV6BtpvNMgPb8dFSIrV0bFXaXgk5e0X-zIfxi-75avphrtEjwdvibNuQxApMkfs-CMi8mkD-o9_Rjb7y57vXTZx0h5MRX7n1JX-MenGUk5E4XC7vzHzXwfTDhRIb4bBfoSZiSNQ4UQGB7jAg92d64S_P_CCBANUoR3tplweT0RfxTAFGtV0vGjuwbJ25X1m04VXMMJ8Q3QzEsyD8w7jnAm5jqpKUZtVe-82LngE828BL78VksB9boYA1KjkUFty8pEW9876P84D7-A_J3doJbl9U3F-cBP_D9uzAAA.webp",
+      "snippet": "For years I have been envious of friends who have been to Potter locations / stores / tours etc and tried manifesting it for myself.",
+      "snippet_highlighted_words": [
+        "Potter locations / stores / tours"
+      ],
+      "about_this_result": {
+        "source": {
+          "description": "For years I have been envious of friends who have been to Potter locations / stores / tours etc and tried manifesting it for myself.",
+          "source_info_link": "https://www.instagram.com/p/DRCrZnKE7uO/",
+          "icon": "https://serpapi.com/images/i/UklGRrQBAABXRUJQVlA4IKgBAABwCACdASocABwAPrUurVanIacnG_DgFolsAJ0yhHp_qvDn8INhnGwwG2i5ADWgPQA6TAiNSWpNpaKsXIF39bGj3Qd8pbRqOqkClBeAAP5tEoJlJoIDKX9SM7Zcd-n9JzxjUyFwXhzwPaTeFm2SeuMf1qLVq3t4wI3Sjh-TwPMqC3IvNj-0iGrCQSLYH_-G79_n_WM3XsPcVuoDF5Qv72r9Pf808tOK5Udv-Td9HMGptvnvxKOoa_2nDyZ2ppkSa2bNDL-K8pl3NhKk0sDV6BtpvNMgPb8dFSIrV0bFXaXgk5e0X-zIfxi-75avphrtEjwdvibNuQxApMkfs-CMi8mkD-o9_Rjb7y57vXTZx0h5MRX7n1JX-MenGUk5E4XC7vzHzXwfTDhRIb4bBfoSZiSNQ4UQGB7jAg92d64S_P_CCBANUoR3tplweT0RfxTAFGtV0vGjuwbJ25X1m04VXMMJ8Q3QzEsyD8w7jnAm5jqpKUZtVe-82LngE828BL78VksB9boYA1KjkUFty8pEW9876P84D7-A_J3doJbl9U3F-cBP_D9uzAAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESYAHrOzAVgP2ouzQSdtn--uHfsv-63r1331LdYy_foWwcTPCXukJSvp5VkpTsFVSYJrIMYGCgE8NF-Jg4lZLClBHszNHBq-9LHxZPg11xIElKJ_b1yW2epO19tj5CcPL_TQ&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESYAHrOzAVgP2ouzQSdtn--uHfsv-63r1331LdYy_foWwcTPCXukJSvp5VkpTsFVSYJrIMYGCgE8NF-Jg4lZLClBHszNHBq-9LHxZPg11xIElKJ_b1yW2epO19tj5CcPL_TQ",
+      "source": "Instagram \u00b7 iamantarik",
+      "read_more_link": "https://www.google.com/goto?url=CAESrwEB6zswFeWOiXjtllT3xJ8r70AFPc8fBBthm8q5IGyS86AKFSHxjgKdsT25TYPadVsa9hjL9OpeHwaDLbHiTWq37BaptTA2IxCvRQhewIpiMb8XZSGoBGdTn0B8MqxlFUxYYvDMUssQ_859sa6NuDMvZ3nj1CuFUr8FL4M244eCxCByWy0gF1N7BJ80jjSLTfje4jTO-5DdISrsYa47er0Kat3Gm8J26FkIPvzMQYTm"
+    },
+    {
+      "position": 3,
+      "title": "Harry Potter Robe Universal Studios",
+      "link": "https://www.ebay.com/shop/harry-potter-robe-universal-studios?_nkw\\u003dharry+potter+robe+universal+studios",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESngEB6zswFdmv0UJfUKQip01T4uPCsy8erStAbq4dC9NDzYq049sI9jdTmU-tfPe3eBIAEtqX18mU5sYtDpstS851hP1y19BgW7ciWsrkCQmFsqkkyEUcj_m4kVPaEqAh3BfMhIawF-QSYXzxTl6Zqs9rXvRrfb6fyT0M6SRu0d-mMzXGgsRAit7kZc-v49kj6Kxq8AgupuHKWFsmfgRwfw&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCN4DEAE&uoh=1",
+      "displayed_link": "https://www.ebay.com \u203a shop \u203a harry-potter-robe-univer...",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE5GJlytBoHmyxG6HPGD1XVEatxICNnGcHOCzcdFrf2XaULoxt8QOCoGM&s",
+      "favicon": "https://serpapi.com/images/i/iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8_9hAAAAYElEQVR4AWPAAdSBeDsQf4bi7WAxIoEKEL8C4kwg5oHiTKiYCjEGrAPiHCzi-RA5wuAz2FZMIAGRwwT_KcGUG_DUyOI_MmZIuYSCv65nQsFtO8SR8WAwYNQAytPBwBsAAPa7ZDmnz9wtAAAAAElFTkSuQmCC.png",
+      "snippet": "Harry Potter robes from Universal Studios vary in material, affecting durability and comfort. Common materials include polyester for durability and cotton ...",
+      "snippet_highlighted_words": [
+        "Harry Potter robes from Universal Studios"
+      ],
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE5GJlytBoHmyxG6HPGD1XVEatxICNnGcHOCzcdFrf2XaULoxt8QOCoGM&s"
+      ],
+      "rich_snippet": {
+        "top": {
+          "detected_extensions": {
+            "rating": 4.6,
+            "price_from": 25,
+            "price_to": 99,
+            "currency": "$"
+          },
+          "extensions": [
+            "4.6",
+            "store rating (2.4K)",
+            "$25 to $99"
+          ]
+        }
+      },
+      "about_this_result": {
+        "source": {
+          "description": "Harry Potter robes from Universal Studios vary in material, affecting durability and comfort. Common materials include polyester for durability and cotton ...",
+          "source_info_link": "https://www.ebay.com/shop/harry-potter-robe-universal-studios?_nkw=harry+potter+robe+universal+studios",
+          "icon": "https://serpapi.com/images/i/iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8_9hAAAAYElEQVR4AWPAAdSBeDsQf4bi7WAxIoEKEL8C4kwg5oHiTKiYCjEGrAPiHCzi-RA5wuAz2FZMIAGRwwT_KcGUG_DUyOI_MmZIuYSCv65nQsFtO8SR8WAwYNQAytPBwBsAAPa7ZDmnz9wtAAAAAElFTkSuQmCC.png"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESngEB6zswFdmv0UJfUKQip01T4uPCsy8erStAbq4dC9NDzYq049sI9jdTmU-tfPe3eBIAEtqX18mU5sYtDpstS851hP1y19BgW7ciWsrkCQmFsqkkyEUcj_m4kVPaEqAh3BfMhIawF-QSYXzxTl6Zqs9rXvRrfb6fyT0M6SRu0d-mMzXGgsRAit7kZc-v49kj6Kxq8AgupuHKWFsmfgRwfw&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESngEB6zswFdmv0UJfUKQip01T4uPCsy8erStAbq4dC9NDzYq049sI9jdTmU-tfPe3eBIAEtqX18mU5sYtDpstS851hP1y19BgW7ciWsrkCQmFsqkkyEUcj_m4kVPaEqAh3BfMhIawF-QSYXzxTl6Zqs9rXvRrfb6fyT0M6SRu0d-mMzXGgsRAit7kZc-v49kj6Kxq8AgupuHKWFsmfgRwfw",
+      "source": "eBay"
+    },
+    {
+      "position": 4,
+      "title": "Dress Robe Harry Potter",
+      "link": "https://www.walmart.com/c/kp/dress-robe-harry-potter",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESbAHrOzAVEOYjipzdNN9PQ9zFCc6aM9CKv18FkH63zPaDBCgQMwFLT0ajsAxTLBTI-pJjqK3V93MSyJQmzdyhmU1teGUkzNWmdAzDLlUsBHzJ8qZe8OR02SyzsYZ1NyahdaxE-S5txEylp92ATQ&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCNsDEAE&uoh=1",
+      "displayed_link": "https://www.walmart.com \u203a dress-robe-harry-potter",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIchdCl8Lv2BRTULUPPPojV2ngMRMJQGQp5c8Jw-ZR4o-U4fLjQ1sM71hoPA&s",
+      "favicon": "https://serpapi.com/images/i/UklGRvwAAABXRUJQVlA4IPAAAACwBgCdASocABwAPtE-tFooIigoFAEAGglsAKwgcggG2d0IDqAN5X8oABtHskFUFa5dvbgkOxFm9O0JG-M4AAD-9gec84xAv-9qBOurvIAVjlQt-9P8ln6FcX1OSukdJmhnM-ydITFAjfEQPfJ1nQrjgYm7ogsWmdEKRgYlkKk8RkljqCShwf0_8ehWG1JYPFaofPZKf0S9qwnJMsohykq-Qz248rAXsPMQiiv6Wuc3Y_inXG4Exwr9D9_9zgMrBCA9kTHSd5e0PpMnUMKJZF4lcy_cGj_Igl_Ukm0SXQUSjR2jAgv_VCJyC_T5brWFAAA.webp",
+      "snippet": "Harry Potter Gryffindor Costume Black and Red Long Robe with Hood From $29.95. Harry Potter Ravenclaw Costume Black and Blue Long Robe with Hood From $29.95. ...",
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIchdCl8Lv2BRTULUPPPojV2ngMRMJQGQp5c8Jw-ZR4o-U4fLjQ1sM71hoPA&s"
+      ],
+      "rich_snippet": {
+        "top": {
+          "detected_extensions": {
+            "rating": 4.3,
+            "price_from": 22,
+            "price_to": 55,
+            "currency": "$",
+            "free_day_returns": 90
+          },
+          "extensions": [
+            "4.3",
+            "store rating (3.5K)",
+            "$22 to $55",
+            "Free 90-day returns"
+          ]
+        }
+      },
+      "about_this_result": {
+        "source": {
+          "description": "Harry Potter Gryffindor Costume Black and Red Long Robe with Hood From $29.95. Harry Potter Ravenclaw Costume Black and Blue Long Robe with Hood From $29.95. ...",
+          "source_info_link": "https://www.walmart.com/c/kp/dress-robe-harry-potter",
+          "icon": "https://serpapi.com/images/i/UklGRvwAAABXRUJQVlA4IPAAAACwBgCdASocABwAPtE-tFooIigoFAEAGglsAKwgcggG2d0IDqAN5X8oABtHskFUFa5dvbgkOxFm9O0JG-M4AAD-9gec84xAv-9qBOurvIAVjlQt-9P8ln6FcX1OSukdJmhnM-ydITFAjfEQPfJ1nQrjgYm7ogsWmdEKRgYlkKk8RkljqCShwf0_8ehWG1JYPFaofPZKf0S9qwnJMsohykq-Qz248rAXsPMQiiv6Wuc3Y_inXG4Exwr9D9_9zgMrBCA9kTHSd5e0PpMnUMKJZF4lcy_cGj_Igl_Ukm0SXQUSjR2jAgv_VCJyC_T5brWFAAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESbAHrOzAVEOYjipzdNN9PQ9zFCc6aM9CKv18FkH63zPaDBCgQMwFLT0ajsAxTLBTI-pJjqK3V93MSyJQmzdyhmU1teGUkzNWmdAzDLlUsBHzJ8qZe8OR02SyzsYZ1NyahdaxE-S5txEylp92ATQ&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESbAHrOzAVEOYjipzdNN9PQ9zFCc6aM9CKv18FkH63zPaDBCgQMwFLT0ajsAxTLBTI-pJjqK3V93MSyJQmzdyhmU1teGUkzNWmdAzDLlUsBHzJ8qZe8OR02SyzsYZ1NyahdaxE-S5txEylp92ATQ",
+      "source": "Walmart"
+    },
+    {
+      "position": 5,
+      "title": "merry christmas ya filthy animals \ud83c\udf84",
+      "link": "https://www.instagram.com/p/DSsl49XElt8/",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESYAHrOzAV-gOw3WwABw6Kec0rJx0yI3wzmYMHLGXOki5QpXFNrtuVJgEKA_IX28uNjO6HMMXZTgd5-0XPFKhdpQFLPDtM__Hy7HaWwydSRyBzz0fsrLnaaU7SqvfKU1TK_g&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCNgDEAE&uoh=1",
+      "displayed_link": "870+ likes \u00b7 8 months ago",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRON1FIhht3P7qwtvvlVehEUcUgFf2IFkzQ6kPV67Exb-kcNsvlEqwq&usqp=CAE&s",
+      "favicon": "https://serpapi.com/images/i/UklGRrQBAABXRUJQVlA4IKgBAABwCACdASocABwAPrUurVanIacnG_DgFolsAJ0yhHp_qvDn8INhnGwwG2i5ADWgPQA6TAiNSWpNpaKsXIF39bGj3Qd8pbRqOqkClBeAAP5tEoJlJoIDKX9SM7Zcd-n9JzxjUyFwXhzwPaTeFm2SeuMf1qLVq3t4wI3Sjh-TwPMqC3IvNj-0iGrCQSLYH_-G79_n_WM3XsPcVuoDF5Qv72r9Pf808tOK5Udv-Td9HMGptvnvxKOoa_2nDyZ2ppkSa2bNDL-K8pl3NhKk0sDV6BtpvNMgPb8dFSIrV0bFXaXgk5e0X-zIfxi-75avphrtEjwdvibNuQxApMkfs-CMi8mkD-o9_Rjb7y57vXTZx0h5MRX7n1JX-MenGUk5E4XC7vzHzXwfTDhRIb4bBfoSZiSNQ4UQGB7jAg92d64S_P_CCBANUoR3tplweT0RfxTAFGtV0vGjuwbJ25X1m04VXMMJ8Q3QzEsyD8w7jnAm5jqpKUZtVe-82LngE828BL78VksB9boYA1KjkUFty8pEW9876P84D7-A_J3doJbl9U3F-cBP_D9uzAAA.webp",
+      "snippet": "Merry Christmas yall! \u2764\ufe0f. Photo by Makayla Day on August 01, 2026. we also watched a monkey mawl a bird mid air and defeather",
+      "snippet_highlighted_words": [
+        "Merry Christmas yall"
+      ],
+      "about_this_result": {
+        "source": {
+          "description": "Merry Christmas yall! \u2764\ufe0f. Photo by Makayla Day on August 01, 2026. we also watched a monkey mawl a bird mid air and defeather",
+          "source_info_link": "https://www.instagram.com/p/DSsl49XElt8/",
+          "icon": "https://serpapi.com/images/i/UklGRrQBAABXRUJQVlA4IKgBAABwCACdASocABwAPrUurVanIacnG_DgFolsAJ0yhHp_qvDn8INhnGwwG2i5ADWgPQA6TAiNSWpNpaKsXIF39bGj3Qd8pbRqOqkClBeAAP5tEoJlJoIDKX9SM7Zcd-n9JzxjUyFwXhzwPaTeFm2SeuMf1qLVq3t4wI3Sjh-TwPMqC3IvNj-0iGrCQSLYH_-G79_n_WM3XsPcVuoDF5Qv72r9Pf808tOK5Udv-Td9HMGptvnvxKOoa_2nDyZ2ppkSa2bNDL-K8pl3NhKk0sDV6BtpvNMgPb8dFSIrV0bFXaXgk5e0X-zIfxi-75avphrtEjwdvibNuQxApMkfs-CMi8mkD-o9_Rjb7y57vXTZx0h5MRX7n1JX-MenGUk5E4XC7vzHzXwfTDhRIb4bBfoSZiSNQ4UQGB7jAg92d64S_P_CCBANUoR3tplweT0RfxTAFGtV0vGjuwbJ25X1m04VXMMJ8Q3QzEsyD8w7jnAm5jqpKUZtVe-82LngE828BL78VksB9boYA1KjkUFty8pEW9876P84D7-A_J3doJbl9U3F-cBP_D9uzAAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESYAHrOzAV-gOw3WwABw6Kec0rJx0yI3wzmYMHLGXOki5QpXFNrtuVJgEKA_IX28uNjO6HMMXZTgd5-0XPFKhdpQFLPDtM__Hy7HaWwydSRyBzz0fsrLnaaU7SqvfKU1TK_g&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESYAHrOzAV-gOw3WwABw6Kec0rJx0yI3wzmYMHLGXOki5QpXFNrtuVJgEKA_IX28uNjO6HMMXZTgd5-0XPFKhdpQFLPDtM__Hy7HaWwydSRyBzz0fsrLnaaU7SqvfKU1TK_g",
+      "source": "Instagram \u00b7 chef_boyarbeatz"
+    },
+    {
+      "position": 6,
+      "title": "Amazon.com: Harry Potter Robe, Deluxe Wizarding World ...",
+      "link": "https://www.amazon.com/clp/B08DLT687S",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESXQHrOzAV6kJvJABQfI7acDJ2XHZgQQBlLbeLyzm3HsGkpr7w9yEY4Sc3GMtJtrIznHjN7493QE2C3cp21MhfMLe3jvUPfzXvFdRq5y-limmBDgAuuJAKgDSXfTIv8g&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCNcDEAE&uoh=1",
+      "displayed_link": "https://www.amazon.com \u203a clp",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPTsZWXC0WIqOZB2V2nWcasC_mKag5VrZ3uCiN7Rc&usqp=CAE&s",
+      "favicon": "https://serpapi.com/images/i/UklGRgABAABXRUJQVlA4IPQAAACQBgCdASogACAAPrkurlcnIacnG_DgFwlsAJ05QVS9IBfbUgOf_skkiKt1WV__usEhX-9coTL7-50nxt2AAP7rwfv_wVU6YaR6HeZ8T0iiG1fjH-GInxDGplesPRL-O0x4-jLXLJVrMvO3_cJvMj_cRa0JBzOTvJo39P3-X3Vbv2mx--9K7GQfTSHM8rIPEivpW__F5Xr97_T-1Jjmwo86nAPgea8JWswphczyD4Oqa1VSV0cEvnU9Rq9yu8GxSRqQWixFre199AVlKmMOuBLCVngQ9Ht61Y3zlYz_jWnBUkEzf052rF1dTRWK5wiGpvFFxYAA.webp",
+      "snippet": "Official Hogwarts House Costume with Embroidered Crest & Hidden Wand Pocket, Collectible Gift for Harry Potter Fans",
+      "snippet_highlighted_words": [
+        "Official Hogwarts House Costume"
+      ],
+      "rich_snippet": {
+        "bottom": {
+          "extensions": [
+            "Free delivery",
+            "30-day returns"
+          ],
+          "detected_extensions": {
+            "day_returns": 30
+          }
+        }
+      },
+      "about_this_result": {
+        "source": {
+          "description": "Official Hogwarts House Costume with Embroidered Crest & Hidden Wand Pocket, Collectible Gift for Harry Potter Fans",
+          "source_info_link": "https://www.amazon.com/clp/B08DLT687S",
+          "icon": "https://serpapi.com/images/i/UklGRgABAABXRUJQVlA4IPQAAACQBgCdASogACAAPrkurlcnIacnG_DgFwlsAJ05QVS9IBfbUgOf_skkiKt1WV__usEhX-9coTL7-50nxt2AAP7rwfv_wVU6YaR6HeZ8T0iiG1fjH-GInxDGplesPRL-O0x4-jLXLJVrMvO3_cJvMj_cRa0JBzOTvJo39P3-X3Vbv2mx--9K7GQfTSHM8rIPEivpW__F5Xr97_T-1Jjmwo86nAPgea8JWswphczyD4Oqa1VSV0cEvnU9Rq9yu8GxSRqQWixFre199AVlKmMOuBLCVngQ9Ht61Y3zlYz_jWnBUkEzf052rF1dTRWK5wiGpvFFxYAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESXQHrOzAV6kJvJABQfI7acDJ2XHZgQQBlLbeLyzm3HsGkpr7w9yEY4Sc3GMtJtrIznHjN7493QE2C3cp21MhfMLe3jvUPfzXvFdRq5y-limmBDgAuuJAKgDSXfTIv8g&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESXQHrOzAV6kJvJABQfI7acDJ2XHZgQQBlLbeLyzm3HsGkpr7w9yEY4Sc3GMtJtrIznHjN7493QE2C3cp21MhfMLe3jvUPfzXvFdRq5y-limmBDgAuuJAKgDSXfTIv8g",
+      "source": "Amazon.com"
+    },
+    {
+      "position": 7,
+      "title": "Harry Potter robes at Universal",
+      "link": "https://shop.universalorlando.com/shop/harry-potter/costumes",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESdAHrOzAVj58ZstZy5iQCOy8dgyDtmzXQW41amgdHbaWjDtvC3xHw2FJkR1Oro9jX1hQqEE5pdV4JuznjYSpPlVC9mvKCu81LEqRyrWKiC26bF8vXyAJcYGkG2zuPI1rzV2nwAk8-J-R-PwRFZEW8V4Kzu6Cv&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCIcEEAE&uoh=1",
+      "displayed_link": "https://shop.universalorlando.com \u203a shop \u203a costumes",
+      "favicon": "https://serpapi.com/images/i/UklGRrIBAABXRUJQVlA4IKYBAACwBwCdASogACAAPtE-tFooIigoFAEAGglsAJ0yhHVnYzncavC0dMA3jMrwQzfxWyy5ABFK7mgG6ver0J-90wi2AyQTtDSQAP75B_3y22NBQHU67nPfhZ28u5XvL5ikwkwz1ms4SP8gmy5-cLi-XXMERj5h6pc3xPvPzYFMtqf6iPJKpgXQ7Zi1PUVYmSv2bTyi1RawH1FprM_-gK_hGulrYC3-X7zIdN822n-NviFcs9qc3EFoNecyfHawJ-OYloaRE9ZH4fEGUw6svZMrWLXNSlq9or600MY2rkmHzjZmincHpSasr7_jt7yJaNbP8M1tTE2L_8U5EO7K6olHfiLkMeuAAJLn2J0bDDsDMAf0ub5xUVY1_7vZ5zw6TfOl8-5uYvzLar0tj-Obk1eNz-RP9pJP99eruybHg1op10Due8fyBniSGENJnPun0i39yCFRuyzxAISspjtVxpTZKqgOtZW_nlkEuumwdQ1c4KKcViMct070iUOz2xjN2KZvEc5BLS23Ea5x2xzzbcXoT6Cgtoy7c7BFqX5y8nwwbnBy6h1Q8_AAAA.webp",
+      "snippet": "No information is available for this page.",
+      "about_this_result": {
+        "source": {
+          "source_info_link": "https://shop.universalorlando.com/shop/harry-potter/costumes",
+          "icon": "https://serpapi.com/images/i/UklGRrIBAABXRUJQVlA4IKYBAACwBwCdASogACAAPtE-tFooIigoFAEAGglsAJ0yhHVnYzncavC0dMA3jMrwQzfxWyy5ABFK7mgG6ver0J-90wi2AyQTtDSQAP75B_3y22NBQHU67nPfhZ28u5XvL5ikwkwz1ms4SP8gmy5-cLi-XXMERj5h6pc3xPvPzYFMtqf6iPJKpgXQ7Zi1PUVYmSv2bTyi1RawH1FprM_-gK_hGulrYC3-X7zIdN822n-NviFcs9qc3EFoNecyfHawJ-OYloaRE9ZH4fEGUw6svZMrWLXNSlq9or600MY2rkmHzjZmincHpSasr7_jt7yJaNbP8M1tTE2L_8U5EO7K6olHfiLkMeuAAJLn2J0bDDsDMAf0ub5xUVY1_7vZ5zw6TfOl8-5uYvzLar0tj-Obk1eNz-RP9pJP99eruybHg1op10Due8fyBniSGENJnPun0i39yCFRuyzxAISspjtVxpTZKqgOtZW_nlkEuumwdQ1c4KKcViMct070iUOz2xjN2KZvEc5BLS23Ea5x2xzzbcXoT6Cgtoy7c7BFqX5y8nwwbnBy6h1Q8_AAAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESdAHrOzAVj58ZstZy5iQCOy8dgyDtmzXQW41amgdHbaWjDtvC3xHw2FJkR1Oro9jX1hQqEE5pdV4JuznjYSpPlVC9mvKCu81LEqRyrWKiC26bF8vXyAJcYGkG2zuPI1rzV2nwAk8-J-R-PwRFZEW8V4Kzu6Cv&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESdAHrOzAVj58ZstZy5iQCOy8dgyDtmzXQW41amgdHbaWjDtvC3xHw2FJkR1Oro9jX1hQqEE5pdV4JuznjYSpPlVC9mvKCu81LEqRyrWKiC26bF8vXyAJcYGkG2zuPI1rzV2nwAk8-J-R-PwRFZEW8V4Kzu6Cv",
+      "source": "Shop Universal"
+    },
+    {
+      "position": 8,
+      "title": "Throwing fits (Personality pic at the end)",
+      "link": "https://www.instagram.com/p/DHcMHKyuA24/",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESYAHrOzAV8V79YzNfpZERjh3GE7r4itLhCN7CDdUtRTiC04FE4AHtyvzE_RRYgOfnMVP96cpMw4zZylt_GZhjGGVSHxUsjrlEqBuuqpAm4wyoL1rdTOglm1Kbc9omWp9DnA&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCN0DEAE&uoh=1",
+      "displayed_link": "5.1K+ likes \u00b7 1 year ago",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe_w89-NiLYe0sB5b4XHesvpTbhujta0pP0RH8rC3-R8Y_LiYmN5zW&usqp=CAE&s",
+      "favicon": "https://serpapi.com/images/i/UklGRrQBAABXRUJQVlA4IKgBAABwCACdASocABwAPrUurVanIacnG_DgFolsAJ0yhHp_qvDn8INhnGwwG2i5ADWgPQA6TAiNSWpNpaKsXIF39bGj3Qd8pbRqOqkClBeAAP5tEoJlJoIDKX9SM7Zcd-n9JzxjUyFwXhzwPaTeFm2SeuMf1qLVq3t4wI3Sjh-TwPMqC3IvNj-0iGrCQSLYH_-G79_n_WM3XsPcVuoDF5Qv72r9Pf808tOK5Udv-Td9HMGptvnvxKOoa_2nDyZ2ppkSa2bNDL-K8pl3NhKk0sDV6BtpvNMgPb8dFSIrV0bFXaXgk5e0X-zIfxi-75avphrtEjwdvibNuQxApMkfs-CMi8mkD-o9_Rjb7y57vXTZx0h5MRX7n1JX-MenGUk5E4XC7vzHzXwfTDhRIb4bBfoSZiSNQ4UQGB7jAg92d64S_P_CCBANUoR3tplweT0RfxTAFGtV0vGjuwbJ25X1m04VXMMJ8Q3QzEsyD8w7jnAm5jqpKUZtVe-82LngE828BL78VksB9boYA1KjkUFty8pEW9876P84D7-A_J3doJbl9U3F-cBP_D9uzAAA.webp",
+      "snippet": "ultimate high protein pot roast soup. lbs beef chuck roast, trimmed and cut into 11\u20442-inch cubes. Packed with a ton of flavor, this high ...",
+      "snippet_highlighted_words": [
+        "ultimate high protein pot roast soup"
+      ],
+      "about_this_result": {
+        "source": {
+          "description": "ultimate high protein pot roast soup. lbs beef chuck roast, trimmed and cut into 11\u20442-inch cubes. Packed with a ton of flavor, this high ...",
+          "source_info_link": "https://www.instagram.com/p/DHcMHKyuA24/",
+          "icon": "https://serpapi.com/images/i/UklGRrQBAABXRUJQVlA4IKgBAABwCACdASocABwAPrUurVanIacnG_DgFolsAJ0yhHp_qvDn8INhnGwwG2i5ADWgPQA6TAiNSWpNpaKsXIF39bGj3Qd8pbRqOqkClBeAAP5tEoJlJoIDKX9SM7Zcd-n9JzxjUyFwXhzwPaTeFm2SeuMf1qLVq3t4wI3Sjh-TwPMqC3IvNj-0iGrCQSLYH_-G79_n_WM3XsPcVuoDF5Qv72r9Pf808tOK5Udv-Td9HMGptvnvxKOoa_2nDyZ2ppkSa2bNDL-K8pl3NhKk0sDV6BtpvNMgPb8dFSIrV0bFXaXgk5e0X-zIfxi-75avphrtEjwdvibNuQxApMkfs-CMi8mkD-o9_Rjb7y57vXTZx0h5MRX7n1JX-MenGUk5E4XC7vzHzXwfTDhRIb4bBfoSZiSNQ4UQGB7jAg92d64S_P_CCBANUoR3tplweT0RfxTAFGtV0vGjuwbJ25X1m04VXMMJ8Q3QzEsyD8w7jnAm5jqpKUZtVe-82LngE828BL78VksB9boYA1KjkUFty8pEW9876P84D7-A_J3doJbl9U3F-cBP_D9uzAAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESYAHrOzAV8V79YzNfpZERjh3GE7r4itLhCN7CDdUtRTiC04FE4AHtyvzE_RRYgOfnMVP96cpMw4zZylt_GZhjGGVSHxUsjrlEqBuuqpAm4wyoL1rdTOglm1Kbc9omWp9DnA&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESYAHrOzAV8V79YzNfpZERjh3GE7r4itLhCN7CDdUtRTiC04FE4AHtyvzE_RRYgOfnMVP96cpMw4zZylt_GZhjGGVSHxUsjrlEqBuuqpAm4wyoL1rdTOglm1Kbc9omWp9DnA",
+      "source": "Instagram \u00b7 connornewsum"
+    },
+    {
+      "position": 9,
+      "title": "Adult Gryffindor Robe Deluxe - Harry Potter",
+      "link": "https://www.spirithalloween.com/product/adult-gryffindor-robe-deluxe-harry-potter/245327.uts",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESlAEB6zswFSSP-bTyCAGSogIyqsLWO3aNYNvkoy4bXDt7LOZLwIJiAu8O-LwV3eppCyCOPHgEDjONNofek-Mp5R2u_gVbB1iWS1u2vQp4RhWZd3yu0XYcXlFhJ1T6aoDd6ka0gFjIeY1r1kF3QZi8Vm6UPmhNBZ7Z6FRg-DXgaLzFGuwvBWMEpu5_DgZJS8c5PVQLuuIc&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCNkDEAE&uoh=1",
+      "displayed_link": "https://www.spirithalloween.com \u203a ... \u203a Robes & Capes",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSejHjHMRwDjWXrDmeUnh7w3oDBtws6Fqg1wwhG-pip8S-rYbh6oCwS&usqp=CAE&s",
+      "favicon": "https://serpapi.com/images/i/UklGRngBAABXRUJQVlA4IGwBAACwCACdASogACAAPtEutFooIagoGAEAGglsAJ0yhHV3s1MBwANsj4oHrj-er6YGS1eTlngKxPZM9vgp40L_nu_xLDpdyxOOGUd45CZpOMAA_tCFVdhj41RZWwREb-KzDH_3zbvOojtde2ktby8ALjooxqNMBDwLe14JvSQ6gx1gZtdisTNWL-mRHq3LlenfdfeHbQZN-hZrtEU9zdhqEHPLMz5utPsPLVFaaO-PKuMICpWRGBaOpfPbEMV2HDulTGPC3Vt56qZj_Inl98xUAF9cwGAQQ-pO9w7gkAbQjcmmq-23zwm7BlNiZD4QsgIkZbDy7y5tSdfPTPxpB9IutowCmpZZcCZ_NkvrvGDDpgsn-l52V3mvdYTmBEyR1O7NBqFljYD7__g7uQC_Mi0WEyAmcs_PunlSfFf_jDxtmZVHpxyJZU4oYarrNaKOQ8djZW4Xc3vZ1bffz_u3RFLoTB3pjOrgREhSrWUqRAAA.webp",
+      "snippet": "Officially licensed Includes: Robe Long sleeves Material: Polyester Pull over closure",
+      "snippet_highlighted_words": [
+        "Officially licensed"
+      ],
+      "rich_snippet": {
+        "top": {
+          "detected_extensions": {
+            "rating": 4.5,
+            "reviews": 6,
+            "price": 49.99,
+            "currency": "$",
+            "day_returns": 14,
+            "free_shipping_on_orders_over_deliver_copied": 40
+          },
+          "extensions": [
+            "4.5(6)",
+            "$49.99",
+            "In stock",
+            "$7.99 delivery",
+            "14-day returns",
+            "Free Shipping On Orders Over $40(Copy code)DELIVER40)Copied("
+          ]
+        }
+      },
+      "about_this_result": {
+        "source": {
+          "description": "Officially licensed Includes: Robe Long sleeves Material: Polyester Pull over closure",
+          "source_info_link": "https://www.spirithalloween.com/product/adult-gryffindor-robe-deluxe-harry-potter/245327.uts",
+          "icon": "https://serpapi.com/images/i/UklGRngBAABXRUJQVlA4IGwBAACwCACdASogACAAPtEutFooIagoGAEAGglsAJ0yhHV3s1MBwANsj4oHrj-er6YGS1eTlngKxPZM9vgp40L_nu_xLDpdyxOOGUd45CZpOMAA_tCFVdhj41RZWwREb-KzDH_3zbvOojtde2ktby8ALjooxqNMBDwLe14JvSQ6gx1gZtdisTNWL-mRHq3LlenfdfeHbQZN-hZrtEU9zdhqEHPLMz5utPsPLVFaaO-PKuMICpWRGBaOpfPbEMV2HDulTGPC3Vt56qZj_Inl98xUAF9cwGAQQ-pO9w7gkAbQjcmmq-23zwm7BlNiZD4QsgIkZbDy7y5tSdfPTPxpB9IutowCmpZZcCZ_NkvrvGDDpgsn-l52V3mvdYTmBEyR1O7NBqFljYD7__g7uQC_Mi0WEyAmcs_PunlSfFf_jDxtmZVHpxyJZU4oYarrNaKOQ8djZW4Xc3vZ1bffz_u3RFLoTB3pjOrgREhSrWUqRAAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESlAEB6zswFSSP-bTyCAGSogIyqsLWO3aNYNvkoy4bXDt7LOZLwIJiAu8O-LwV3eppCyCOPHgEDjONNofek-Mp5R2u_gVbB1iWS1u2vQp4RhWZd3yu0XYcXlFhJ1T6aoDd6ka0gFjIeY1r1kF3QZi8Vm6UPmhNBZ7Z6FRg-DXgaLzFGuwvBWMEpu5_DgZJS8c5PVQLuuIc&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESlAEB6zswFSSP-bTyCAGSogIyqsLWO3aNYNvkoy4bXDt7LOZLwIJiAu8O-LwV3eppCyCOPHgEDjONNofek-Mp5R2u_gVbB1iWS1u2vQp4RhWZd3yu0XYcXlFhJ1T6aoDd6ka0gFjIeY1r1kF3QZi8Vm6UPmhNBZ7Z6FRg-DXgaLzFGuwvBWMEpu5_DgZJS8c5PVQLuuIc",
+      "source": "Spirit Halloween"
+    },
+    {
+      "position": 10,
+      "title": "Harry Potter Robe",
+      "link": "https://www.tiktok.com/discover/harry-potter-robe",
+      "redirect_link": "https://lens.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESaQHrOzAVBPd5a1lYFI7RvPwBOAkMCLl-7O6wHwg0sutKxzYUGpaH_Y2MADX8YfneME8uVbXy2ahJ23pkecqySysJ2nmq5Iul7MB9oIcpVzuDsjEy3XkHiPCn0WUQTUYRk-OkovjKkP8dYw&ved=2ahUKEwiirseDrtCWAxX0qpUCHWnZNhMQFnoFCNwDEAE&uoh=1",
+      "displayed_link": "https://www.tiktok.com \u203a Discover",
+      "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgxiWCFoqQK3qhdjF9LW71omu7rgd6Vc4oWu4tQzj8u5EJmogKcAyt19Amohjc-_UO53KS&s",
+      "favicon": "https://serpapi.com/images/i/UklGRt4AAABXRUJQVlA4INIAAAAQBQCdASocABwAPtEwtFooIigoGAEAGglqAM7t3At_tZAJkQvdasA_TiHmb7n9FyAAAP7-zMa8xfDsmgP7xucvFaqjgucV4bdksbH7T5hWZ7Spp4joaSpJkn8f-b3-hzHaYTR3orLW5n-k7-6LIWmkysnxryZWSCxzHX2r67D70GXzxOu61ckD56q8XtZWK_x58R4ZRGkSqRdrXLaacnMarnQXOhN4g7KbuRJ_RBQPlFto--LuPK0SDJ5nzs4aUXU65BLOB25fWHRS9zx-6YMAAAA.webp",
+      "snippet": "Harry Potter Gryffindor Robe is a black cape featuring the iconic Gryffindor lion symbol, perfect for any fan of the Harry Potter series. Made for adult unisex ...",
+      "snippet_highlighted_words": [
+        "Harry Potter Gryffindor Robe"
+      ],
+      "images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgxiWCFoqQK3qhdjF9LW71omu7rgd6Vc4oWu4tQzj8u5EJmogKcAyt19Amohjc-_UO53KS&s"
+      ],
+      "about_this_result": {
+        "source": {
+          "description": "Harry Potter Gryffindor Robe is a black cape featuring the iconic Gryffindor lion symbol, perfect for any fan of the Harry Potter series. Made for adult unisex ...",
+          "source_info_link": "https://www.tiktok.com/discover/harry-potter-robe",
+          "icon": "https://serpapi.com/images/i/UklGRt4AAABXRUJQVlA4INIAAAAQBQCdASocABwAPtEwtFooIigoGAEAGglqAM7t3At_tZAJkQvdasA_TiHmb7n9FyAAAP7-zMa8xfDsmgP7xucvFaqjgucV4bdksbH7T5hWZ7Spp4joaSpJkn8f-b3-hzHaYTR3orLW5n-k7-6LIWmkysnxryZWSCxzHX2r67D70GXzxOu61ckD56q8XtZWK_x58R4ZRGkSqRdrXLaacnMarnQXOhN4g7KbuRJ_RBQPlFto--LuPK0SDJ5nzs4aUXU65BLOB25fWHRS9zx-6YMAAAA.webp"
+        },
+        "languages": [
+          "en"
+        ],
+        "regions": [
+          "US"
+        ]
+      },
+      "about_page_link": "https://lens.google.com/search?q=About+https://lens.google.com/goto?url=CAESaQHrOzAVBPd5a1lYFI7RvPwBOAkMCLl-7O6wHwg0sutKxzYUGpaH_Y2MADX8YfneME8uVbXy2ahJ23pkecqySysJ2nmq5Iul7MB9oIcpVzuDsjEy3XkHiPCn0WUQTUYRk-OkovjKkP8dYw&tbm=ilp",
+      "about_page_serpapi_link": "https://serpapi.com/search.json?engine=google_about_this_result&google_domain=google.com&q=About+https%3A%2F%2Flens.google.com%2Fgoto%3Furl%3DCAESaQHrOzAVBPd5a1lYFI7RvPwBOAkMCLl-7O6wHwg0sutKxzYUGpaH_Y2MADX8YfneME8uVbXy2ahJ23pkecqySysJ2nmq5Iul7MB9oIcpVzuDsjEy3XkHiPCn0WUQTUYRk-OkovjKkP8dYw",
+      "source": "TikTok"
+    }
+  ]
+}

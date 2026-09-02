@@ -85,3 +85,11 @@ class TamperedError(ChainError):
         )
         self.expected = expected
         self.on_chain = on_chain
+
+
+class HostingError(FaceChainError):
+    """Could not obtain a public URL for the query image."""
+
+
+class SearchError(FaceChainError):
+    """A search provider failed. Maps to status SEARCH_FAILED."""

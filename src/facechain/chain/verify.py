@@ -128,3 +128,78 @@ def verify_or_raise(*args, **kwargs) -> VerificationResult:
     if not result.verified:
         raise TamperedError(result.recomputed_hash, result.on_chain_hash)
     return result
+
+
+@dataclass(frozen=True)
+class TamperReport:
+    """CLI-facing outcome: TASK.md 7's two possible verdicts, VERIFIED or TAMPERED.
+
+    `verify()` is honest at the chain level: a hash mismatch and "no record at all" are
+    different failures (RecordNotFoundError vs. verified=False), and Phase 4's tests
+    rely on that distinction. But TASK.md 6 defines record_id as
+    keccak(image_sha256 + "|" + page_url), so mutating page_url -- the exact one-field
+    edit TASK.md 10.8 prescribes for the tamper test -- changes the record's identity,
+    not just its hash. The mutated evidence then points at a record id that was never
+    anchored, and `get()` reverts NotFound rather than returning a mismatched hash.
+
+    That is still tamper evidence -- arguably stronger, since the tampered file no
+    longer even claims to be the record it was copied from -- so this wrapper folds
+    both failure modes into the single VERIFIED/TAMPERED verdict TASK.md 10.8 asks for,
+    while keeping the reason visible for anyone who wants the detail.
+    """
+
+    verified: bool
+    reason: str  # "ok" | "hash_mismatch" | "record_not_found"
+    record_id: str
+    recomputed_hash: str
+    on_chain_hash: str | None
+    detail: VerificationResult | None
+
+    def summary(self) -> str:
+        if self.verified:
+            return self.detail.summary()
+        if self.reason == "hash_mismatch":
+            return self.detail.summary()
+        return "\n".join(
+            [
+                "TAMPERED ✗",
+                f"  record id      : {self.record_id}",
+                f"  recomputed hash: {self.recomputed_hash}",
+                "  on-chain hash  : (no record found under this id)",
+                "  the evidence's own record_id no longer matches any anchored record --",
+                "  either it was never anchored, or match.page_url or query.image_sha256",
+                "  (the fields record_id is derived from) were altered after anchoring.",
+            ]
+        )
+
+
+def verify_report(
+    network: str,
+    evidence: dict,
+    settings: Settings | None = None,
+    *,
+    w3: Web3 | None = None,
+    deployment: Deployment | None = None,
+) -> TamperReport:
+    """The CLI's entry point: always returns a report, never raises for a tamper finding."""
+    rid = record_id_for(evidence)
+    recomputed = evidence_hash(evidence)
+    try:
+        result = verify(network, evidence, settings, w3=w3, deployment=deployment)
+    except RecordNotFoundError:
+        return TamperReport(
+            verified=False,
+            reason="record_not_found",
+            record_id=rid,
+            recomputed_hash=recomputed,
+            on_chain_hash=None,
+            detail=None,
+        )
+    return TamperReport(
+        verified=result.verified,
+        reason="ok" if result.verified else "hash_mismatch",
+        record_id=rid,
+        recomputed_hash=recomputed,
+        on_chain_hash=result.on_chain_hash,
+        detail=result,
+    )

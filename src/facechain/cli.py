@@ -167,6 +167,45 @@ def evidence_hash_cmd(
 
 
 @app.command()
+def search(
+    image: Path = typer.Option(..., "--image", exists=True, help="Query image to search for."),
+    provider: str = typer.Option("offline", "--provider", help="serpapi or offline."),
+    out: Path = typer.Option(None, "--out", help="Directory to write search_raw.json into."),
+) -> None:
+    """Reverse-image search alone (stage 2, for inspection). Uploads if --provider serpapi."""
+    from .evidence import new_run_id, write_evidence  # noqa: F401 -- run_id pattern only
+    from .hosting import upload_query_image
+    from .search.offline import OfflineProvider
+    from .search.serpapi_lens import SerpApiLensProvider
+
+    if provider == "offline":
+        p = OfflineProvider()
+        image_url = "offline-replay"
+    elif provider == "serpapi":
+        hosted = upload_query_image(image)
+        typer.echo(f"hosted query image: {hosted.url}")
+        p = SerpApiLensProvider()
+        image_url = hosted.url
+    else:
+        typer.secho(f"unknown provider {provider!r}; expected serpapi or offline", fg="red", err=True)
+        raise typer.Exit(code=2)
+
+    candidates, raw = p.search_by_image(image_url)
+    typer.secho(f"{len(candidates)} candidate(s) from {p.name}", fg="green", bold=True)
+    for c in candidates[:10]:
+        typer.echo(f"  {c.page_url}  [{c.title or '(no title)'}]")
+    if len(candidates) > 10:
+        typer.echo(f"  ... and {len(candidates) - 10} more")
+
+    if out:
+        import json
+
+        out.mkdir(parents=True, exist_ok=True)
+        (out / "search_raw.json").write_text(json.dumps(raw, indent=2, ensure_ascii=False))
+        typer.echo(f"raw response written to {out / 'search_raw.json'}")
+
+
+@app.command()
 def scan() -> None:
     """Run the full pipeline: detect, search, re-verify, anchor."""
     _todo("scan", "Phase 8")
@@ -213,13 +252,17 @@ def verify(
     evidence: Path = typer.Option(..., "--evidence", exists=True, help="evidence.json"),
     network: str = typer.Option("local", "--network", help="amoy or local."),
 ) -> None:
-    """Verify an evidence record against its on-chain anchor."""
-    from .chain.verify import verify as do_verify
+    """Verify an evidence record against its on-chain anchor.
+
+    Prints VERIFIED (Y) or TAMPERED (Z), per TASK.md 7 -- see verify_report() for why a
+    "no record found" outcome is folded into TAMPERED rather than treated separately.
+    """
+    from .chain.verify import verify_report
     from .evidence import load_evidence
 
-    result = do_verify(network, load_evidence(evidence))
-    typer.secho(result.summary(), fg="green" if result.verified else "red", bold=True)
-    if not result.verified:
+    report = verify_report(network, load_evidence(evidence))
+    typer.secho(report.summary(), fg="green" if report.verified else "red", bold=True)
+    if not report.verified:
         raise typer.Exit(code=1)
 
 

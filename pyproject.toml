@@ -18,4 +18,7 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 filterwarnings = ["ignore::FutureWarning"]
-markers = ["model: requires the buffalo_l model files (slow, downloads ~280MB on first run)"]
+markers = [
+    "model: requires the buffalo_l model files (slow, downloads ~280MB on first run)",
+    "network: makes a real network call (needs internet, and often an API key)",
+]

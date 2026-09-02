@@ -238,3 +238,93 @@ def test_deployment_file_never_contains_a_private_key(tmp_path, eth_tester_w3, f
     assert pk.lower() not in raw.lower()
     assert pk[2:].lower() not in raw.lower()
     json.loads(raw)  # must still be valid JSON
+
+
+# --- verify_report / TamperReport -- CLI-facing VERIFIED/TAMPERED verdict, AC8 --------
+
+
+def test_report_verified_on_untouched_evidence(eth_tester_w3, deployed):
+    from facechain.chain.verify import verify_report
+
+    d, pk = deployed
+    ev = make_evidence()
+    anchor("local", ev, w3=eth_tester_w3, private_key=pk, deployment=d)
+
+    report = verify_report("local", ev, w3=eth_tester_w3, deployment=d)
+    assert report.verified
+    assert report.reason == "ok"
+    assert "VERIFIED" in report.summary()
+
+
+def test_report_tampered_on_changed_similarity(eth_tester_w3, deployed):
+    """Same record id, different hash -- the 'ordinary' tamper case."""
+    from facechain.chain.verify import verify_report
+
+    d, pk = deployed
+    original = make_evidence(similarity=0.61)
+    anchor("local", original, w3=eth_tester_w3, private_key=pk, deployment=d)
+
+    tampered = make_evidence(similarity=0.99)
+    report = verify_report("local", tampered, w3=eth_tester_w3, deployment=d)
+    assert not report.verified
+    assert report.reason == "hash_mismatch"
+    assert report.on_chain_hash is not None
+    assert report.recomputed_hash != report.on_chain_hash
+    assert "TAMPERED" in report.summary()
+    assert report.recomputed_hash in report.summary()
+    assert report.on_chain_hash in report.summary()
+
+
+def test_report_tampered_on_changed_page_url(eth_tester_w3, deployed):
+    """AC8's literal case: one character of match.page_url changes record_id itself.
+
+    This is the tension documented in DECISIONS.md D25: the mutated evidence points at
+    a record id that was never anchored, so the low-level verify() raises
+    RecordNotFoundError -- but verify_report() must still report TAMPERED here, because
+    that is what TASK.md 10.8 requires the tamper test to demonstrate.
+    """
+    from facechain.chain.verify import verify_report
+
+    d, pk = deployed
+    original = make_evidence(page_url="https://github.com/Tuhin810")
+    anchor("local", original, w3=eth_tester_w3, private_key=pk, deployment=d)
+
+    tampered = make_evidence(page_url="https://github.com/Tuhin811")  # one character
+    report = verify_report("local", tampered, w3=eth_tester_w3, deployment=d)
+    assert not report.verified
+    assert report.reason == "record_not_found"
+    assert report.on_chain_hash is None
+    assert "TAMPERED" in report.summary()
+    assert report.record_id != record_id_for(original)
+
+
+def test_report_on_evidence_never_anchored_is_also_tampered(eth_tester_w3, deployed):
+    """Cannot be distinguished from a shifted-identity tamper at the chain level --
+    documented as an accepted limitation, not silently glossed over."""
+    from facechain.chain.verify import verify_report
+
+    d, _ = deployed
+    report = verify_report("local", make_evidence(), w3=eth_tester_w3, deployment=d)
+    assert not report.verified
+    assert report.reason == "record_not_found"
+
+
+def test_report_survives_key_order_and_whitespace_changes(eth_tester_w3, deployed):
+    """The second tamper_test.sh case: reformatting must NOT read as tampering."""
+    import json
+
+    from facechain.chain.verify import verify_report
+    from facechain.evidence import canonical_json
+
+    d, pk = deployed
+    ev = make_evidence()
+    anchor("local", ev, w3=eth_tester_w3, private_key=pk, deployment=d)
+
+    reformatted = json.loads(
+        json.dumps(dict(reversed(list(ev.items()))), indent=4, sort_keys=False)
+    )
+    assert canonical_json(reformatted) == canonical_json(ev)  # sanity: same content
+
+    report = verify_report("local", reformatted, w3=eth_tester_w3, deployment=d)
+    assert report.verified
+    assert report.reason == "ok"

@@ -427,3 +427,143 @@ earlier web3 versions, where this varied). An initial conditional assuming `.hex
 sometimes already included the prefix was dead code — `.hex()` always returns `str`, so
 the condition was always false and the prefix was silently dropped. Caught immediately
 by `result.tx_hash.startswith("0x")` in the roundtrip test.
+
+---
+
+## D25 — Mutating `match.page_url` shifts record identity, not just the hash (Phase 5)
+
+**What:** `Task.md` §10.8 prescribes: copy the evidence, change one character in
+`match.page_url`, run `verify`, expect `TAMPERED ✗` and a non-zero exit. Under §6's own
+formula, `record_id = keccak256(image_sha256 + "|" + page_url)`, so that exact edit
+changes the record id the evidence claims for itself. `get(record_id)` then reverts
+`NotFound` -- there is no on-chain hash to show "side by side" the way a same-id,
+different-hash tamper would produce.
+
+**Why this is not a bug to route around:** it is what a correct implementation of §6's
+own formula does. A field mutation that moves the identity is, if anything, *more*
+detected than one that only moves the hash — the tampered file no longer even points at
+a real record.
+
+**Resolution:** `verify()` keeps its honest, already-tested behaviour (raises
+`RecordNotFoundError` — this is also the correct response to "you haven't anchored yet",
+a genuinely different situation the low-level function cannot and should not conflate).
+A new `verify_report()` wraps it for the CLI and the tamper test: it catches
+`RecordNotFoundError` and folds it into the same `TAMPERED ✗` verdict §10.8 asks for,
+with a `reason` field (`"hash_mismatch"` vs. `"record_not_found"`) preserved for anyone
+who wants the detail, and an explanation printed in the summary either way.
+
+**Accepted limitation, stated rather than hidden:** at the chain level, "tampered so its
+identity shifted" and "never anchored at all" are indistinguishable — both are "no record
+under this id". `verify_report()` reports both as `TAMPERED ✗`. `tamper_test.sh` avoids
+ambiguity by anchoring the original record first and checking a genuine baseline
+`VERIFIED` before running any tamper case.
+
+`tamper_test.sh` runs both forms, plus the reformatting case: (1) the §10.8 page_url
+mutation → `TAMPERED ✗` via `record_not_found`, (2) a `match.similarity` mutation → the
+literal "both hashes side by side" case via `hash_mismatch`, (3) a key-order/whitespace
+reformat of the *unmodified* record → still `VERIFIED`, proving canonicalisation is
+doing real work rather than any byte difference tripping a false alarm.
+
+---
+
+## D26 — `scripts/local_chain.py`: an HTTP JSON-RPC shim over eth-tester (Phase 5, partial)
+
+**What:** Built a minimal `http.server`-based JSON-RPC front end over
+`EthereumTesterProvider`, since no Anvil/Ganache binary is installed and this sandbox has
+no general internet access. It correctly speaks JSON-RPC for read calls (confirmed:
+`eth_chainId` over real HTTP returns the right value), but contract deployment through it
+fails: `Web3RPCError: Value must be a positive integer. Got: 0x0` during gas estimation.
+
+**Root cause, as far as diagnosed:** `EthereumTesterProvider.make_request()` behaves
+differently depending on whether it is called in-process, inside its own `Web3`
+instance's middleware onion (which normalises outgoing transaction fields before the
+provider ever sees them — this is the path all 20 chain tests use, and it works), versus
+being invoked directly on parameters that already round-tripped through a *different*
+`Web3`'s (the CLI's `HTTPProvider`) JSON-RPC wire encoding. Something in that second path
+produces a `"value": "0x0"` that eth-tester's internal gas estimator rejects. Not resolved
+-- diagnosing eth-tester's own middleware-vs-wire-format handling further was a deep,
+low-value rabbit hole relative to just installing Anvil.
+
+**Effect:** `local_chain.py` is left in the repo as a documented, best-effort dev
+convenience (reads work; contract deployment does not). It is not relied on by any test
+or gate. The real closure evidence for AC4/AC7/AC8/AC9 is the 20 injected-provider tests
+in `test_chain_roundtrip.py`, which exercise the exact same `deploy()`/`anchor()`/
+`verify()` code path a real network uses — see D21. Installing Anvil remains the
+recommended way to get a genuinely live local-chain CLI run before Phase 9.
+
+---
+
+## D27 — Google Lens matched the scene, not the face (Phase 6, real live call)
+
+**What:** A real SerpAPI `google_lens` call against the subject's own hosted photo
+returned 67 candidates. **Zero mention** the subject's name or GitHub anywhere in the
+results. The matches are dominated by Harry Potter retail/costume content: Instagram
+posts, eBay/Amazon/Walmart Gryffindor-robe listings, Universal Studios merchandise pages.
+
+**Why:** The photo is a mirror selfie inside a Harry Potter merchandise store, wearing a
+Gryffindor robe, holding a phone. The face occupies roughly **2.7% of the frame** (3,339
+of 121,104 px², measured in D13). Google Lens's visual-similarity matching is dominated by
+the largest, most distinctive visual elements in an image — here, the robe and the shop
+interior, not the small face.
+
+**Consequence for Phase 9 (AC6):** this specific photo is unlikely to surface the
+subject's GitHub profile through live search, even though that page is public and
+crawlable (D14). This is not a pipeline defect — it's the exact behaviour §12 warns about
+("reverse image search returns visually similar pages, not identity matches"), and it's a
+demonstrable finding in its own right for the README's limitations section, not something
+to hide.
+
+**What actually helps:** a query photo with the *face* as the visually dominant subject
+-- a face-forward headshot or a typical LinkedIn/GitHub-style profile picture, not a
+scene photo with a small face -- is far more likely to trigger a genuine identity-driven
+Lens match. Worth choosing a second, tighter query photo before Phase 9's live demo run,
+per D14's caveat about a same-image test proving nothing anyway.
+
+**Kept as the permanent fixture regardless:** this response is exactly the kind of
+messy, real, non-cherry-picked result the pipeline needs to handle -- lots of irrelevant
+retail candidates that stage 2's face re-verification (Phase 7) must correctly reject.
+`tests/fixtures/serpapi_google_lens_response.json`, 67 candidates, 85KB, committed as-is.
+
+---
+
+## D28 — Offline replay shares extraction code with the live provider (Phase 6)
+
+**What:** `search/serpapi_lens.py` exposes a module-level `extract_candidates(data,
+source)` function; both `SerpApiLensProvider` and `OfflineProvider` call it on the exact
+same response shape. `offline.py` does not reimplement parsing.
+
+**Why:** A replay that reimplements extraction independently can silently drift from
+what a live call actually produces -- passing offline tests would stop being evidence
+the live path works. `test_offline_replay_matches_what_live_extraction_would_produce`
+asserts both paths, given the same bytes, produce identical candidates.
+
+---
+
+## D29 — A missing imgbb key must fall back, not raise `ConfigError` uncaught (Phase 6)
+
+**What:** `_upload_imgbb()` now catches `ConfigError` from `settings.require()` and
+re-raises as `HostingError`, which `upload_query_image()`'s except clause actually
+catches.
+
+**Why:** Found by `test_imgbb_missing_key_falls_back_to_0x0`: with no `IMGBB_KEY`
+configured, the original code let `ConfigError` propagate straight out of
+`upload_query_image`, skipping the 0x0.st fallback entirely -- exactly the scenario
+§9's "fail fast... for the chosen path" is supposed to allow gracefully, not crash on.
+"No imgbb key" and "imgbb rejected the request" are both just reasons imgbb didn't work,
+and both must fall through to the same fallback.
+
+---
+
+## D30 — Real, live coverage in Phase 6, not fixture-only
+
+Distinct from unit tests, these calls hit real external services during development,
+using the credentials already present in `.env`:
+
+- **`hosting.upload_query_image`** uploaded `test.png` to imgbb for real; the returned
+  URL was fetched back over HTTP and confirmed to serve the image (200).
+- **`search.serpapi_lens`** made a real `google_lens` call against that hosted URL and
+  parsed a genuine 67-candidate response (see D27).
+- **`test_live_imgbb_upload_returns_a_fetchable_url`** and the SerpAPI call are marked
+  `@pytest.mark.network` and skip cleanly when no key is configured, so the default test
+  run (`pytest -m "not model and not network"`, 127 tests) needs neither credentials nor
+  internet, consistent with AC11's clean-clone requirement.
