@@ -7,7 +7,6 @@ than pretending to work.
 
 from __future__ import annotations
 
-import logging
 from pathlib import Path
 
 import typer
@@ -25,17 +24,22 @@ app = typer.Typer(
 )
 
 
-def _todo(command: str, phase: str) -> None:
-    typer.secho(f"'{command}' is not implemented yet (lands in {phase}).", fg="yellow", err=True)
-    raise typer.Exit(code=2)
-
-
 @app.callback()
-def main(verbose: bool = typer.Option(False, "--verbose", "-v", help="Debug logging.")) -> None:
-    logging.basicConfig(
-        level=logging.DEBUG if verbose else logging.INFO,
-        format="%(levelname)s %(name)s: %(message)s",
-    )
+def main(
+    verbose: bool = typer.Option(
+        False, "--verbose", "-v", help="Debug logging, including HTTP requests."
+    ),
+    quiet: bool = typer.Option(
+        False, "--quiet", "-q", help="Errors only; suppress progress logging."
+    ),
+) -> None:
+    """Logs go to stderr so stdout stays clean for reports and piped output."""
+    from .logging_setup import configure
+
+    if verbose and quiet:
+        typer.secho("--verbose and --quiet are mutually exclusive", fg="red", err=True)
+        raise typer.Exit(code=2)
+    configure(verbose=verbose, quiet=quiet)
 
 
 @app.command()
@@ -91,7 +95,8 @@ def enroll(
     overwrite: bool = typer.Option(False, "--overwrite", help="Replace an existing enrolment."),
 ) -> None:
     """Record consent and enrol a subject."""
-    from .consent import DEFAULT_SCOPE, enroll as do_enroll
+    from .consent import DEFAULT_SCOPE
+    from .consent import enroll as do_enroll
 
     record = do_enroll(
         subject_id=subject,
@@ -125,13 +130,25 @@ def subjects() -> None:
 @app.command()
 def revoke(
     subject: str = typer.Option(..., "--subject", help="Subject id to revoke."),
+    purge: bool = typer.Option(
+        False,
+        "--purge",
+        help="Also delete the consent record, leaving no trace of the subject.",
+    ),
 ) -> None:
     """Withdraw consent and delete the subject's enrolled face encoding."""
+    from .consent import purge as do_purge
     from .consent import revoke as do_revoke
+
+    if purge:
+        do_purge(subject)
+        typer.secho(f"purged {subject}: consent record and encoding both deleted", fg="yellow")
+        return
 
     record = do_revoke(subject)
     typer.secho(f"consent revoked for {record.subject_id} at {record.revoked_at}", fg="yellow")
     typer.echo("  enrolled face encoding deleted")
+    typer.echo("  consent record kept as an audit trail (use --purge to remove it too)")
 
 
 @app.command("check-consent")
@@ -187,7 +204,9 @@ def search(
         p = SerpApiLensProvider()
         image_url = hosted.url
     else:
-        typer.secho(f"unknown provider {provider!r}; expected serpapi or offline", fg="red", err=True)
+        typer.secho(
+            f"unknown provider {provider!r}; expected serpapi or offline", fg="red", err=True
+        )
         raise typer.Exit(code=2)
 
     candidates, raw = p.search_by_image(image_url)
@@ -206,9 +225,76 @@ def search(
 
 
 @app.command()
-def scan() -> None:
+def match(
+    image: Path = typer.Option(..., "--image", exists=True, help="Query image."),
+    provider: str = typer.Option("offline", "--provider", help="serpapi or offline."),
+) -> None:
+    """Search + face re-verify in one step (stages 2, for inspection)."""
+    from .config import get_settings
+    from .hosting import upload_query_image
+    from .matcher import find_matches
+    from .search.offline import OfflineProvider
+    from .search.serpapi_lens import SerpApiLensProvider
+
+    if provider == "offline":
+        p, image_url = OfflineProvider(), "offline-replay"
+    elif provider == "serpapi":
+        hosted = upload_query_image(image)
+        typer.echo(f"hosted query image: {hosted.url}")
+        p, image_url = SerpApiLensProvider(), hosted.url
+    else:
+        typer.secho(
+            f"unknown provider {provider!r}; expected serpapi or offline", fg="red", err=True
+        )
+        raise typer.Exit(code=2)
+
+    candidates, _raw = p.search_by_image(image_url)
+    settings = get_settings()
+    matches, stats = find_matches(candidates, str(image), settings.match_threshold)
+
+    typer.echo(
+        f"candidates: {stats.candidates_returned} returned, "
+        f"{stats.candidates_fetched} fetched, {stats.candidates_matched} matched"
+    )
+    if not matches:
+        typer.secho("NO_MATCH", fg="yellow", bold=True)
+        return
+    typer.secho(f"{len(matches)} verified match(es):", fg="green", bold=True)
+    for m in matches:
+        typer.echo(f"  {m.similarity:.3f}  {m.page_url}  [{m.matched_image_url}]")
+
+
+@app.command()
+def scan(
+    subject: str = typer.Option(..., "--subject", help="Enrolled subject id."),
+    image: Path = typer.Option(..., "--image", exists=True, help="Query image."),
+    provider: str = typer.Option("offline", "--provider", help="serpapi or offline."),
+    no_anchor: bool = typer.Option(False, "--no-anchor", help="Skip on-chain anchoring."),
+    network: str = typer.Option("local", "--network", help="amoy or local."),
+) -> None:
     """Run the full pipeline: detect, search, re-verify, anchor."""
-    _todo("scan", "Phase 8")
+    from .pipeline import run_scan
+    from .report import build_report
+
+    result = run_scan(
+        subject_id=subject,
+        image=image,
+        provider_name=provider,
+        anchor_enabled=not no_anchor,
+        network=network,
+    )
+
+    typer.echo(build_report(result.run_dir, network=network))
+    colour = {
+        "MATCHED_AND_ANCHORED": "green",
+        "MATCHED_NOT_ANCHORED": "yellow",
+        "NO_MATCH": "yellow",
+    }.get(result.status.value, "red")
+    typer.secho(result.status.value, fg=colour, bold=True)
+    typer.echo(f"run directory: {result.run_dir}")
+
+    if not result.ok:
+        raise typer.Exit(code=1)
 
 
 @app.command()
@@ -216,7 +302,8 @@ def deploy(
     network: str = typer.Option(..., "--network", help="amoy or local."),
 ) -> None:
     """Compile and deploy MatchRegistry to a network."""
-    from .chain.deploy import deploy as do_deploy, write_deployment
+    from .chain.deploy import deploy as do_deploy
+    from .chain.deploy import write_deployment
 
     d = do_deploy(network)
     path = write_deployment(d)
@@ -267,9 +354,14 @@ def verify(
 
 
 @app.command()
-def report() -> None:
-    """Print a human-readable summary of a run."""
-    _todo("report", "Phase 8")
+def report(
+    run: Path = typer.Option(..., "--run", exists=True, help="Run directory, e.g. out/<run_id>."),
+    network: str = typer.Option("local", "--network", help="amoy or local (explorer links)."),
+) -> None:
+    """Print a human-readable summary of a run, rebuilt from its artifacts alone."""
+    from .report import build_report
+
+    typer.echo(build_report(run, network=network))
 
 
 def run() -> None:

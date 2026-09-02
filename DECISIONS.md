@@ -567,3 +567,371 @@ using the credentials already present in `.env`:
   `@pytest.mark.network` and skip cleanly when no key is configured, so the default test
   run (`pytest -m "not model and not network"`, 127 tests) needs neither credentials nor
   internet, consistent with AC11's clean-clone requirement.
+
+---
+
+## D31 — Every face on a candidate image is scored, not just the "primary" one (Phase 7)
+
+**What:** `matcher._score_image_against_query()` runs `detect_faces()` on each fetched
+image and takes the **best** similarity across *all* detected faces, never
+`primary_face()`'s largest-bbox pick.
+
+**Why:** D5 (Phase 1) measured that `primary_face()`'s selection is unstable across
+image transforms on multi-face photos — degrading a group photo changed which face was
+selected. A group photo scraped from a real page is exactly that case: comparing only
+the "primary" face risks silently comparing the query against the wrong person while the
+right one sits unchecked in the same frame. `test_verify_candidate_uses_the_best_face_not_just_the_first`
+proves a middle face in a 3-face image is what gets picked when it's the only one that
+passes.
+
+---
+
+## D32 — A 4xx response with an HTML body is not a successfully fetched page (Phase 7)
+
+**What:** `fetch_page()` and `fetch_image_bytes()` now check `resp.status_code == 200`
+explicitly, raising `ScrapeError` otherwise -- separate from `_get()`'s retry logic,
+which only treats 429/5xx as possibly transient and returns everything else as-is.
+
+**Why:** Found during a real Phase 7 run against the 67-candidate offline fixture:
+`wdwnt.com` and `ebay.com` both returned HTTP 403 for their actual candidate pages, and
+both responses carried `content-type: text/html` -- so without a status check, an error
+or block page would be silently parsed as if it were the real content. Content-type
+alone was not a sufficient gate. Regression-tested against a real `httpbin.org` 403.
+
+---
+
+## D33 — Real end-to-end proof, not just mocked orchestration (Phase 7)
+
+Two tests hit live infrastructure end to end, no fixture involved:
+
+- `test_find_matches_against_real_pages_finds_the_known_positive` — a real
+  `find_matches()` run against `github.com/Tuhin810` (real page fetch, real face
+  detection, real cosine comparison) correctly returns it as a `VerifiedMatch` above
+  threshold, while `github.com/torvalds` (a real, unrelated profile) is correctly
+  rejected. This is the actual claim of the task -- "turning a fuzzy reverse-image hit
+  into a confirmed match" -- demonstrated for real, not asserted from a stub.
+- `test_no_disk_write_during_a_real_fetch_and_decode_cycle` — the same real fetch/decode
+  path, watched via `tmp_path` with the working directory redirected there, confirms
+  zero files are written during a genuine third-party image fetch and comparison.
+
+Also discovered: the matched image's SHA-256 is **not** the same as `test.png`'s own
+hash. GitHub's `og:image` carries a `?s=400` resize parameter, so the CDN serves a
+differently-encoded 182,361-byte variant of the same photo, versus the local file's
+198,696 bytes. Confirmed correct behaviour, not a bug: TASK.md 6 hashes what was
+actually fetched and observed, not a claim that the page serves a byte-identical copy
+of any particular local file.
+
+**Consequence for Phase 6's D27 finding:** running the offline 67-candidate fixture
+(Harry Potter retail pages) through the real matcher end-to-end confirms 0/15 fetched
+candidates match, correctly, via `facechain match --image test.png --provider offline`
+-- reinforcing that this photo needs a face-forward replacement before Phase 9's live
+AC6 demo.
+
+---
+
+## D34 — `result.json` is separate from `evidence.json` (Phase 8)
+
+**What:** Each run directory holds `evidence.json` (canonical, hashed, anchored),
+`evidence.pretty.json`, `search_raw.json`, and a new `result.json` carrying status,
+message, record id, evidence hash, and anchoring tx/block.
+
+**Why:** `evidence.json` must contain exactly the TASK.md §6 fields and nothing else --
+its hash is what gets anchored, so any extra field changes the hash and breaks
+verification against records anchored by a different build. Run metadata like the
+anchoring transaction hash is genuinely useful but is *about* the run, not part of the
+evidence, so it lives alongside rather than inside.
+
+---
+
+## D35 — Artifacts are written on every terminal outcome, failures included (Phase 8)
+
+**What:** `CONSENT_DENIED` and `SEARCH_FAILED` both write a run directory with
+`result.json` (and `search_raw.json` carrying the provider error, for the latter).
+
+**Why:** TASK.md §2.2 requires a clean NO_MATCH to still produce artifacts. The same
+reasoning extends to failures: a run that leaves no record of what it attempted is not
+auditable, and "the pipeline refused" is exactly the kind of event a consent-gated system
+should be able to evidence after the fact.
+
+---
+
+## D36 — A chain outage downgrades the status; it does not lose the run (Phase 8)
+
+**What:** Anchoring is the last step. If it raises, the run keeps its written, hashed
+evidence and reports `MATCHED_NOT_ANCHORED` with the failure appended to the message.
+`AlreadyAnchoredError` is treated as success (`MATCHED_AND_ANCHORED`), since identical
+evidence already being on chain is the correct result of a repeated scan (AC9).
+
+**Why:** By the time anchoring runs, stage 1 and 2 have already done all the expensive
+and privacy-sensitive work, and the evidence hash is fixed. Discarding a genuine match
+because a free testnet RPC was briefly unreachable would be a bad trade -- the evidence
+remains anchorable later with `facechain anchor`.
+
+The `except Exception` around anchoring is deliberately broad and commented as such: it
+wraps a network call to a third-party RPC, where an unanticipated provider-specific
+exception type should degrade the run rather than crash it.
+
+---
+
+## D37 — Reports are built from the run directory alone, never from memory (Phase 8)
+
+**What:** `report.build_report(run_dir)` reads only files on disk. `scan` renders its
+final report by calling exactly the same function, on the directory it just wrote --
+it does not use its own in-memory `RunResult` to render.
+
+**Why:** It makes artifact completeness a property the code enforces rather than a claim.
+If a report could reach into memory for something, a missing artifact would go unnoticed
+until someone tried to audit an old run. `facechain report --run out/<run_id>` is
+verified in tests to reproduce the full summary from a cold start.
+
+---
+
+## D38 — `revoke --purge`, added after the demo script leaked subject directories
+
+**What:** `consent.purge()` and `facechain revoke --purge` delete a subject's consent
+record *and* encoding, leaving nothing. Plain `revoke` still keeps the record as an
+audit trail (D11).
+
+**Why:** Found by running `scripts/run_demo.sh` twice and checking `data/`: each run left
+a `data/consent/demo_<pid>/` directory behind, because revoke intentionally preserves the
+record. Correct for a real subject, wrong for a throwaway demo one.
+
+The more interesting point is that full erasure is not merely a demo convenience -- for a
+genuine "delete everything you hold about me" request, removing the record is arguably
+more correct than retaining it. So this is a real capability with an explicit flag, not a
+hidden cleanup hack, and `test_purge_rejects_unsafe_subject_ids` ensures a path-traversing
+id can never reach `shutil.rmtree`.
+
+---
+
+## D39 — A clearly-labelled synthetic fixture exercises the MATCHED path (Phase 8)
+
+**What:** `tests/fixtures/search_raw_synthetic_known_positive.json` is a hand-built
+2-candidate response (the subject's GitHub profile, plus an unrelated one) whose first
+key is a `_SYNTHETIC` field explaining exactly what it is.
+
+**Why:** The genuine captured response reaches `NO_MATCH` (D27), so without this the
+`MATCHED_*` statuses could only ever be tested through stubs. TASK.md §2.2 forbids
+hardcoded URLs and pre-picked results *inside the pipeline* -- this is test input
+standing in for a provider, which is a different thing, and it is named and annotated so
+it cannot be mistaken for a real capture. Phase 9's live demo must still use a real
+provider response.
+
+---
+
+## D40 — `requirements.txt` was missing five runtime dependencies (Phase 10, AC1 break)
+
+**What:** `requirements.txt` listed only the stage-1 face dependencies plus typer and
+pytest. It was missing **httpx, selectolax, pydantic-settings, py-solc-x and web3** --
+every dependency added after Phase 1 was installed ad hoc with `pip install` and never
+recorded.
+
+**How it was found:** an AST scan of `src/` for third-party imports, compared against
+the pinned list -- not by a test failing, because the development venv had all of them
+installed. AC1 ("`pip install -r requirements.txt` works from a clean venv") was silently
+broken from Phase 6 onwards and would have failed for anyone cloning the repo.
+
+**Fixed and verified:** a genuinely fresh venv now installs from `requirements.txt`,
+imports every module in the package, and runs the full credential-free suite (206 tests)
+green. CI runs this on Linux and macOS, Python 3.11 and 3.12, so it cannot regress
+silently again.
+
+---
+
+## D41 — insightface prints to stdout; reports must not be corrupted by it (Phase 10)
+
+**What:** Model loading is wrapped in `contextlib.redirect_stdout`, and per-inference
+`FutureWarning`s from scikit-image (raised via insightface's `face_align`) are
+suppressed. Under `--quiet` the library's output is discarded entirely; otherwise it is
+redirected to **stderr**, where it stays available for debugging.
+
+**Why:** insightface emits `Applied providers: ...` / `find model: ...` with bare
+`print()` calls, i.e. to stdout -- the same stream carrying the run report. Every
+command in this session had to be piped through `grep -v` to be readable, which was the
+tell. TASK.md §7 asks for output that is clean and screenshot-friendly, and more
+practically, anything piping `facechain report` would have received library chatter
+interleaved with the report.
+
+All logging goes to stderr for the same reason (`logging_setup.configure`).
+
+---
+
+## D42 — `run_id` on every log line via a ContextVar (Phase 10)
+
+**What:** `logging_setup` attaches the active run id to every record through a
+`logging.Filter` reading a `contextvars.ContextVar`, set once by `pipeline.run_scan`.
+
+**Why:** Ambient context, not a parameter any of these functions act on -- threading a
+run id through `scrape`, `matcher` and `consent` signatures would have added noise to
+every call site to serve logging alone. Lines now read
+`14:15:11 INFO [2026-09-02T20-45-11Z-6245f1] facechain.consent: ...`, so successive or
+concurrent runs stay separable in a shared log.
+
+---
+
+## D43 — Lint configuration reflects real constraints, not defaults (Phase 10)
+
+`ruff` reported 77 issues on first run. Rather than blanket-disabling, each class was
+judged:
+
+- **B008** (function call in argument default) is *ignored for `cli.py` only*: it is
+  typer's required idiom (`x: T = typer.Option(...)`), not a defect.
+- **F811/F401** are ignored under `tests/`: importing a pytest fixture for its
+  side effect of being in scope reads to ruff as an unused, then redefined, name.
+- **UP017** is ignored globally: `datetime.now(timezone.utc)` is more explicit than the
+  `UTC` alias in code that writes timestamps into hashed, anchored records.
+- Every remaining **BLE001** (`except Exception`) now carries a `noqa` with a written
+  justification, so a future broad except cannot slip in unexamined.
+- Everything else -- 60-odd import-ordering, string-concatenation, and line-length
+  issues -- was fixed rather than suppressed.
+
+**One real defect surfaced this way:** `F841` flagged an unused local in
+`test_offline_provider_needs_no_settings_at_all`, which built a credential-free
+`Settings` and then never used it -- the test's name claimed something it did not check.
+It now installs a `Settings` subclass whose `require()` raises, so the offline path
+reaching for *any* credential fails the test.
+
+---
+
+## D44 — Adversarial CLI probe: no bare traceback reaches the user (Phase 10)
+
+Twelve deliberately malformed invocations (non-image files, path-traversing subject ids,
+corrupt evidence, unknown providers/subjects, unreachable chain, non-run directories)
+were run against the CLI. All twelve exited non-zero with a typed, readable error and
+**zero tracebacks**. The 17-class hierarchy under `FaceChainError` is caught wholesale by
+`cli.run()`, with `ConsentDenied` mapped to its own exit code 3.
+
+**Known minor wrinkle, not fixed:** `facechain revoke --subject <unknown>` exits 3
+(`CONSENT_DENIED`) because it loads the consent record first. The message is accurate
+("no consent record for subject ..."), but the status is arguably better described as
+"not found". Left as-is rather than restructuring `load_consent`'s contract for a
+cosmetic code difference.
+
+---
+
+## D45 — Secret-hygiene audit findings (Phase 10)
+
+Audited the working tree, **git history**, and run artifacts. Results:
+
+- **No sensitive path was ever committed** -- `data/`, `out/`, `.env`, images and `.npz`
+  encodings are absent from every commit, not merely gitignored now.
+- **The real API keys appear nowhere** in tracked files or history.
+- **`.env.example` was missing entirely** and had never been committed, despite §9
+  requiring it. Recreated and committed, with per-path notes on which keys each command
+  actually needs.
+- **SerpAPI echoes capability URLs in its response.** `search_metadata.json_endpoint`
+  (and `raw_html_file`) embed a token granting *unauthenticated* read access to that
+  stored search -- confirmed live, HTTP 200 with no credentials. Verified the token is
+  **per-search, not account-wide** (two searches produced different tokens), so the
+  committed fixture exposes only the one response already deliberately committed. The
+  API key itself is not echoed.
+- **The subject's hosted photo URL is in the fixture** (`i.ibb.co/...`), and the imgbb
+  upload expiry worked as designed: it now returns **404**. This validates setting
+  `expiration` on uploads rather than relying on the URL being unguessable.
+
+**Deliberately not redacted:** `search_raw.json` is written verbatim, because §2.2
+requires exactly that as the evidence the search was real. The hygiene answer is that
+`out/` is gitignored and never committed, not that the artifact is filtered.
+
+These are now regression tests (`tests/test_secret_hygiene.py`, 12 tests) rather than a
+one-off audit -- including a git-history check, since `.gitignore` cannot undo a past
+commit.
+
+---
+
+## D46 — CI runs the checks that actually protect the acceptance criteria (Phase 10)
+
+`.github/workflows/ci.yml`, three jobs:
+
+- **test** -- matrix over {ubuntu, macos} x {3.11, 3.12}: clean-venv install from
+  `requirements.txt` (AC1), the credential-free/network-free suite (AC11), the
+  secret-hygiene audit with full history, and a canonical-hash assertion against the
+  frozen literal, proving AC10/§2.3 cross-platform rather than merely cross-process.
+- **lint** -- `ruff check` and `ruff format --check`.
+- **demo** -- the offline provider end to end with no credentials, plus a check that
+  stage 1 *refuses* a face-free image cleanly.
+
+**No secrets are configured for the workflow, deliberately:** if any test outside the
+`network` marker starts requiring an API key or the internet, CI fails. That makes AC11
+a property CI enforces, not a claim.
+
+The workflow generates its own synthetic image, because no photograph of a real person
+is committed to this repository.
+
+---
+
+## D47 — `local_chain.py` completed: the wire/native boundary, in both directions
+
+**Supersedes the "partial" verdict in D26.** The shim now works, and the CLI-level
+`deploy` -> `anchor` -> `verify` -> tamper sequence runs for real against
+`http://127.0.0.1:8545`, closing the gaps left open in Phases 4, 5 and 9-local.
+
+**Root cause, properly diagnosed:** `EthereumTesterProvider.make_request()` expects
+**Python-native types with snake_case keys** -- it is designed to sit *inside* a `Web3`
+instance whose middleware translates to and from JSON-RPC wire format. Serving it over
+HTTP puts the shim on the wire side of that boundary, so it must do the translation
+itself. Four distinct conversions were needed, each found by running the real CLI:
+
+1. **Request quantities**: `"value": "0x0"` -> `0`. Without it, gas estimation fails
+   with `Value must be a positive integer. Got: 0x0`.
+2. **Response shape**: eth-tester returns `{"base_fee_per_gas": 875000000}`; web3
+   expects `{"baseFeePerGas": "0x34630b8a"}`. Without it, `KeyError: 'baseFeePerGas'`.
+3. **Default sender**: eth-tester rejects an `eth_call` with no `from`, where a real
+   node executes view calls anonymously. `facechain verify` makes exactly such a call.
+4. **Filter keys and bounds**: `eth_getLogs` sends `fromBlock`/`toBlock` (camelCase,
+   hex); eth-tester wants `from_block`/`to_block` (snake_case, int). Without it the
+   `MatchAnchored` lookup silently returned nothing and `verify` printed
+   `block: unknown` -- D23's fallback firing, which is exactly the "looks fine, is
+   wrong" failure that fallback was designed to make visible rather than paper over.
+
+**Still not a substitute for Anvil.** Gas accounting, block timing and EVM-version
+behaviour are py-evm's, not revm's. This makes the *CLI path* genuinely exercisable
+without a toolchain install; it does not make the local chain production-representative.
+
+---
+
+## D48 — `deploy` silently invalidates previously anchored evidence (found in Phase 9)
+
+**What:** `facechain deploy` overwrites `out/deployment.<network>.json`. Evidence
+anchored against the previous contract then fails to verify -- `verify` reads the new
+address, finds no record under that id, and correctly reports `TAMPERED ✗`.
+
+**How it was found:** capturing README transcripts. A `verify` that had printed
+`VERIFIED ✓` minutes earlier began reporting `TAMPERED ✗`, because `tamper_test.sh` had
+redeployed in between.
+
+**Fixed in the script:** `tamper_test.sh` now saves and restores an existing deployment
+file, since a test is not entitled to destroy the caller's deployment record.
+
+**Not fixed in `deploy` itself, deliberately:** overwriting on redeploy is reasonable
+default behaviour, and the alternative (refusing, or auto-versioning) is a product
+decision beyond this task's scope. It is called out in the README's limitations instead,
+because the failure mode is genuinely confusing: the evidence is intact and the hash is
+correct, but it is being checked against a contract that never saw it.
+
+---
+
+## D49 — Phase 9 status: local chain fully demonstrated, Amoy blocked by the environment
+
+Every acceptance criterion that does not require the public internet is now demonstrated
+end to end through the real CLI, against a live HTTP chain:
+
+- **AC4** deploy -> contract live, `deployment.local.json` written
+- **AC6-equivalent (offline)** full `scan` -> `MATCHED_AND_ANCHORED`, real tx hash
+- **AC7** `verify` -> `VERIFIED ✓` with block, timestamp, submitter
+- **AC8** `tamper_test.sh` -> 4/4 cases pass
+- **AC9** re-anchor -> `AlreadyAnchoredError`, exit 1, handled gracefully
+
+**What remains genuinely undone, and why:**
+
+- **AC5 (deploy to Polygon Amoy).** This sandbox has no DNS resolution for
+  `rpc-amoy.polygon.technology` (verified: `curl` exit 6). It also needs a funded
+  testnet key, which should be generated by the repository owner and never shared.
+- **AC6 with a live SerpAPI search reaching a real match.** The live search *works*
+  (Phase 6 made real calls), but returns Harry Potter retail pages rather than the
+  subject's profile, because the face occupies ~2.7% of the frame (D27). A
+  face-forward query photo is the fix, not a code change.
+
+Both are single commands on a machine with internet and a funded key. The README states
+plainly which criteria were demonstrated locally and which were not, rather than
+implying a testnet deployment that did not happen.

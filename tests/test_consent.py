@@ -6,8 +6,8 @@ import json
 
 import numpy as np
 import pytest
-
 from conftest import make_encoding
+
 from facechain import consent as consentmod
 from facechain import face as facemod
 from facechain.config import Settings, set_settings
@@ -214,3 +214,44 @@ def test_consent_record_rejects_missing_fields():
 
 def test_is_enrolled_false_for_bad_id(settings):
     assert not is_enrolled("../escape")
+
+
+# --- purge: full erasure, distinct from revoke ------------------------------------
+
+
+def test_purge_removes_both_record_and_encoding(settings, faces):
+    """Unlike revoke (which keeps the consent record as an audit trail, D11), purge
+    leaves nothing -- for throwaway demo subjects and genuine erasure requests."""
+    from facechain.consent import purge
+
+    enroll("tuhin", "subject.jpg", STATEMENT)
+    assert (settings.consent_dir / "tuhin").is_dir()
+
+    purge("tuhin")
+    assert not (settings.consent_dir / "tuhin").exists()
+    assert not (settings.enrolled_dir / "tuhin").exists()
+    assert not is_enrolled("tuhin")
+    assert list_subjects() == []
+
+
+def test_purge_is_idempotent(settings, faces):
+    from facechain.consent import purge
+
+    enroll("tuhin", "subject.jpg", STATEMENT)
+    purge("tuhin")
+    purge("tuhin")  # must not raise on an already-purged subject
+
+
+def test_purge_rejects_unsafe_subject_ids(settings):
+    """A path-traversing id must never reach shutil.rmtree."""
+    from facechain.consent import purge
+
+    with pytest.raises(ConsentError):
+        purge("../../etc")
+
+
+def test_revoke_still_keeps_the_consent_record(settings, faces):
+    """Guards the D11 distinction: revoke is not purge."""
+    enroll("tuhin", "subject.jpg", STATEMENT)
+    revoke("tuhin")
+    assert (settings.consent_dir / "tuhin" / "consent.json").is_file()

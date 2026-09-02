@@ -144,7 +144,7 @@ def record_id(image_sha256: str, page_url: str) -> str:
         raise EvidenceError(
             f"image_sha256 must be 64 lowercase hex characters, got {image_sha256!r}"
         )
-    payload = f"{image_sha256}|{page_url}".encode("utf-8")
+    payload = f"{image_sha256}|{page_url}".encode()
     return "0x" + Web3.keccak(payload).hex().removeprefix("0x")
 
 

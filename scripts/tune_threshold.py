@@ -123,7 +123,10 @@ def main() -> int:
 
     safe = round(hi + 0.01, 2)
     missed = sum(s < safe for s in positives)
-    print(f"zero-false-positive: threshold {safe:.2f} -> misses {missed}/{len(positives)} true pairs")
+    print(
+        f"zero-false-positive: threshold {safe:.2f} -> "
+        f"misses {missed}/{len(positives)} true pairs"
+    )
 
     print(f"\ncurrent MATCH_THRESHOLD = {MATCH_THRESHOLD:.2f}")
     cur_fp = sum(s >= MATCH_THRESHOLD for s in negatives)

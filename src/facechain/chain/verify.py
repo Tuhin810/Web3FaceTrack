@@ -76,7 +76,7 @@ def verify(
         record = contract.functions.get(rid).call()
     except ContractLogicError as exc:
         raise RecordNotFoundError(rid) from exc
-    except Exception as exc:  # noqa: BLE001 -- provider-specific revert shapes
+    except Exception as exc:
         if "NotFound" in str(exc) or "revert" in str(exc).lower():
             raise RecordNotFoundError(rid) from exc
         raise ChainError(f"could not read record {rid} from chain: {exc}") from exc
@@ -113,7 +113,9 @@ def _anchored_block(contract, record_id: str) -> int:
         logs = contract.events.MatchAnchored.get_logs(
             argument_filters={"recordId": record_id}, from_block=0, to_block="latest"
         )
-    except Exception:
+    except Exception:  # noqa: BLE001 -- log availability varies by provider (pruning,
+        # rate limits, unsupported filters); none of it should fail a verification whose
+        # actual answer -- does the hash match -- has already been obtained.
         return -1
     return logs[0].blockNumber if logs else -1
 

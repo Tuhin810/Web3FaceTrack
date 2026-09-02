@@ -24,9 +24,26 @@ def raw_response() -> dict:
 # --- offline provider: the AC11 path -----------------------------------------------
 
 
-def test_offline_provider_needs_no_settings_at_all():
-    """AC11: replay works on a machine with no .env / no keys configured."""
-    no_keys = Settings(serpapi_key=None, imgbb_key=None, private_key=None)
+def test_offline_provider_needs_no_settings_at_all(monkeypatch):
+    """AC11: replay works on a machine with no .env / no keys configured.
+
+    Asserts the claim rather than implying it: global settings are replaced with a
+    credential-free instance whose `require()` raises on any access, so the offline
+    path reaching for *any* key would fail this test.
+    """
+    from facechain import config as config_mod
+    from facechain.errors import ConfigError
+
+    class NoCredentials(Settings):
+        def require(self, field: str, why: str) -> str:
+            raise ConfigError(f"offline path must not need {field}")
+
+    monkeypatch.setattr(
+        config_mod,
+        "_settings",
+        NoCredentials(serpapi_key=None, imgbb_key=None, private_key=None),
+    )
+
     provider = OfflineProvider(fixture_path=FIXTURE)
     candidates, raw = provider.search_by_image("ignored")
     assert candidates
@@ -115,7 +132,9 @@ def test_extract_candidates_handles_missing_buckets_gracefully():
 
 
 def test_extract_candidates_carries_thumbnail_when_present():
-    data = {"visual_matches": [{"link": "https://x.test/d", "thumbnail": "https://x.test/thumb.jpg"}]}
+    data = {
+        "visual_matches": [{"link": "https://x.test/d", "thumbnail": "https://x.test/thumb.jpg"}]
+    }
     assert extract_candidates(data)[0].thumbnail_url == "https://x.test/thumb.jpg"
 
 

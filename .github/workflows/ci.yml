@@ -1,0 +1,103 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: tests (${{ matrix.os }}, py${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # AC1: a clean install must work on both Linux and macOS.
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install from a clean environment (AC1)
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install --upgrade pip
+          .venv/bin/pip install -r requirements.txt
+          .venv/bin/pip install -e .
+
+      - name: Tests that need neither credentials nor network (AC11)
+        # No secrets are configured for this workflow on purpose: if any test outside
+        # the `network` marker starts requiring an API key or the internet, this fails.
+        run: .venv/bin/python -m pytest -q -m "not model and not network"
+
+      - name: Secret-hygiene audit
+        # Needs full history: `.gitignore` does not undo an earlier commit.
+        run: .venv/bin/python -m pytest -q tests/test_secret_hygiene.py
+
+      - name: Canonical hash is identical on this platform (AC10, TASK.md 2.3)
+        run: |
+          .venv/bin/python - <<'PY'
+          import json
+          from web3 import Web3
+          obj = json.load(open("tests/fixtures/evidence_known_good.json", encoding="utf-8"))
+          raw = json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()
+          got = "0x" + Web3.keccak(raw).hex().removeprefix("0x")
+          expected = "0xa075bde44c4015e476bb8a06ce3ff3bc9920f790288323afbb4a460db2f9732d"
+          assert got == expected, f"canonical hash differs on this platform: {got}"
+          print(f"canonical hash stable: {got}")
+          PY
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: ruff check src/ tests/ scripts/
+      - run: ruff format --check src/ tests/
+
+  demo:
+    name: offline end-to-end demo (AC11)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache the buffalo_l model (~280MB)
+        uses: actions/cache@v4
+        with:
+          path: ~/.insightface
+          key: insightface-buffalo_l-v1
+
+      - run: |
+          python -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+          .venv/bin/pip install -e .
+
+      - name: Full pipeline, offline provider, no keys, no chain
+        # There is no query image in the repo (photos of real people are never
+        # committed), so this generates a synthetic face-free image and asserts the
+        # pipeline refuses it cleanly rather than crashing -- exercising stage 1 and
+        # the error path end to end. A real demo run needs a consented photo locally.
+        run: |
+          .venv/bin/python - <<'PY'
+          import cv2, numpy as np
+          cv2.imwrite("ci_blank.png", np.full((480, 480, 3), 200, np.uint8))
+          PY
+          set +e
+          .venv/bin/facechain faces --image ci_blank.png
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then echo "expected a clean failure on a face-free image"; exit 1; fi
+          echo "stage 1 correctly refused a face-free image (exit $code)"
+
+      - name: Offline search provider replays with no credentials
+        run: .venv/bin/facechain search --image ci_blank.png --provider offline

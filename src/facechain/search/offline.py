@@ -22,8 +22,7 @@ from .serpapi_lens import extract_candidates
 log = logging.getLogger(__name__)
 
 DEFAULT_FIXTURE = (
-    Path(__file__).resolve().parents[3]
-    / "tests" / "fixtures" / "serpapi_google_lens_response.json"
+    Path(__file__).resolve().parents[3] / "tests" / "fixtures" / "serpapi_google_lens_response.json"
 )
 
 
@@ -46,7 +45,9 @@ class OfflineProvider:
         try:
             data = json.loads(self.fixture_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
-            raise SearchError(f"offline fixture at {self.fixture_path} is not valid JSON: {exc}") from exc
+            raise SearchError(
+                f"offline fixture at {self.fixture_path} is not valid JSON: {exc}"
+            ) from exc
 
         # Same extraction function the live provider uses (see serpapi_lens.py), so a
         # fixture replays exactly as the corresponding live call would have parsed it.

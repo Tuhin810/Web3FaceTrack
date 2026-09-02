@@ -18,7 +18,7 @@ doing real work, not just that a different file hashes differently. Worth 10 ext
 
 ## Status
 
-**Built and unit-tested; not yet run as a live shell script.** `scripts/tamper_test.sh`
+**Complete (gate closed).** `scripts/tamper_test.sh`
 exists, is syntax-checked, and correctly aborts (exit 2) rather than silently no-op when
 no PRIVATE_KEY is configured. Its logic -- 3 cases: page_url mutation, similarity
 mutation, reformatting -- is proven by 5 new tests in `test_chain_roundtrip.py` against
@@ -34,8 +34,15 @@ Attempted an HTTP JSON-RPC shim (`scripts/local_chain.py`) to get a fully live C
 transcript without installing Anvil; it works for reads but not contract deployment --
 see D26. Left in the repo as a documented, non-load-bearing dev convenience.
 
-**To close:** install Anvil, run `scripts/tamper_test.sh local` for real, capture the
-transcript for Phase 11.
+**Closed:** `scripts/tamper_test.sh local` now runs for real against a live chain and
+reports **4 passed, 0 failed** -- baseline `VERIFIED ✓`, the §10.8 page_url mutation
+`TAMPERED ✗`, a `match.similarity` mutation `TAMPERED ✗` with both hashes side by side,
+and a reformatted-but-identical record still `VERIFIED ✓`. Transcript captured for the
+README.
+
+Two script bugs fixed by running it: a bash ordering error (`[ "$actual" -eq nonzero ]`
+errored before the `||` branch was reached, so every case printed a spurious error), and
+the script clobbering the caller's `deployment.local.json` (D48).
 
 ## Gate
 

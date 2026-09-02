@@ -200,6 +200,29 @@ def enroll(
     return record
 
 
+def purge(subject_id: str, settings: Settings | None = None) -> None:
+    """Delete a subject entirely: consent record *and* encoding, leaving nothing.
+
+    `revoke()` keeps the consent record as an audit trail of what was agreed and when
+    (DECISIONS.md D11), which is the right default for a real subject. But that is not
+    always what is wanted: a throwaway demo subject should leave no trace, and a genuine
+    erasure request ("delete everything you hold about me") is arguably better served by
+    removing the record than by retaining it. This is the explicit, opt-in way to do
+    that -- never the default.
+    """
+    import shutil
+
+    settings = settings or get_settings()
+    sid = _validate_subject_id(subject_id)
+    for path in (
+        _consent_path(sid, settings).parent,
+        _encoding_path(sid, settings).parent,
+    ):
+        if path.is_dir():
+            shutil.rmtree(path)
+    log.info("purged subject %r: consent record and encoding both deleted", sid)
+
+
 def revoke(subject_id: str, settings: Settings | None = None) -> ConsentRecord:
     """Mark consent withdrawn. The gate refuses the subject from then on.
 
@@ -277,6 +300,4 @@ def check_consent(
         )
 
     log.info("consent gate passed for %r (similarity %.3f)", sid, score)
-    return ConsentCheck(
-        record=record, similarity=score, query_face=query, enrolled_face=enrolled
-    )
+    return ConsentCheck(record=record, similarity=score, query_face=query, enrolled_face=enrolled)

@@ -26,15 +26,17 @@ screenshot-friendly now, not in Phase 11.
 
 ## Status
 
-**Functionally complete, gated on tooling.** 15 chain tests, 110 total green. All three
+**Complete (gate closed).** 15 chain tests, 110 total green. All three
 acceptance behaviours (AC4 deploy, AC7 verify, AC9 graceful AlreadyAnchored) proven
 against `eth-tester` through the identical deploy/anchor/verify code path a real network
 uses -- see D21 for exactly what is and isn't covered by that substitution.
 
-**Not yet run:** the CLI commands (`facechain deploy/anchor/verify`) end-to-end against a
-real listening chain, since no local chain binary (Anvil/Ganache) is installed in this
-environment and it has no general internet access either. Confirmed instead: CLI error
-handling is correct when no chain is reachable.
+**Now also run for real:** the CLI commands work end to end against a live HTTP chain at
+`127.0.0.1:8545`, served by `scripts/local_chain.py` (D47 -- the eth-tester wire/native
+translation is now complete in both directions). `deploy` -> real address + tx hash;
+`anchor` -> real tx; `verify` -> `VERIFIED ✓` with block number, timestamp and submitter;
+re-anchor -> `AlreadyAnchoredError`, exit 1. Anvil remains preferable before a testnet
+run, since py-evm is not revm.
 
 Two real bugs found and fixed by the test suite itself: D22 (a structurally broken
 existence probe that let a duplicate anchor reach the chain), D23 (verify reported the

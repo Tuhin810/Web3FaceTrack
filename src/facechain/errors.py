@@ -93,3 +93,12 @@ class HostingError(FaceChainError):
 
 class SearchError(FaceChainError):
     """A search provider failed. Maps to status SEARCH_FAILED."""
+
+
+class ScrapeError(FaceChainError):
+    """A page could not be fetched or parsed. Non-fatal to a run -- the candidate is
+    skipped and logged, not raised past the matcher."""
+
+
+class MatcherError(FaceChainError):
+    """Stage 2 orchestration failed in a way that is not a single candidate's fault."""

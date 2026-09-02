@@ -1,0 +1,26 @@
+{
+  "_SYNTHETIC": "NOT a real search response. Hand-built test fixture used only to exercise the pipeline's MATCHED path, which the genuine captured response (serpapi_google_lens_response.json) does not reach -- see DECISIONS.md D27. TASK.md 2.2 forbids hardcoded URLs in the *pipeline*; this is test input standing in for a provider, never a pre-picked result inside the search code. The live demo (Phase 9) must use a real provider response.",
+  "search_metadata": {
+    "id": "synthetic-known-positive",
+    "status": "Success"
+  },
+  "search_parameters": {
+    "engine": "google_lens"
+  },
+  "visual_matches": [
+    {
+      "position": 1,
+      "title": "Tuhin810 - Overview",
+      "link": "https://github.com/Tuhin810",
+      "source": "GitHub",
+      "thumbnail": "https://avatars.githubusercontent.com/u/111550237?v=4"
+    },
+    {
+      "position": 2,
+      "title": "torvalds - Overview",
+      "link": "https://github.com/torvalds",
+      "source": "GitHub",
+      "thumbnail": "https://avatars.githubusercontent.com/u/1024025?v=4"
+    }
+  ]
+}

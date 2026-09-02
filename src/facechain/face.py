@@ -78,22 +78,61 @@ class InsightFaceBackend:
         if self._app is None:
             with self._lock:
                 if self._app is None:
-                    from insightface.app import FaceAnalysis
-
-                    app = FaceAnalysis(
-                        name="buffalo_l",
-                        allowed_modules=["detection", "recognition"],
-                        providers=["CPUExecutionProvider"],
-                    )
-                    app.prepare(ctx_id=-1, det_size=self._det_size)
-                    self._app = app
-                    log.debug("loaded %s det_size=%s", self.model_id, self._det_size)
+                    self._app = self._load()
         return self._app
 
+    def _load(self):
+        """Load buffalo_l, keeping the library's own chatter off stdout.
+
+        insightface prints its model-loading progress with bare `print()` calls
+        ("Applied providers: ...", "find model: ...") and emits a FutureWarning from
+        scikit-image. Both would land in the middle of a report or a piped command's
+        output. Redirecting to stderr rather than discarding keeps the information
+        available for debugging (`--verbose`, or `2>&1`) while leaving stdout clean.
+        """
+        import contextlib
+        import logging as _logging
+        import os
+        import sys
+        import warnings
+
+        from insightface.app import FaceAnalysis
+
+        # Under --quiet the caller asked for silence, so the library's chatter is
+        # dropped entirely rather than merely moved off stdout.
+        quiet = _logging.getLogger().getEffectiveLevel() > _logging.INFO
+
+        with contextlib.ExitStack() as stack:
+            sink = (
+                stack.enter_context(open(os.devnull, "w", encoding="utf-8"))
+                if quiet
+                else sys.stderr
+            )
+            stack.enter_context(contextlib.redirect_stdout(sink))
+            stack.enter_context(warnings.catch_warnings())
+            warnings.simplefilter("ignore", FutureWarning)
+            app = FaceAnalysis(
+                name="buffalo_l",
+                allowed_modules=["detection", "recognition"],
+                providers=["CPUExecutionProvider"],
+            )
+            app.prepare(ctx_id=-1, det_size=self._det_size)
+
+        log.debug("loaded %s det_size=%s", self.model_id, self._det_size)
+        return app
+
     def detect(self, image: np.ndarray) -> list[FaceEncoding]:
+        import warnings
+
         app = self._ensure_loaded()
         out: list[FaceEncoding] = []
-        for f in app.get(image):
+        # scikit-image deprecation surfaced through insightface's face_align on every
+        # single call; it is not actionable from here and would otherwise print once
+        # per detected face.
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", FutureWarning)
+            faces = app.get(image)
+        for f in faces:
             vec = np.asarray(f.normed_embedding, dtype=np.float32)
             if vec.shape != (EMBEDDING_DIM,):
                 raise ValueError(f"expected ({EMBEDDING_DIM},) embedding, got {vec.shape}")
@@ -174,9 +213,7 @@ def _detect_padded(image: np.ndarray) -> list[FaceEncoding]:
             max(0, min(w, int(x2 / sx) - pad)),
             max(0, min(h, int(y2 / sy) - pad)),
         )
-        out.append(
-            FaceEncoding(vector=f.vector, bbox=box, det_score=f.det_score, model=f.model)
-        )
+        out.append(FaceEncoding(vector=f.vector, bbox=box, det_score=f.det_score, model=f.model))
     return out
 
 
@@ -226,9 +263,7 @@ def primary_face(image: bytes | str | Path) -> FaceEncoding:
 def similarity(a: FaceEncoding, b: FaceEncoding) -> float:
     """Cosine similarity in [-1, 1]. Higher means more likely the same person."""
     if a.model != b.model:
-        raise ValueError(
-            f"cannot compare encodings from different models: {a.model} vs {b.model}"
-        )
+        raise ValueError(f"cannot compare encodings from different models: {a.model} vs {b.model}")
     return float(np.clip(np.dot(a.vector, b.vector), -1.0, 1.0))
 
 

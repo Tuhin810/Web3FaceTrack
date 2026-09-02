@@ -86,9 +86,7 @@ def _upload_0x0(data: bytes, settings: Settings) -> HostedImage:
     return HostedImage(url=url, provider="0x0.st", expires_hint="~30-365 days, usage-dependent")
 
 
-def upload_query_image(
-    image: bytes | str | Path, settings: Settings | None = None
-) -> HostedImage:
+def upload_query_image(image: bytes | str | Path, settings: Settings | None = None) -> HostedImage:
     """Upload the query image and return its public URL.
 
     Tries imgbb first, falls back to 0x0.st on any failure -- including a missing
@@ -108,6 +106,10 @@ def upload_query_image(
                 f"both image hosts failed. imgbb: {primary_exc}. 0x0.st: {fallback_exc}"
             ) from fallback_exc
 
-    log.info("hosted query image at %s (%s, expires ~%s)",
-              hosted.url, hosted.provider, hosted.expires_hint)
+    log.info(
+        "hosted query image at %s (%s, expires ~%s)",
+        hosted.url,
+        hosted.provider,
+        hosted.expires_hint,
+    )
     return hosted

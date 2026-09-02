@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 
 
-class Status(str, Enum):
+class Status(StrEnum):
     MATCHED_AND_ANCHORED = "MATCHED_AND_ANCHORED"
     MATCHED_NOT_ANCHORED = "MATCHED_NOT_ANCHORED"
     NO_MATCH = "NO_MATCH"

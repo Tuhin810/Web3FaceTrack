@@ -128,7 +128,7 @@ def test_canonical_output_is_sorted(known_evidence):
 def test_non_ascii_is_kept_literal_not_escaped():
     """ensure_ascii=False: the UTF-8 encoding step fixes the bytes, not a \\u escape."""
     raw = canonical_json({"title": "Tuhin — Café 東京"})
-    assert "—".encode("utf-8") in raw
+    assert "—".encode() in raw
     assert b"\\u" not in raw
 
 
@@ -239,38 +239,63 @@ def test_record_never_contains_face_vectors(known_evidence):
 def test_record_has_the_documented_shape(known_evidence):
     assert known_evidence["schema"] == SCHEMA
     assert set(known_evidence) == {
-        "schema", "run_id", "created_at", "subject_id",
-        "query", "search", "match", "pipeline_version",
+        "schema",
+        "run_id",
+        "created_at",
+        "subject_id",
+        "query",
+        "search",
+        "match",
+        "pipeline_version",
     }
     assert set(known_evidence["query"]) == {
-        "image_sha256", "image_phash", "face_model", "det_score"
+        "image_sha256",
+        "image_phash",
+        "face_model",
+        "det_score",
     }
     assert set(known_evidence["search"]) == {
-        "provider", "hosted_query_url", "candidates_returned",
-        "candidates_fetched", "candidates_matched", "search_raw_sha256",
+        "provider",
+        "hosted_query_url",
+        "candidates_returned",
+        "candidates_fetched",
+        "candidates_matched",
+        "search_raw_sha256",
     }
     assert set(known_evidence["match"]) == {
-        "page_url", "page_title", "page_text_sha256", "matched_image_url",
-        "matched_image_sha256", "similarity", "match_threshold", "fetched_at",
+        "page_url",
+        "page_title",
+        "page_text_sha256",
+        "matched_image_url",
+        "matched_image_sha256",
+        "similarity",
+        "match_threshold",
+        "fetched_at",
     }
 
 
 def test_floats_are_rounded_for_reproducibility():
     """0.6120000000000001 and 0.612 must not produce different hashes."""
+
     def build(sim):
         return build_evidence(
-            run_id="r", subject_id="s", created_at="2026-01-01T00:00:00Z",
+            run_id="r",
+            subject_id="s",
+            created_at="2026-01-01T00:00:00Z",
             query=QueryInfo("a", "b", "m", 0.9),
             search=SearchInfo("p", "u", 1, 1, 1, "h"),
             match=MatchInfo("url", "t", "h", "iu", "ih", sim, 0.45, "2026-01-01T00:00:00Z"),
         )
+
     assert evidence_hash(build(0.612)) == evidence_hash(build(0.6120000000000001))
 
 
 def test_no_match_record_is_still_valid(known_evidence):
     """TASK.md 2.2: a clean no-match writes artifacts too."""
     ev = build_evidence(
-        run_id="r", subject_id="tuhin", created_at="2026-01-01T00:00:00Z",
+        run_id="r",
+        subject_id="tuhin",
+        created_at="2026-01-01T00:00:00Z",
         query=QueryInfo("a", "b", "m", 0.9),
         search=SearchInfo("p", "u", 42, 15, 0, "h"),
         match=None,
@@ -282,9 +307,12 @@ def test_no_match_record_is_still_valid(known_evidence):
 
 def test_record_id_unavailable_without_a_match():
     ev = build_evidence(
-        run_id="r", subject_id="t", created_at="2026-01-01T00:00:00Z",
+        run_id="r",
+        subject_id="t",
+        created_at="2026-01-01T00:00:00Z",
         query=QueryInfo("a", "b", "m", 0.9),
-        search=SearchInfo("p", "u", 0, 0, 0, "h"), match=None,
+        search=SearchInfo("p", "u", 0, 0, 0, "h"),
+        match=None,
     )
     with pytest.raises(EvidenceError):
         record_id_for(ev)
@@ -314,7 +342,7 @@ def test_load_evidence_reports_missing_file(tmp_path):
 def test_load_evidence_reports_bad_json(tmp_path):
     p = tmp_path / "bad.json"
     p.write_text("{nope")
-    with pytest.raises(EvidenceError, match="not valid UTF-8 JSON"):
+    with pytest.raises(EvidenceError, match=r"not valid UTF-8 JSON"):
         load_evidence(p)
 
 
@@ -334,20 +362,20 @@ def test_run_id_is_sortable_and_unique():
 
 def test_utc_now_format():
     import re
+
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", utc_now())
 
 
 def test_sha256_helpers_agree():
     assert sha256_text("abc") == sha256_bytes(b"abc")
-    assert sha256_bytes(b"") == (
-        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    )
+    assert sha256_bytes(b"") == ("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
 
 
 @pytest.mark.model
 def test_phash_is_stable_and_survives_recompression(tmp_path):
     """pHash must track visual content, not exact bytes."""
     import cv2
+
     img = cv2.imread("test.png")
     if img is None:
         pytest.skip("test.png not present")
@@ -357,14 +385,19 @@ def test_phash_is_stable_and_survives_recompression(tmp_path):
 
     jpg = tmp_path / "q40.jpg"
     cv2.imwrite(str(jpg), img, [cv2.IMWRITE_JPEG_QUALITY, 40])
-    differing = bin(int(base, 16) ^ int(phash(jpg), 16)).count("1")
+    differing = (int(base, 16) ^ int(phash(jpg), 16)).bit_count()
     assert differing <= 6, f"phash moved {differing} bits under recompression"
 
 
 @pytest.mark.model
 def test_phash_differs_for_different_images():
-    import cv2, numpy as np
+    import cv2
+    import numpy as np
+
     a = phash(cv2.imencode(".png", np.zeros((64, 64, 3), np.uint8))[1].tobytes())
-    b = phash(cv2.imencode(".png", np.random.default_rng(0).integers(
-        0, 255, (64, 64, 3), dtype=np.uint8))[1].tobytes())
+    b = phash(
+        cv2.imencode(
+            ".png", np.random.default_rng(0).integers(0, 255, (64, 64, 3), dtype=np.uint8)
+        )[1].tobytes()
+    )
     assert a != b

@@ -37,7 +37,10 @@ check() {
   "$@"
   local actual=$?
   set -e
-  if [ "$actual" -eq "$expected_exit" ] || { [ "$expected_exit" = "nonzero" ] && [ "$actual" -ne 0 ]; }; then
+  # The "nonzero" case must be tested first: `[ "$actual" -eq nonzero ]` is an integer
+  # comparison against a non-integer and errors out before the || is ever reached.
+  if { [ "$expected_exit" = "nonzero" ] && [ "$actual" -ne 0 ]; } \
+     || { [ "$expected_exit" != "nonzero" ] && [ "$actual" -eq "$expected_exit" ]; }; then
     echo "PASS (exit $actual)"
     pass=$((pass + 1))
   else
@@ -57,6 +60,22 @@ fi
 
 echo
 echo "--- deploying a throwaway MatchRegistry to $NETWORK"
+# `deploy` overwrites out/deployment.<network>.json, and evidence anchored against a
+# previous contract will no longer verify once that file points somewhere else. This
+# test is not entitled to destroy the caller's existing deployment, so it is saved and
+# restored on exit.
+DEPLOYMENT_FILE="out/deployment.${NETWORK}.json"
+SAVED_DEPLOYMENT=""
+if [ -f "$DEPLOYMENT_FILE" ]; then
+  SAVED_DEPLOYMENT="$WORK_DIR/saved_deployment.json"
+  cp "$DEPLOYMENT_FILE" "$SAVED_DEPLOYMENT"
+fi
+restore_deployment() {
+  if [ -n "$SAVED_DEPLOYMENT" ] && [ -f "$SAVED_DEPLOYMENT" ]; then
+    cp "$SAVED_DEPLOYMENT" "$DEPLOYMENT_FILE"
+  fi
+}
+
 "$FACECHAIN" deploy --network "$NETWORK"
 
 echo
@@ -68,8 +87,8 @@ if [ ! -f "$DEMO_IMAGE" ]; then
   echo "  DEMO_IMAGE=/path/to/photo.jpg $0" >&2
   exit 2
 fi
-cleanup_subject() { .venv/bin/facechain revoke --subject "$DEMO_SUBJECT" >/dev/null 2>&1 || true; }
-trap 'cleanup_subject; rm -rf "$WORK_DIR"' EXIT
+cleanup_subject() { "$FACECHAIN" revoke --subject "$DEMO_SUBJECT" --purge >/dev/null 2>&1 || true; }
+trap 'cleanup_subject; restore_deployment; rm -rf "$WORK_DIR"' EXIT
 
 "$FACECHAIN" enroll --subject "$DEMO_SUBJECT" --image "$DEMO_IMAGE" \
   --consent-statement "Throwaway enrolment for the tamper-evidence test script." >/dev/null

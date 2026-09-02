@@ -22,3 +22,25 @@ markers = [
     "model: requires the buffalo_l model files (slow, downloads ~280MB on first run)",
     "network: makes a real network call (needs internet, and often an API key)",
 ]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "BLE", "ISC", "FURB", "PYI"]
+ignore = [
+    # `datetime.now(timezone.utc)` reads more explicitly than the `UTC` alias, and this
+    # codebase writes timestamps into hashed, anchored records -- clarity wins.
+    "UP017",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# typer's API *requires* calls in argument defaults (`x: T = typer.Option(...)`).
+"src/facechain/cli.py" = ["B008"]
+# pytest fixtures are imported for their side effect of being in scope, which reads to
+# ruff as an unused import that is then redefined by the test's parameter name.
+"tests/*" = ["F811", "F401"]
+
+[tool.ruff.format]
+quote-style = "double"

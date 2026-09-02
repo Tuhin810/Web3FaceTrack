@@ -121,8 +121,13 @@ def deploy(
         block_number=receipt.blockNumber,
         solc_version=compiled["solc_version"],
     )
-    log.info("deployed %s to %s at %s (block %d)", compiled["contract_name"], network,
-              deployment.address, deployment.block_number)
+    log.info(
+        "deployed %s to %s at %s (block %d)",
+        compiled["contract_name"],
+        network,
+        deployment.address,
+        deployment.block_number,
+    )
     return deployment
 
 

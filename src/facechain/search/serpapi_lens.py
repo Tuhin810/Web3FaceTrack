@@ -82,8 +82,10 @@ class SerpApiLensProvider:
 
         status = data.get("search_metadata", {}).get("status")
         if status not in (None, "Success"):
-            raise SearchError(f"SerpAPI search did not succeed (status={status}): "
-                               f"{data.get('error', 'no error field')}")
+            raise SearchError(
+                f"SerpAPI search did not succeed (status={status}): "
+                f"{data.get('error', 'no error field')}"
+            )
 
         candidates = extract_candidates(data, source=self.name)
         log.info("SerpAPI google_lens: %d candidate(s) for %s", len(candidates), image_url)

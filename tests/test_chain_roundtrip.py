@@ -8,8 +8,8 @@ real network uses.
 from __future__ import annotations
 
 import pytest
+from conftest_chain import eth_tester_w3, funded_account
 
-from conftest_chain import eth_tester_w3, funded_account  # noqa: F401
 from facechain.chain.anchor import anchor, is_anchored
 from facechain.chain.compile import compile_contract
 from facechain.chain.deploy import deploy
@@ -33,9 +33,14 @@ def make_evidence(page_url="https://github.com/Tuhin810", similarity=0.61):
         query=QueryInfo("e" * 64, "c6f6718c0073e0fd", "insightface/buffalo_l", 0.94),
         search=SearchInfo("serpapi:google_lens", "https://i.ibb.co/x/q.png", 42, 15, 1, "f" * 64),
         match=MatchInfo(
-            page_url, "Tuhin810 - Overview", "a" * 64,
-            "https://avatars.githubusercontent.com/u/111550237?v=4", "b" * 64,
-            similarity, 0.45, "2026-09-02T11:04:29Z",
+            page_url,
+            "Tuhin810 - Overview",
+            "a" * 64,
+            "https://avatars.githubusercontent.com/u/111550237?v=4",
+            "b" * 64,
+            similarity,
+            0.45,
+            "2026-09-02T11:04:29Z",
         ),
     )
 
@@ -47,8 +52,14 @@ def test_compile_produces_the_documented_interface():
     c = compile_contract()
     names = {e["name"] for e in c["abi"] if e.get("type") in ("function", "error", "event")}
     assert names == {
-        "anchor", "get", "verify", "count", "recordIds",
-        "AlreadyAnchored", "NotFound", "MatchAnchored",
+        "anchor",
+        "get",
+        "verify",
+        "count",
+        "recordIds",
+        "AlreadyAnchored",
+        "NotFound",
+        "MatchAnchored",
     }
     assert c["solc_version"] == "0.8.24"
     assert c["bytecode"].startswith("0x")
@@ -115,6 +126,7 @@ def test_verify_reports_the_correct_submitter(eth_tester_w3, deployed):
     ev = make_evidence()
     anchor("local", ev, w3=eth_tester_w3, private_key=pk, deployment=d)
     from eth_account import Account
+
     submitter = Account.from_key(pk).address
     v = verify("local", ev, w3=eth_tester_w3, deployment=d)
     assert v.submitter.lower() == submitter.lower()
@@ -201,8 +213,14 @@ def test_second_anchor_does_not_change_count(eth_tester_w3, deployed):
 def test_different_records_can_both_be_anchored(eth_tester_w3, deployed):
     d, pk = deployed
     contract = eth_tester_w3.eth.contract(address=d.address, abi=d.abi)
-    anchor("local", make_evidence(page_url="https://github.com/a"), w3=eth_tester_w3, private_key=pk, deployment=d)
-    anchor("local", make_evidence(page_url="https://github.com/b"), w3=eth_tester_w3, private_key=pk, deployment=d)
+    for slug in ("a", "b"):
+        anchor(
+            "local",
+            make_evidence(page_url=f"https://github.com/{slug}"),
+            w3=eth_tester_w3,
+            private_key=pk,
+            deployment=d,
+        )
     assert contract.functions.count().call() == 2
 
 
@@ -210,8 +228,8 @@ def test_different_records_can_both_be_anchored(eth_tester_w3, deployed):
 
 
 def test_write_and_load_deployment_roundtrip(tmp_path, eth_tester_w3, funded_account):
+    from facechain.chain.deploy import load_deployment, write_deployment
     from facechain.config import Settings
-    from facechain.chain.deploy import write_deployment, load_deployment
 
     _, pk = funded_account
     settings = Settings(data_dir=tmp_path / "data", out_dir=tmp_path / "out")
@@ -226,8 +244,9 @@ def test_write_and_load_deployment_roundtrip(tmp_path, eth_tester_w3, funded_acc
 
 def test_deployment_file_never_contains_a_private_key(tmp_path, eth_tester_w3, funded_account):
     import json
+
+    from facechain.chain.deploy import deployment_path, write_deployment
     from facechain.config import Settings
-    from facechain.chain.deploy import write_deployment, deployment_path
 
     _, pk = funded_account
     settings = Settings(data_dir=tmp_path / "data", out_dir=tmp_path / "out")

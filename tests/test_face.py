@@ -5,8 +5,8 @@ from __future__ import annotations
 import cv2
 import numpy as np
 import pytest
-
 from conftest import StubBackend, make_encoding
+
 from facechain import face as facemod
 from facechain.errors import ImageDecodeError, LowConfidenceFace, NoFaceDetected
 from facechain.face import (

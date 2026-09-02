@@ -1,17 +1,36 @@
-# Stage 1 -- face detection and encoding.
-# Versions are the resolved set verified working on macOS arm64 / Python 3.12.
+# Runtime + test dependencies, pinned to the resolved set verified working on
+# macOS arm64 / Python 3.12. CI additionally checks Linux and Python 3.11 (AC1).
+
+# --- Stage 1: face detection and encoding ---------------------------------------
 insightface==1.0.1
 onnxruntime==1.29.0
 opencv-python-headless==5.0.0.93
 numpy==2.5.2
 pillow==12.3.0
 
-# CLI
+# --- Stage 2: hosting, search, scraping -----------------------------------------
+httpx==0.28.1
+selectolax==0.4.11
+
+# --- Stage 3: contract compilation and chain interaction ------------------------
+web3==8.0.0
+py-solc-x==2.0.5
+# solc itself is downloaded and managed by py-solc-x at first use (version 0.8.24,
+# pinned in chain/compile.py) -- no system package manager involvement.
+
+# --- CLI and configuration ------------------------------------------------------
 typer==0.27.2
+pydantic-settings==2.15.0
 
-# Tests
+# --- Tests ----------------------------------------------------------------------
 pytest==9.1.1
+# eth-tester/py-evm provide the in-memory chain the chain tests run against, since no
+# Anvil/Ganache binary is assumed to be present (DECISIONS.md D21).
+eth-tester==0.14.0b1
+py-evm==0.12.1b1
 
-# NOTE: insightface pulls opencv-python (non-headless) as a hard dependency, so both
-# opencv builds land in the environment. Harmless here, but see DECISIONS.md -- it is
-# worth revisiting before shipping a container image.
+# --- Lint (CI) ------------------------------------------------------------------
+ruff==0.16.5
+
+# NOTE: insightface declares a hard dependency on opencv-python (non-headless), so both
+# opencv builds land in the environment. See DECISIONS.md D7.
