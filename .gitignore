@@ -1,0 +1,15 @@
+# Never commit consent records, face encodings, query images, or run artifacts.
+data/consent/
+data/enrolled/
+out/
+.env
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Models are downloaded, not committed
+*.onnx

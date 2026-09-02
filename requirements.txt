@@ -1,0 +1,17 @@
+# Stage 1 -- face detection and encoding.
+# Versions are the resolved set verified working on macOS arm64 / Python 3.12.
+insightface==1.0.1
+onnxruntime==1.29.0
+opencv-python-headless==5.0.0.93
+numpy==2.5.2
+pillow==12.3.0
+
+# CLI
+typer==0.27.2
+
+# Tests
+pytest==9.1.1
+
+# NOTE: insightface pulls opencv-python (non-headless) as a hard dependency, so both
+# opencv builds land in the environment. Harmless here, but see DECISIONS.md -- it is
+# worth revisiting before shipping a container image.

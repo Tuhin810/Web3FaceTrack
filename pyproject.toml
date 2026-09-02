@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "facechain-verify"
+version = "0.1.0"
+description = "Consent-scoped face identification with on-chain evidence anchoring"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+[project.scripts]
+facechain = "facechain.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::FutureWarning"]
+markers = ["model: requires the buffalo_l model files (slow, downloads ~280MB on first run)"]
