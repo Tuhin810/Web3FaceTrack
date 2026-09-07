@@ -151,7 +151,8 @@ def run_pipeline(run_id: str, image_bytes: bytes, provider: str) -> None:
                      ["confirmed", str(stats.candidates_matched)],
                      ["threshold", f"{MATCH_THRESHOLD}"]],
               matches=[{"url": m.page_url, "score": round(m.similarity, 4),
-                        "image": m.matched_image_url, "title": m.page_title or ""}
+                        "image": m.matched_image_url, "title": m.page_title or "",
+                        "via_thumbnail": m.via_thumbnail}
                        for m in matches])
 
         # --- stage 5: evidence -------------------------------------------------
@@ -170,6 +171,9 @@ def run_pipeline(run_id: str, image_bytes: bytes, provider: str) -> None:
         )
         run_dir = settings.out_dir / evidence["run_id"]
         write_evidence(run_dir, evidence)
+        # TASK.md 2.2: the complete raw provider response, verbatim. The CLI pipeline
+        # writes this; the demo must too, or its run directories are not auditable.
+        (run_dir / "search_raw.json").write_bytes(raw_bytes)
         ehash = evidence_hash(evidence)
         facts = [["evidence hash", ehash], ["canonical bytes", "sorted keys, no whitespace"]]
         if best is not None:
@@ -190,13 +194,27 @@ def run_pipeline(run_id: str, image_bytes: bytes, provider: str) -> None:
             _emit(run, "anchor", "running")
             from facechain.chain.anchor import anchor as do_anchor
             from facechain.chain.verify import verify_report
-            res = do_anchor(NETWORK, evidence, settings=settings)
+            from facechain.errors import AlreadyAnchoredError
+
+            facts = []
+            try:
+                res = do_anchor(NETWORK, evidence, settings=settings)
+                facts += [["tx hash", res.tx_hash], ["block", str(res.block_number)],
+                          ["submitter", res.submitter]]
+                note = "VERIFIED on-chain"
+            except AlreadyAnchoredError:
+                # Not a failure: record_id is keccak(image_sha256 | page_url), so the
+                # same photo finding the same page derives the same id. The contract
+                # refuses the duplicate -- which is exactly the guarantee being
+                # demonstrated, so the run continues and still verifies.
+                facts.append(["duplicate", "this record was anchored by an earlier run"])
+                note = "Already anchored — the contract refused a duplicate"
+
             rep = verify_report(NETWORK, evidence, settings=settings)
+            facts.append(["on-chain hash", rep.on_chain_hash or "-"])
             _emit(run, "anchor", "ok" if rep.verified else "failed",
-                  detail="VERIFIED on-chain" if rep.verified else "verification failed",
-                  facts=[["tx hash", res.tx_hash], ["block", str(res.block_number)],
-                         ["submitter", res.submitter],
-                         ["on-chain hash", rep.on_chain_hash or "-"]])
+                  detail=note if rep.verified else "verification failed",
+                  facts=facts)
             run["status"] = Status.MATCHED_AND_ANCHORED.value
         run["done"] = True
 
@@ -295,8 +313,22 @@ td:first-child{color:#8797ab;width:170px}
 code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;word-break:break-all}
 img.shot{max-width:100%;border-radius:8px;margin:10px 0;border:1px solid #1f2a37}
 .cand{font-size:12.5px;padding:5px 0;border-bottom:1px solid #18212c;color:#8797ab}
-.match{background:#0f2318;border:1px solid #1e5b38;border-radius:8px;padding:12px;margin-top:10px}
+.match{background:#0f2318;border:1px solid #1e5b38;border-radius:10px;padding:14px;margin-top:12px}
 .score{color:#22c55e;font-weight:700}
+.mhead{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.tag{background:#3a2f10;border:1px solid #6b5518;color:#e3c46a;border-radius:999px;
+padding:2px 9px;font-size:11.5px}
+.mgrid{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:start}
+.mimg{width:150px;height:150px;object-fit:cover;border-radius:8px;border:1px solid #1e5b38;
+background:#0b0f14}
+.mtitle{font-weight:600;font-size:14px;margin-bottom:4px}
+.mlink{display:block;color:#7dd3a8;text-decoration:none;font-size:12px;margin-bottom:9px;
+word-break:break-all}
+.mlink:hover{text-decoration:underline}
+.prevwrap{border:1px solid #1f3a2a;border-radius:8px;overflow:hidden;background:#0b0f14}
+.prev{width:100%;height:230px;border:0;background:#fff;display:block}
+.prevnote{color:#6b7c91;font-size:11.5px;padding:6px 9px;background:#0e1a14}
+@media(max-width:720px){.mgrid{grid-template-columns:1fr}.mimg{width:100%;height:190px}}
 .err{background:#2a1215;border:1px solid #7f1d1d;color:#fca5a5;padding:14px;border-radius:8px}
 .note{color:#6b7c91;font-size:12.5px;margin-top:22px;line-height:1.6}
 a{color:#60a5fa}
@@ -369,10 +401,28 @@ async function poll(run){
     if(st.candidates) h+='<div style="margin-top:10px;color:#8797ab;font-size:12px">'+
       'candidates returned by the provider (first 12):</div>'+
       st.candidates.map(c=>`<div class="cand">${c.url}</div>`).join('');
-    if(st.matches&&st.matches.length) h+=st.matches.map(m=>
-      `<div class="match"><div class="score">confirmed · similarity ${m.score}</div>
-       <div class="mono" style="margin-top:6px">${m.url}</div>
-       <div style="color:#8797ab;font-size:12.5px;margin-top:4px">${m.title}</div></div>`).join('');
+    if(st.matches&&st.matches.length) h+=st.matches.map((m,i)=>`
+      <div class="match">
+        <div class="mhead">
+          <span class="score">confirmed · similarity ${m.score}</span>
+          ${m.via_thumbnail?'<span class="tag">via search thumbnail — page not crawlable</span>':''}
+        </div>
+        <div class="mgrid">
+          <img class="mimg" src="${m.image}" alt="matched image"
+               onerror="this.style.display='none'">
+          <div>
+            <div class="mtitle">${m.title||''}</div>
+            <a class="mono mlink" href="${m.url}" target="_blank" rel="noopener">${m.url}</a>
+            <div class="prevwrap">
+              <iframe class="prev" src="${m.url}" loading="lazy"
+                      sandbox="allow-scripts allow-same-origin"
+                      referrerpolicy="no-referrer"></iframe>
+              <div class="prevnote">live preview — many sites refuse to be framed
+                (<code>X-Frame-Options</code>); the matched image on the left always renders</div>
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
     if(st.status==='nomatch') h+=`<div style="color:#eab308;font-size:13px;margin-top:8px">
       No candidate passed face re-verification. This is a valid outcome, not a failure —
       reverse-image search returns visually similar pages, and re-verification is what

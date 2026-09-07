@@ -935,3 +935,74 @@ end to end through the real CLI, against a live HTTP chain:
 Both are single commands on a machine with internet and a funded key. The README states
 plainly which criteria were demonstrated locally and which were not, rather than
 implying a testnet deployment that did not happen.
+
+---
+
+## D50 — Thumbnail fallback when a candidate page is robots-disallowed (post-Phase 7)
+
+**What:** When `fetch_page()` fails, `verify_candidate()` now falls back to the search
+provider's own thumbnail rather than skipping the candidate. Matches found that way carry
+`via_thumbnail=True`.
+
+**Why, measured:** On a real live run, **14 of 15** candidates were Instagram, Facebook
+and X pages that disallow crawling in `robots.txt`. Only one (GitHub) was actually
+fetched. The pipeline reported "15 fetched, 0 matched" -- which read as *"we checked 15
+pages and none matched you"* when the truth was *"we checked one."* That is a materially
+different claim, and the more misleading one.
+
+**Why the thumbnail is legitimate, not a robots workaround:** it is an asset the provider
+already returned in an API response we paid for, served from its own CDN, and
+`encrypted-tbn*.gstatic.com/robots.txt` explicitly carries `Allow: /images`. It reads data
+we were given, rather than crawling a site that asked us not to. The fallback still runs
+`scraper.allowed()` on the thumbnail URL before fetching.
+
+**Weaker evidence, so it is labelled:** thumbnails are heavily recompressed, and page text
+and title are unavailable, so `page_text_excerpt` is empty for such a match. The flag is
+surfaced in the demo UI as "via search thumbnail — page not crawlable".
+
+---
+
+## D51 — `candidates_fetched` now counts what was examined, not what was attempted
+
+**What:** `MatchRunStats` gained `candidates_unreachable`, and `candidates_fetched` counts
+only candidates whose imagery could actually be examined (page or thumbnail).
+
+**Why:** Same finding as D50. A count that includes candidates the pipeline was never
+permitted to look at overstates what was verified, in an artifact whose whole purpose is
+to be trustworthy.
+
+---
+
+## D52 — A test depended on a gitignored file's *identity* (found when it changed)
+
+**What:** `test_find_matches_against_real_pages_finds_the_known_positive` asserted that
+the repo's `test.png` matched `github.com/Tuhin810`. It now downloads the reference avatar
+from that profile instead.
+
+**Why:** `test.png` is gitignored, so its content is free to change -- and it did, when a
+different person's photograph was dropped in during a demo. The test began failing while
+saying nothing about the code, which is the worst failure mode a test has. A test that
+needs a specific image must fetch it, not assume a mutable local file still contains it.
+
+---
+
+## D53 — `urllib.robotparser` and blank lines (noted, not fixed)
+
+`encrypted-tbn0.gstatic.com/robots.txt` reads:
+
+```
+User-agent: *
+Allow: /images
+
+Disallow: /
+```
+
+`urllib.robotparser` treats the blank line as ending the record, so the trailing
+`Disallow: /` lands in a group with no `User-agent` and is ignored -- our parser reports
+*every* path on that host as allowed. Google's own spec is more permissive about blank
+lines than RFC 9309, so both readings are defensible.
+
+**No impact here:** the only paths we fetch on that host are `/images` thumbnails, which
+are explicitly allowed under either reading. Recorded because a future change that fetched
+some other path from an image CDN would be relying on a parser quirk rather than on
+permission.

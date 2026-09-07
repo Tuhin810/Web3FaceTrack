@@ -78,11 +78,20 @@ class StubScraper:
     and never touches the filesystem -- the whole point of the no-disk-write test.
     """
 
-    def __init__(self, pages: dict[str, ScrapedPage], images: dict[str, bytes]):
+    def __init__(
+        self,
+        pages: dict[str, ScrapedPage],
+        images: dict[str, bytes],
+        disallowed: set[str] | None = None,
+    ):
         self._pages = pages
         self._images = images
+        self._disallowed = disallowed or set()
         self.fetched_pages: list[str] = []
         self.fetched_images: list[str] = []
+
+    def allowed(self, url: str) -> bool:
+        return url not in self._disallowed
 
     def fetch_page(self, url: str) -> ScrapedPage:
         self.fetched_pages.append(url)
@@ -365,28 +374,35 @@ def test_find_matches_stats_on_a_clean_no_match(monkeypatch, patch_face_pipeline
 @pytest.mark.network
 @pytest.mark.model
 def test_find_matches_against_real_pages_finds_the_known_positive():
-    """Not a fixture: real HTTP fetches against github.com/Tuhin810 (a known match)
-    mixed with a real page that should not match. Also the strongest available
-    no-disk-write evidence, since it runs the real fetch/decode path end to end."""
-    import os
+    """Real HTTP fetches: a GitHub profile whose own avatar is the query, mixed with an
+    unrelated real profile that must not match.
 
-    from facechain.evidence import sha256_file
+    The query image is downloaded from the profile under test rather than read from a
+    local file. An earlier version used the repo's `test.png`, which is gitignored and
+    therefore free to change -- and it did, silently turning a passing test into a
+    failing one that said nothing about the code.
+    """
+    import httpx
 
-    if not os.path.isfile("test.png"):
-        pytest.skip("test.png not present")
+    subject_page = "https://github.com/Tuhin810"
+    avatar = "https://avatars.githubusercontent.com/u/111550237?v=4"
+    try:
+        query_bytes = httpx.get(avatar, timeout=15, follow_redirects=True).content
+    except httpx.HTTPError:
+        pytest.skip("could not fetch the reference avatar")
 
     candidates = [
         cand("https://github.com/Tuhin810", title="Tuhin810 - Overview"),
         cand("https://github.com/torvalds", title="torvalds - Overview"),  # unrelated
     ]
     matches, stats = find_matches(
-        candidates, query_image="test.png", match_threshold=MATCH_THRESHOLD
+        candidates, query_image=query_bytes, match_threshold=MATCH_THRESHOLD
     )
 
     assert stats.candidates_returned == 2
     assert stats.candidates_fetched == 2
     assert len(matches) == 1
-    assert matches[0].page_url == "https://github.com/Tuhin810"
+    assert matches[0].page_url == subject_page
     assert matches[0].similarity >= MATCH_THRESHOLD
 
     # The matched image's hash is of the *actually fetched* bytes, not test.png's own
@@ -396,7 +412,6 @@ def test_find_matches_against_real_pages_finds_the_known_positive():
     # with the local file, is correct per TASK.md 6 -- the record is evidence of what
     # was actually observed on the page, not a claim the page serves the identical file.
     assert len(matches[0].matched_image_sha256) == 64
-    assert matches[0].matched_image_sha256 != sha256_file("test.png")
 
 
 @pytest.mark.network

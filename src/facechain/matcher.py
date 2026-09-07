@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 from .errors import ScrapeError
@@ -58,15 +59,23 @@ class VerifiedMatch:
     page_text_excerpt: str
     matched_image_sha256: str
     fetched_at: str  # ISO 8601 UTC
+    via_thumbnail: bool = False  # True when the page itself could not be fetched
 
 
 @dataclass(frozen=True)
 class MatchRunStats:
-    """Counts that feed the evidence record and the run report (TASK.md 6, 2.2)."""
+    """Counts that feed the evidence record and the run report (TASK.md 6, 2.2).
+
+    ``candidates_fetched`` counts candidates whose imagery was actually examined, not
+    candidates attempted. Those differ sharply in practice: on a real run, 14 of 15
+    candidates were Instagram/Facebook/X pages that disallow crawling, so reporting the
+    attempt count would have claimed 15 pages were checked when one was.
+    """
 
     candidates_returned: int
     candidates_fetched: int
     candidates_matched: int
+    candidates_unreachable: int = 0  # robots-disallowed or failed, and no thumbnail either
 
 
 def _is_priority(candidate: SearchCandidate) -> bool:
@@ -103,6 +112,55 @@ def _score_image_against_query(image_bytes: bytes, query: FaceEncoding) -> tuple
     return best, len(faces)
 
 
+def _verify_via_thumbnail(
+    candidate: SearchCandidate,
+    query: FaceEncoding,
+    scraper: Scraper,
+    match_threshold: float,
+) -> VerifiedMatch | None:
+    """Fall back to the search provider's own thumbnail when the page is unreachable.
+
+    Most social platforms disallow crawling in robots.txt -- measured on a real run,
+    14 of 15 candidates were Instagram/Facebook/X pages we are not permitted to fetch.
+    Skipping them entirely means the pipeline reports "no match" for candidates it never
+    actually looked at, which is a materially different claim.
+
+    The thumbnail is a legitimate alternative: it is an asset the search provider already
+    returned to us in its API response, served from its own CDN, and Google's
+    `encrypted-tbn*.gstatic.com/robots.txt` explicitly carries `Allow: /images`. This
+    reads data we were given rather than crawling a site that asked us not to.
+
+    A match found this way is flagged `via_thumbnail=True`, because it is weaker evidence
+    than the full page: the thumbnail is heavily recompressed, and the page text and title
+    are unavailable.
+    """
+    if not candidate.thumbnail_url:
+        return None
+    if not scraper.allowed(candidate.thumbnail_url):
+        log.debug("thumbnail disallowed by robots: %s", candidate.thumbnail_url)
+        return None
+    try:
+        data = scraper.fetch_image_bytes(candidate.thumbnail_url)
+    except ScrapeError as exc:
+        log.debug("thumbnail fetch failed for %s: %s", candidate.page_url, exc)
+        return None
+
+    scored = _score_image_against_query(data, query)
+    if scored is None or scored[0] < match_threshold:
+        return None
+
+    return VerifiedMatch(
+        page_url=candidate.page_url,
+        matched_image_url=candidate.thumbnail_url,
+        similarity=scored[0],
+        page_title=candidate.title,
+        page_text_excerpt="",  # unavailable: the page itself was never fetched
+        matched_image_sha256=sha256_bytes(data),
+        fetched_at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        via_thumbnail=True,
+    )
+
+
 def verify_candidate(
     candidate: SearchCandidate,
     query: FaceEncoding,
@@ -111,14 +169,17 @@ def verify_candidate(
 ) -> VerifiedMatch | None:
     """Fetch one candidate page and its images, score every face against the query.
 
-    Returns None if the page could not be fetched, was disallowed, or no image on it
-    reaches match_threshold -- a candidate not passing is not an error.
+    Returns None if no image reaches match_threshold -- a candidate not passing is not
+    an error. When the page cannot be fetched at all (robots-disallowed, blocked, gone),
+    falls back to the provider's thumbnail rather than silently skipping the candidate.
     """
     try:
         page = scraper.fetch_page(candidate.page_url)
     except ScrapeError as exc:
-        log.info("skipping candidate %s: %s", candidate.page_url, exc)
-        return None
+        log.info(
+            "page unreachable (%s); trying the provider thumbnail: %s", exc, candidate.page_url
+        )
+        return _verify_via_thumbnail(candidate, query, scraper, match_threshold)
 
     best_score = -1.0
     best_url: str | None = None
@@ -174,9 +235,14 @@ def find_matches(
     scraper = scraper or Scraper()
     try:
         matches: list[VerifiedMatch] = []
-        fetched = 0
+        examined = 0
+        unreachable = 0
         for candidate in ranked:
-            fetched += 1
+            if _candidate_is_examinable(candidate, scraper):
+                examined += 1
+            else:
+                unreachable += 1
+                continue
             result = verify_candidate(candidate, query, scraper, match_threshold)
             if result is not None:
                 matches.append(result)
@@ -187,7 +253,26 @@ def find_matches(
     matches.sort(key=lambda m: m.similarity, reverse=True)
     stats = MatchRunStats(
         candidates_returned=len(candidates),
-        candidates_fetched=fetched,
+        candidates_fetched=examined,
         candidates_matched=len(matches),
+        candidates_unreachable=unreachable,
     )
+    if unreachable:
+        log.info(
+            "%d candidate(s) could not be examined at all (no page access and no usable "
+            "thumbnail); they are reported separately rather than counted as checked",
+            unreachable,
+        )
     return matches, stats
+
+
+def _candidate_is_examinable(candidate: SearchCandidate, scraper: Scraper) -> bool:
+    """Whether there is any permitted way to look at this candidate's imagery.
+
+    A candidate whose page is robots-disallowed *and* which carries no fetchable
+    thumbnail cannot be checked at all. Counting it as "fetched" would claim the
+    pipeline examined imagery it never saw.
+    """
+    if scraper.allowed(candidate.page_url):
+        return True
+    return bool(candidate.thumbnail_url and scraper.allowed(candidate.thumbnail_url))
