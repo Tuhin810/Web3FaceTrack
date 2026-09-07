@@ -41,6 +41,9 @@ ignore = [
 # pytest fixtures are imported for their side effect of being in scope, which reads to
 # ruff as an unused import that is then redefined by the test's parameter name.
 "tests/*" = ["F811", "F401"]
+# The demo server embeds its whole page as one string literal; wrapping CSS and HTML to
+# 100 columns would make it less readable, not more. Not a deliverable -- see demo/README.
+"demo/server.py" = ["E501"]
 
 [tool.ruff.format]
 quote-style = "double"
