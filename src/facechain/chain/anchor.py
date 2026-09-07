@@ -116,5 +116,5 @@ def anchor(
         block_number=receipt.blockNumber,
         submitter=account.address,
     )
-    log.info("anchored %s at block %d (tx %s)", rid, result.block_number, result.tx_hash)
+    log.debug("anchored %s at block %d (tx %s)", rid, result.block_number, result.tx_hash)
     return result

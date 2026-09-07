@@ -196,7 +196,7 @@ def enroll(
         det_score=np.float32(encoding.det_score),
         model=np.asarray(encoding.model),
     )
-    log.info("enrolled subject %r (det_score=%.3f)", sid, encoding.det_score)
+    log.debug("enrolled subject %r (det_score=%.3f)", sid, encoding.det_score)
     return record
 
 

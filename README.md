@@ -29,6 +29,9 @@ something.
 **This pipeline refuses to run against anyone who has not been enrolled with an explicit
 consent record.** See [Ethics and scope](#ethics-and-scope).
 
+> **Reviewing this?** [**QUICKSTART.md**](QUICKSTART.md) gets you from clone to a working
+> run in about five minutes, with no API keys, no blockchain and no internet.
+
 ---
 
 ## Contents

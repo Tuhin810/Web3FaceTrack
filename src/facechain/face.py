@@ -98,9 +98,13 @@ class InsightFaceBackend:
 
         from insightface.app import FaceAnalysis
 
-        # Under --quiet the caller asked for silence, so the library's chatter is
-        # dropped entirely rather than merely moved off stdout.
-        quiet = _logging.getLogger().getEffectiveLevel() > _logging.INFO
+        # insightface announces every model file it loads with bare `print()` calls.
+        # It is noise for anyone running a command, and it lands on stdout where it
+        # would corrupt a piped report, so it is dropped unless --verbose asked for
+        # detail. Redirecting to stderr instead was the earlier behaviour, but a
+        # reviewer's first command should not open with eight lines of onnxruntime
+        # bookkeeping.
+        quiet = _logging.getLogger().getEffectiveLevel() > _logging.DEBUG
 
         with contextlib.ExitStack() as stack:
             sink = (
